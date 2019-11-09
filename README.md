@@ -16,7 +16,7 @@ python版本:
 
 python版本:
 
-> >= python36 
+> `>= python36`
 
 ---
 > 此底层API来自于[vnpy](https://github.com/vnpy/vnpy)， 我也在自己的框架中进行了使用。感谢陈大 
