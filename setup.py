@@ -115,14 +115,15 @@ vnctptd_se = Extension(
 )
 
 if platform.system() == "Windows":
-    ext_modules = [vnctptd, vnctpmd, vnctptd_se, vnctpmd_se]
+    # ext_modules = [vnctptd, vnctpmd, vnctptd_se, vnctpmd_se]
+    ext_modules = []
 elif platform.system() == "Darwin":
     warnings.warn("因为官方并没有发布基于mac的api， 所以当前ctpbee并不支持mac下面的ctp接口")
     ext_modules = []
 else:
     ext_modules = [vnctptd, vnctpmd, vnctptd_se, vnctpmd_se]
 
-pkgs = ['ctpbee_api.api']
+pkgs = ['ctpbee_api.ctp']
 
 setup(
     name='ctpbee_api',
@@ -136,10 +137,9 @@ setup(
     packages=pkgs,
     install_requires=[],
     platforms=["Windows", "Linux", "Mac OS-X"],
-    package_dir={'ctpbee_api': 'ctpbee_api'},
-    # zip_safe=True,
     include_package_data=True,
-    package_data={'ctpbee_api': ['api/ctp/*']},
+    package_dir={'ctpbee_api': 'ctpbee_api'},
+    package_data={'ctpbee_api': ['ctp/*', ]},
     ext_modules=ext_modules,
     classifiers=[
         'Development Status :: 4 - Beta',
