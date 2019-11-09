@@ -12,12 +12,7 @@ if sys.version_info < (3, 6):
 
 
 runtime_library_dir = []
-try:
-    import pypandoc
-
-    long_description = pypandoc.convert_file('README.md', 'rst')
-except Exception:
-    long_description = ""
+long_description = ""
 
 if platform.uname().system == "Windows":
     compiler_flags = [
@@ -132,7 +127,7 @@ pkgs = ['ctpbee_api.api']
 setup(
     name='ctpbee_api',
     version=0.1,
-    description="single API support",
+    description="single CTP API support",
     author='somewheve',
     long_description=long_description,
     author_email='somewheve@gmail.com',
