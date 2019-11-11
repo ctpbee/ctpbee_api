@@ -1,4 +1,4 @@
 
 # include MANIFEST.in
 include README.md
-recursive-include ctpbee_api/ctpbee *
+recursive-include ctpbee_api/ctp *

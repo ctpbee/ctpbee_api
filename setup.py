@@ -31,18 +31,18 @@ else:
     runtime_library_dir = ["$ORIGIN"]
 
 vnctpmd = Extension(
-    "ctpbee_api.api.ctp.vnctpmd",
+    "ctpbee_api.ctp.vnctpmd",
     [
-        "ctpbee_api/api/ctp/vnctp/vnctpmd/vnctpmd.cpp",
+        "ctpbee_api/ctp/vnctp/vnctpmd/vnctpmd.cpp",
     ],
     include_dirs=[
-        "ctpbee_api/api/ctp/include",
-        "ctpbee_api/api/ctp/vnctp",
+        "ctpbee_api/ctp/include",
+        "ctpbee_api/ctp/vnctp",
     ],
     language="cpp",
     define_macros=[],
     undef_macros=[],
-    library_dirs=["ctpbee_api/api/ctp/libs", "ctpbee_api/api/ctp"],
+    library_dirs=["ctpbee_api/ctp/libs", "ctpbee_api/ctp"],
     libraries=["thostmduserapi_se", "thosttraderapi_se", ],
     extra_compile_args=compiler_flags,
     extra_link_args=extra_link_args,
@@ -51,18 +51,18 @@ vnctpmd = Extension(
 )
 
 vnctptd = Extension(
-    "ctpbee_api.api.ctp.vnctptd",
+    "ctpbee_api.ctp.vnctptd",
     [
-        "ctpbee_api/api/ctp/vnctp/vnctptd/vnctptd.cpp",
+        "ctpbee_api/ctp/vnctp/vnctptd/vnctptd.cpp",
     ],
     include_dirs=[
-        "ctpbee_api/api/ctp/include",
-        "ctpbee_api/api/ctp/vnctp",
+        "ctpbee_api/ctp/include",
+        "ctpbee_api/ctp/vnctp",
     ],
     define_macros=[],
     undef_macros=[],
-    library_dirs=["ctpbee_api/api/ctp/libs",
-                  "ctpbee_api/api/ctp",
+    library_dirs=["ctpbee_api/ctp/libs",
+                  "ctpbee_api/ctp",
                   ],
     libraries=["thostmduserapi_se", "thosttraderapi_se"],
     extra_compile_args=compiler_flags,
@@ -73,18 +73,18 @@ vnctptd = Extension(
 )
 
 vnctpmd_se = Extension(
-    "ctpbee_api.api.ctp.vnctpmd_se",
+    "ctpbee_api.ctp.vnctpmd_se",
     [
-        "ctpbee_api/api/ctp/vnctp_se/vnctpmd/vnctpmd.cpp",
+        "ctpbee_api/ctp/vnctp_se/vnctpmd/vnctpmd.cpp",
     ],
     include_dirs=[
-        "ctpbee_api/api/ctp/include",
-        "ctpbee_api/api/ctp/vnctp_se",
+        "ctpbee_api/ctp/include",
+        "ctpbee_api/ctp/vnctp_se",
     ],
     language="cpp",
     define_macros=[],
     undef_macros=[],
-    library_dirs=["ctpbee_api/api/ctp/libs", "ctpbee_api/api/ctp"],
+    library_dirs=["ctpbee_api/ctp/libs", "ctpbee_api/ctp"],
     libraries=["thosttraderapi_se_app", "thostmduserapi_se_app", ],
     extra_compile_args=compiler_flags,
     extra_link_args=extra_link_args,
@@ -93,18 +93,18 @@ vnctpmd_se = Extension(
 )
 
 vnctptd_se = Extension(
-    "ctpbee_api.api.ctp.vnctptd_se",
+    "ctpbee_api.ctp.vnctptd_se",
     [
-        "ctpbee_api/api/ctp/vnctp_se/vnctptd/vnctptd.cpp",
+        "ctpbee_api/ctp/vnctp_se/vnctptd/vnctptd.cpp",
     ],
     include_dirs=[
-        "ctpbee_api/api/ctp/include",
-        "ctpbee_api/api/ctp/vnctp_se",
+        "ctpbee_api/ctp/include",
+        "ctpbee_api/ctp/vnctp_se",
     ],
     define_macros=[],
     undef_macros=[],
-    library_dirs=["ctpbee_api/api/ctp/libs",
-                  "ctpbee_api/api/ctp",
+    library_dirs=["ctpbee_api/ctp/libs",
+                  "ctpbee_api/ctp",
                   ],
     libraries=["thosttraderapi_se_app", "thostmduserapi_se_app"],
     extra_compile_args=compiler_flags,

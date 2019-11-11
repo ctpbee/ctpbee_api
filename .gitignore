@@ -2,4 +2,6 @@ build
 dist
 .git
 
+venv
+
 *.egg-info
