@@ -127,7 +127,7 @@ pkgs = ['ctpbee_api.ctp']
 
 setup(
     name='ctpbee_api',
-    version=0.1,
+    version=0.16,
     description="single CTP API support",
     author='somewheve',
     long_description=long_description,
