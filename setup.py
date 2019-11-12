@@ -123,11 +123,11 @@ elif platform.system() == "Darwin":
 else:
     ext_modules = [vnctptd, vnctpmd, vnctptd_se, vnctpmd_se]
 
-pkgs = ['ctpbee_api.ctp']
+pkgs = ['ctpbee_api.ctp', "ctpbee_api"]
 
 setup(
     name='ctpbee_api',
-    version=0.16,
+    version=0.17,
     description="single CTP API support",
     author='somewheve',
     long_description=long_description,
