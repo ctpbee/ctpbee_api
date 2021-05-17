@@ -9622,7 +9622,7 @@ public:
 
 PYBIND11_MODULE(CTdApi, m)
 {
-    class_<TdApi, PyTdApi> TdApi(m, "TdApi", module_local());
+    class_<TdApi, PyTdApi> TdApi(m, "MiniTdApi", module_local());
     TdApi
         .def(init<>())
         .def("createFtdcTraderApi", &TdApi::createFtdcTraderApi)

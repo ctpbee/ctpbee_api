@@ -1,3 +1,3 @@
-from .CMdApi import MdApi
-from .CTdApi import TdApi
+from .CMdApi import MiniMdApi
+from .CTdApi import MiniTdApi
 from .mini_constant import *
