@@ -853,10 +853,10 @@ public:
 	};
 };
 
-
 PYBIND11_MODULE(CMdApi, m)
+
 {
-	class_<MdApi, PyMdApi> mdapi(m, "MiniMdApi", module_local());
+	class_<MdApi, PyMdApi> mdapi(m, "MdApi", module_local());
 	mdapi
 		.def(init<>())
 		.def("createFtdcMdApi", &MdApi::createFtdcMdApi)
