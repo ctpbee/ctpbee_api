@@ -1,6 +1,5 @@
 // vnminimd.cpp : ���� DLL Ӧ�ó���ĵ���������
 //
-#include "stdafx.h"
 #include "vnminimd.h"
 
 
