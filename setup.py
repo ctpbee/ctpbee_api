@@ -70,48 +70,6 @@ vnctptd = Extension(
     language="cpp",
 )
 
-vnctpmd_se = Extension(
-    "ctpbee_api.ctp.vnctpmd_se",
-    [
-        "ctpbee_api/ctp/vnctp_se/vnctpmd/vnctpmd.cpp",
-    ],
-    include_dirs=[
-        "ctpbee_api/ctp/include",
-        "ctpbee_api/ctp/vnctp_se",
-    ],
-    language="cpp",
-    define_macros=[],
-    undef_macros=[],
-    library_dirs=["ctpbee_api/ctp/libs", "ctpbee_api/ctp"],
-    libraries=["thosttraderapi_se_app", "thostmduserapi_se_app", ],
-    extra_compile_args=compiler_flags,
-    extra_link_args=extra_link_args,
-    depends=[],
-    runtime_library_dirs=runtime_library_dir,
-)
-
-vnctptd_se = Extension(
-    "ctpbee_api.ctp.vnctptd_se",
-    [
-        "ctpbee_api/ctp/vnctp_se/vnctptd/vnctptd.cpp",
-    ],
-    include_dirs=[
-        "ctpbee_api/ctp/include",
-        "ctpbee_api/ctp/vnctp_se",
-    ],
-    define_macros=[],
-    undef_macros=[],
-    library_dirs=["ctpbee_api/ctp/libs",
-                  "ctpbee_api/ctp",
-                  ],
-    libraries=["thosttraderapi_se_app", "thostmduserapi_se_app"],
-    extra_compile_args=compiler_flags,
-    extra_link_args=extra_link_args,
-    runtime_library_dirs=runtime_library_dir,
-    depends=[],
-    language="cpp",
-)
-
 mini_td = Extension(
     "ctpbee_api.ctp_mini.CTdApi",
     [
@@ -120,6 +78,7 @@ mini_td = Extension(
     include_dirs=[
         "ctpbee_api/ctp_mini/include",
         "ctpbee_api/ctp_mini/vnmini",
+        "ctpbee_api/ctp_mini/vnmini/vnminitd",
     ],
     define_macros=[],
     undef_macros=[],
@@ -142,6 +101,7 @@ mini_md = Extension(
     include_dirs=[
         "ctpbee_api/ctp_mini/include",
         "ctpbee_api/ctp_mini/vnmini",
+        "ctpbee_api/ctp_mini/vnmini/vnminimd",
     ],
     define_macros=[],
     undef_macros=[],
@@ -157,20 +117,19 @@ mini_md = Extension(
 )
 
 if platform.system() == "Windows":
-    # ext_modules = [vnctptd, vnctpmd, vnctptd_se, vnctpmd_se, mini_td, mini_md]
     ext_modules = []
 
 elif platform.system() == "Darwin":
     warnings.warn("因为官方并没有发布基于mac的api， 所以当前ctpbee并不支持mac下面的ctp接口")
     ext_modules = []
 else:
-    ext_modules = [vnctptd, vnctpmd, vnctptd_se, vnctpmd_se, mini_td, mini_md]
+    ext_modules = [vnctptd, vnctpmd, mini_td, mini_md]
 
 pkgs = ['ctpbee_api.ctp', "ctpbee_api", "ctpbee_api.ctp_mini"]
 
 setup(
     name='ctpbee_api',
-    version=0.19,
+    version=0.2,
     description="single CTP API support, From VNPY",
     author='somewheve',
     long_description=long_description,
