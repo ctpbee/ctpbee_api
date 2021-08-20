@@ -9,7 +9,7 @@ if sys.version_info < (3, 6):
     raise RuntimeError('当前ctpbee_api只支持python36以及更高版本/ ctpbee only support python36 and highly only ')
 
 runtime_library_dir = []
-long_description = ""
+long_description = "api support"
 
 if platform.uname().system == "Windows":
     compiler_flags = [
