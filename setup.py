@@ -78,7 +78,6 @@ mini_td = Extension(
     include_dirs=[
         "ctpbee_api/ctp_mini/include",
         "ctpbee_api/ctp_mini/vnmini",
-        "ctpbee_api/ctp_mini/vnmini/vnminitd",
     ],
     define_macros=[],
     undef_macros=[],
@@ -101,7 +100,6 @@ mini_md = Extension(
     include_dirs=[
         "ctpbee_api/ctp_mini/include",
         "ctpbee_api/ctp_mini/vnmini",
-        "ctpbee_api/ctp_mini/vnmini/vnminimd",
     ],
     define_macros=[],
     undef_macros=[],
@@ -117,8 +115,8 @@ mini_md = Extension(
 )
 
 if platform.system() == "Windows":
+    # ext_modules = [vnctptd, vnctpmd, mini_td, mini_md]
     ext_modules = []
-
 elif platform.system() == "Darwin":
     warnings.warn("因为官方并没有发布基于mac的api， 所以当前ctpbee并不支持mac下面的ctp接口")
     ext_modules = []
