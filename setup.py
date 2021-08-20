@@ -127,7 +127,7 @@ pkgs = ['ctpbee_api.ctp', "ctpbee_api", "ctpbee_api.ctp_mini"]
 
 setup(
     name='ctpbee_api',
-    version=0.2,
+    version=0.4,
     description="single CTP API support, From VNPY",
     author='somewheve',
     long_description=long_description,
@@ -139,6 +139,6 @@ setup(
     platforms=["Windows", "Linux"],
     include_package_data=True,
     package_dir={'ctpbee_api': 'ctpbee_api'},
-    package_data={'ctpbee_api': ['ctp/*', "ctp_mini/*"]},
+    package_data={"": ["*"]},
     ext_modules=ext_modules,
 )
