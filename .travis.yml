@@ -8,7 +8,7 @@ matrix:
     - python: 3.8
 
 script:
-  - python setup.py install
+  - sudo python setup.py install
 
 before_install:
   - sudo locale-gen zh_CN.GB18030
