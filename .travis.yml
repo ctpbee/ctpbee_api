@@ -13,3 +13,4 @@ script:
 before_install:
   - sudo locale-gen zh_CN.GB18030
   - sudo apt install gcc
+  - sudo pip3 install --upgrade --force-reinstall setuptools
