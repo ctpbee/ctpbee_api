@@ -3,3 +3,5 @@
 include README.md
 recursive-include ctpbee_api/ctp *
 recursive-include ctpbee_api/ctp_mini *
+
+recursive-exclude ctpbee_api *.pyc

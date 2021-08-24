@@ -127,7 +127,7 @@ pkgs = ['ctpbee_api.ctp', "ctpbee_api", "ctpbee_api.ctp_mini"]
 
 setup(
     name='ctpbee_api',
-    version=0.4,
+    version=0.22,
     description="single CTP API support, From VNPY",
     author='somewheve',
     long_description=long_description,
@@ -141,4 +141,12 @@ setup(
     package_dir={'ctpbee_api': 'ctpbee_api'},
     package_data={"": ["*"]},
     ext_modules=ext_modules,
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+    ],
 )
