@@ -115,15 +115,14 @@ mini_md = Extension(
 )
 
 if platform.system() == "Windows":
-    # ext_modules = [vnctptd, vnctpmd, mini_td, mini_md]
-    ext_modules = []
+    ext_modules = [vnctptd, vnctpmd, mini_td, mini_md]
 elif platform.system() == "Darwin":
     warnings.warn("因为官方并没有发布基于mac的api， 所以当前ctpbee并不支持mac下面的ctp接口")
     ext_modules = []
 else:
     ext_modules = [vnctptd, vnctpmd, mini_td, mini_md]
 
-pkgs = ['ctpbee_api.ctp', "ctpbee_api", "ctpbee_api.ctp_mini"]
+pkgs = ["ctpbee_api", 'ctpbee_api.ctp', "ctpbee_api.ctp_mini", ]
 
 setup(
     name='ctpbee_api',
@@ -139,14 +138,11 @@ setup(
     platforms=["Windows", "Linux"],
     include_package_data=True,
     package_dir={'ctpbee_api': 'ctpbee_api'},
-    package_data={"": ["*"]},
     ext_modules=ext_modules,
-    classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-    ],
+    # classifiers=[
+    #     'Development Status :: 4 - Beta',
+    #     'Intended Audience :: Developers',
+    #     'License :: OSI Approved :: MIT License',
+    #     'Programming Language :: Python :: 3.6',
+    # ],
 )

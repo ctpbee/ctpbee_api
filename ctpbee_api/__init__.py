@@ -1,6 +1,3 @@
-__version__ = "0.20"
-
-
 def get_interface(interface_name):
     if interface_name == "ctp":
         from ctpbee_api.ctp import MdApi, TdApi

@@ -1,7 +1,6 @@
-
-# include MANIFEST.in
-include README.md
+include MANIFEST.in
+# include README.md
 recursive-include ctpbee_api/ctp *
 recursive-include ctpbee_api/ctp_mini *
 
-recursive-exclude ctpbee_api *.pyc
+# recursive-exclude *.pyc
