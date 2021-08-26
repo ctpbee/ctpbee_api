@@ -139,10 +139,4 @@ setup(
     include_package_data=True,
     package_dir={'ctpbee_api': 'ctpbee_api'},
     ext_modules=ext_modules,
-    # classifiers=[
-    #     'Development Status :: 4 - Beta',
-    #     'Intended Audience :: Developers',
-    #     'License :: OSI Approved :: MIT License',
-    #     'Programming Language :: Python :: 3.6',
-    # ],
 )
