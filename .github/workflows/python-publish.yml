@@ -54,9 +54,6 @@ jobs:
       
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
-        env:
-            TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-            TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         with:
           python-version: ${{ matrix.python-version }}
       # You can test your matrix by printing the current Python version
@@ -65,4 +62,11 @@ jobs:
           python -m pip install build
           python -m pip install twine
           python -m build
+          twine upload dist/*-win*.whl
+          
+      - name: Publish wheels to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: 
           twine upload dist/*-win*.whl
