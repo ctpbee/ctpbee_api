@@ -11,35 +11,34 @@ name: Upload Python Package
 on:
   push:
    branches:
-      - opt
       - release/*
 
 jobs:
-#   deploy_linux:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Set up Python
-#       uses: actions/setup-python@v1
-#       with:
-#         python-version: 3.9
-#     - name: Install dependencies
-#       run: |
-#         python -m pip install --upgrade pip
-#         python -m pip install wheel
-#         python -m pip install twine 
+  deploy_linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install wheel
+        python -m pip install twine 
         
-#     - name: Build manylinux Python wheels
-#       uses: RalfG/python-wheels-manylinux-build@v0.3.4-manylinux2010_x86_64
-#       with:
-#         python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38 cp39-cp39'
+    - name: Build manylinux Python wheels
+      uses: RalfG/python-wheels-manylinux-build@v0.3.4-manylinux2010_x86_64
+      with:
+        python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38 cp39-cp39'
         
-#     - name: Publish wheels to PyPI
-#       env:
-#         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-#         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-#       run: 
-#         twine upload dist/*-manylinux*.whl
+    - name: Publish wheels to PyPI
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: 
+        twine upload dist/*-manylinux*.whl
  
   deploy_windows:
     name: Build wheels on ${{ matrix.os }}
@@ -47,7 +46,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-2019]
-        python-version: ['3.6', '3.7', '3.8', '3.8']
+        python-version: ['3.6', '3.7', '3.8', '3.9']
 
     steps:
       - uses: actions/checkout@v2
@@ -57,7 +56,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
  
-      - name: Install cibuildwheel
+      - name: Install ENV 
         run: python -m pip install  build twine
 
       - name: Build wheels
