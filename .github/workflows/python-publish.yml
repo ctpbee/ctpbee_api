@@ -63,9 +63,8 @@ jobs:
           python -m pip install build
           python -m pip install twine
           python -m build
-          twine upload dist/*-win*.whl
           
-      - name: Publish
+      - name: Publish Package and Upload
 #         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
