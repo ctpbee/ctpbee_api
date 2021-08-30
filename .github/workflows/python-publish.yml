@@ -64,9 +64,10 @@ jobs:
           python -m build
           twine upload dist/*-win*.whl
           
-      - name: Publish wheels to PyPI
+      - name: Publish
+        uses: ross/python-actions/twine@master
         env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: 
-          twine upload dist/*-win*.whl
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+        with:
+          args: "upload --skip-existing ./dist/*"
