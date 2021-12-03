@@ -71,7 +71,7 @@ class StructGenerator:
         """处理成员"""
         words = line.split("\t")
         words = [word for word in words if word]
-
+        print(words)
         py_type = self.typedefs[words[0]]
         name = words[1]
 

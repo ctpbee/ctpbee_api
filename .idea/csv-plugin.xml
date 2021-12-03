@@ -10,6 +10,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\ctpbee_api\ctp_mini\generator\generate_api_functions.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ctpbee_api\ctp_mini\generator\generate_data_type.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\ctpbee_api\ctp_mini\generator\generate_struct.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

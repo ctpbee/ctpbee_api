@@ -217,9 +217,8 @@ void MdApi::processTask()
 {
     try
     {
-        while (this->active){
-         Task task = this->task_queue.pop();
-         switch (task.task_name)
+        while (this->active)
+
       {
        case ONFRONTCONNECTED:
         {
@@ -298,7 +297,6 @@ void MdApi::processTask()
             this->processRtnForQuoteRsp(&task);
             break;
         }
-       }
        }
     }
     catch (const TerminatedError&)

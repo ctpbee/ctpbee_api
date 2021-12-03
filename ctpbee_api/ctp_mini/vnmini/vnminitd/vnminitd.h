@@ -17,107 +17,63 @@ using namespace pybind11;
 #define ONRSPAUTHENTICATE 3
 #define ONRSPUSERLOGIN 4
 #define ONRSPUSERLOGOUT 5
-#define ONRSPUSERPASSWORDUPDATE 6
-#define ONRSPTRADINGACCOUNTPASSWORDUPDATE 7
-#define ONRSPORDERINSERT 8
-#define ONRSPPARKEDORDERINSERT 9
-#define ONRSPPARKEDORDERACTION 10
-#define ONRSPORDERACTION 11
-#define ONRSPQUERYMAXORDERVOLUME 12
-#define ONRSPSETTLEMENTINFOCONFIRM 13
-#define ONRSPREMOVEPARKEDORDER 14
-#define ONRSPREMOVEPARKEDORDERACTION 15
-#define ONRSPEXECORDERINSERT 16
-#define ONRSPEXECORDERACTION 17
-#define ONRSPFORQUOTEINSERT 18
-#define ONRSPQUOTEINSERT 19
-#define ONRSPQUOTEACTION 20
-#define ONRSPBATCHORDERACTION 21
-#define ONRSPOPTIONSELFCLOSEINSERT 22
-#define ONRSPOPTIONSELFCLOSEACTION 23
-#define ONRSPTRANSFUND 24
-#define ONRSPQRYORDER 25
-#define ONRSPQRYTRADE 26
-#define ONRSPQRYINVESTORPOSITION 27
-#define ONRSPQRYTRADINGACCOUNT 28
-#define ONRSPQRYINVESTOR 29
-#define ONRSPQRYTRADINGCODE 30
-#define ONRSPQRYINSTRUMENTMARGINRATE 31
-#define ONRSPQRYINSTRUMENTCOMMISSIONRATE 32
-#define ONRSPQRYEXCHANGE 33
-#define ONRSPQRYPRODUCT 34
-#define ONRSPQRYINSTRUMENT 35
-#define ONRSPQRYDEPTHMARKETDATA 36
-#define ONRSPQRYSETTLEMENTINFO 37
-#define ONRSPQRYINSTRUMENTSTATUS 38
-#define ONRSPQRYTRANSFERBANK 39
-#define ONRSPQRYINVESTORPOSITIONDETAIL 40
-#define ONRSPQRYNOTICE 41
-#define ONRSPQRYSETTLEMENTINFOCONFIRM 42
-#define ONRSPQRYINVESTORPOSITIONCOMBINEDETAIL 43
-#define ONRSPQRYCFMMCTRADINGACCOUNTKEY 44
-#define ONRSPQRYEWARRANTOFFSET 45
-#define ONRSPQRYINVESTORPRODUCTGROUPMARGIN 46
-#define ONRSPQRYEXCHANGEMARGINRATE 47
-#define ONRSPQRYEXCHANGEMARGINRATEADJUST 48
-#define ONRSPQRYEXCHANGERATE 49
-#define ONRSPQRYSECAGENTACIDMAP 50
-#define ONRSPQRYOPTIONINSTRTRADECOST 51
-#define ONRSPQRYOPTIONINSTRCOMMRATE 52
-#define ONRSPQRYEXECORDER 53
-#define ONRSPQRYFORQUOTE 54
-#define ONRSPQRYQUOTE 55
-#define ONRSPQRYOPTIONSELFCLOSE 56
-#define ONRSPQRYTRANSFERSERIAL 57
-#define ONRSPQRYACCOUNTREGISTER 58
-#define ONRSPERROR 59
-#define ONRTNORDER 60
-#define ONRTNTRADE 61
-#define ONERRRTNORDERINSERT 62
-#define ONERRRTNORDERACTION 63
-#define ONRTNINSTRUMENTSTATUS 64
-#define ONRTNTRADINGNOTICE 65
-#define ONRTNERRORCONDITIONALORDER 66
-#define ONRTNEXECORDER 67
-#define ONERRRTNEXECORDERINSERT 68
-#define ONERRRTNEXECORDERACTION 69
-#define ONERRRTNFORQUOTEINSERT 70
-#define ONRTNQUOTE 71
-#define ONERRRTNQUOTEINSERT 72
-#define ONERRRTNQUOTEACTION 73
-#define ONRTNFORQUOTERSP 74
-#define ONERRRTNBATCHORDERACTION 75
-#define ONRTNOPTIONSELFCLOSE 76
-#define ONERRRTNOPTIONSELFCLOSEINSERT 77
-#define ONERRRTNOPTIONSELFCLOSEACTION 78
-#define ONRSPQRYCONTRACTBANK 79
-#define ONRSPQRYPARKEDORDER 80
-#define ONRSPQRYPARKEDORDERACTION 81
-#define ONRSPQRYTRADINGNOTICE 82
-#define ONRSPQRYBROKERTRADINGPARAMS 83
-#define ONRSPQRYBROKERTRADINGALGOS 84
-#define ONRTNFROMBANKTOFUTUREBYBANK 85
-#define ONRTNFROMFUTURETOBANKBYBANK 86
-#define ONRTNREPEALFROMBANKTOFUTUREBYBANK 87
-#define ONRTNREPEALFROMFUTURETOBANKBYBANK 88
-#define ONRTNFROMBANKTOFUTUREBYFUTURE 89
-#define ONRTNFROMFUTURETOBANKBYFUTURE 90
-#define ONRTNREPEALFROMBANKTOFUTUREBYFUTUREMANUAL 91
-#define ONRTNREPEALFROMFUTURETOBANKBYFUTUREMANUAL 92
-#define ONRTNQUERYBANKBALANCEBYFUTURE 93
-#define ONERRRTNBANKTOFUTUREBYFUTURE 94
-#define ONERRRTNFUTURETOBANKBYFUTURE 95
-#define ONERRRTNREPEALBANKTOFUTUREBYFUTUREMANUAL 96
-#define ONERRRTNREPEALFUTURETOBANKBYFUTUREMANUAL 97
-#define ONERRRTNQUERYBANKBALANCEBYFUTURE 98
-#define ONRTNREPEALFROMBANKTOFUTUREBYFUTURE 99
-#define ONRTNREPEALFROMFUTURETOBANKBYFUTURE 100
-#define ONRSPFROMBANKTOFUTUREBYFUTURE 101
-#define ONRSPFROMFUTURETOBANKBYFUTURE 102
-#define ONRSPQUERYBANKACCOUNTMONEYBYFUTURE 103
-#define ONRTNOPENACCOUNTBYBANK 104
-#define ONRTNCANCELACCOUNTBYBANK 105
-#define ONRTNCHANGEACCOUNTBYBANK 106
+#define ONRSPORDERINSERT 6
+#define ONRSPORDERACTION 7
+#define ONRSPEXECORDERINSERT 8
+#define ONRSPEXECORDERACTION 9
+#define ONRSPFORQUOTEINSERT 10
+#define ONRSPQUOTEINSERT 11
+#define ONRSPQUOTEACTION 12
+#define ONRSPBATCHORDERACTION 13
+#define ONRSPOPTIONSELFCLOSEINSERT 14
+#define ONRSPOPTIONSELFCLOSEACTION 15
+#define ONRSPCOMBACTIONINSERT 16
+#define ONRSPQRYORDER 17
+#define ONRSPQRYTRADE 18
+#define ONRSPQRYINVESTORPOSITION 19
+#define ONRSPQRYTRADINGACCOUNT 20
+#define ONRSPQRYINVESTOR 21
+#define ONRSPQRYTRADINGCODE 22
+#define ONRSPQRYINSTRUMENTMARGINRATE 23
+#define ONRSPQRYINSTRUMENTCOMMISSIONRATE 24
+#define ONRSPQRYEXCHANGE 25
+#define ONRSPQRYPRODUCT 26
+#define ONRSPQRYINSTRUMENT 27
+#define ONRSPQRYCOMBINSTRUMENT 28
+#define ONRSPQRYCOMBACTION 29
+#define ONRSPQRYINVESTORPOSITIONFORCOMB 30
+#define ONRSPQRYDEPTHMARKETDATA 31
+#define ONRSPQRYINSTRUMENTSTATUS 32
+#define ONRSPQRYINVESTORPOSITIONDETAIL 33
+#define ONRSPQRYINVESTORPOSITIONCOMBINEDETAIL 34
+#define ONRSPQRYEXCHANGEMARGINRATE 35
+#define ONRSPQRYEXCHANGEMARGINRATEADJUST 36
+#define ONRSPQRYOPTIONINSTRTRADECOST 37
+#define ONRSPQRYOPTIONINSTRCOMMRATE 38
+#define ONRSPQRYEXECORDER 39
+#define ONRSPQRYFORQUOTE 40
+#define ONRSPQRYQUOTE 41
+#define ONRSPQRYOPTIONSELFCLOSE 42
+#define ONRSPERROR 43
+#define ONRTNORDER 44
+#define ONRTNTRADE 45
+#define ONERRRTNORDERINSERT 46
+#define ONERRRTNORDERACTION 47
+#define ONRTNINSTRUMENTSTATUS 48
+#define ONRTNEXECORDER 49
+#define ONERRRTNEXECORDERINSERT 50
+#define ONERRRTNEXECORDERACTION 51
+#define ONERRRTNFORQUOTEINSERT 52
+#define ONRTNQUOTE 53
+#define ONERRRTNQUOTEINSERT 54
+#define ONERRRTNQUOTEACTION 55
+#define ONRTNFORQUOTERSP 56
+#define ONERRRTNBATCHORDERACTION 57
+#define ONRTNOPTIONSELFCLOSE 58
+#define ONERRRTNOPTIONSELFCLOSEINSERT 59
+#define ONERRRTNOPTIONSELFCLOSEACTION 60
+#define ONRTNCOMBACTION 61
+#define ONRSPQRYINSTRUMENTORDERCOMMRATE 62
 
 
 ///-------------------------------------------------------------------------------------
@@ -149,8 +105,7 @@ public:
     //-------------------------------------------------------------------------------------
     //API回调函数
     //-------------------------------------------------------------------------------------
-
-	///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
+    	///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
 	virtual void OnFrontConnected();
 
 	///当客户端与交易后台通信连接断开时，该方法被调用。当发生这个情况后，API会自动重新连接，客户端可不做处理。
@@ -167,535 +122,318 @@ public:
 	virtual void OnHeartBeatWarning(int nTimeLapse);
 
 	///客户端认证响应
-	virtual void OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenticateField, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenticateField, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
+
 
 	///登录请求响应
-	virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///登出请求响应
-	virtual void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///用户口令更新请求响应
-	virtual void OnRspUserPasswordUpdate(CThostFtdcUserPasswordUpdateField *pUserPasswordUpdate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///资金账户口令更新请求响应
-	virtual void OnRspTradingAccountPasswordUpdate(CThostFtdcTradingAccountPasswordUpdateField *pTradingAccountPasswordUpdate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///报单录入请求响应
-	virtual void OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///预埋单录入请求响应
-	virtual void OnRspParkedOrderInsert(CThostFtdcParkedOrderField *pParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///预埋撤单录入请求响应
-	virtual void OnRspParkedOrderAction(CThostFtdcParkedOrderActionField *pParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///报单操作请求响应
-	virtual void OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///查询最大报单数量响应
-	virtual void OnRspQueryMaxOrderVolume(CThostFtdcQueryMaxOrderVolumeField *pQueryMaxOrderVolume, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///投资者结算结果确认响应
-	virtual void OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///删除预埋单响应
-	virtual void OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField *pRemoveParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///删除预埋撤单响应
-	virtual void OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField *pRemoveParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///执行宣告录入请求响应
-	virtual void OnRspExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///执行宣告操作请求响应
-	virtual void OnRspExecOrderAction(CThostFtdcInputExecOrderActionField *pInputExecOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspExecOrderAction(CThostFtdcInputExecOrderActionField *pInputExecOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///询价录入请求响应
-	virtual void OnRspForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///报价录入请求响应
-	virtual void OnRspQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///报价操作请求响应
-	virtual void OnRspQuoteAction(CThostFtdcInputQuoteActionField *pInputQuoteAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQuoteAction(CThostFtdcInputQuoteActionField *pInputQuoteAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///批量报单操作请求响应
-	virtual void OnRspBatchOrderAction(CThostFtdcInputBatchOrderActionField *pInputBatchOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspBatchOrderAction(CThostFtdcInputBatchOrderActionField *pInputBatchOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///期权自对冲录入请求响应
-	virtual void OnRspOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///期权自对冲操作请求响应
-	virtual void OnRspOptionSelfCloseAction(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspOptionSelfCloseAction(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
-	///请求核心间资金转移响应
-	virtual void OnRspTransFund(CThostFtdcTransFundField *pTransFund, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	///申请组合录入请求响应
+	virtual void OnRspCombActionInsert(CThostFtdcInputCombActionField *pInputCombAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询报单响应
-	virtual void OnRspQryOrder(CThostFtdcOrderField *pOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryOrder(CThostFtdcOrderField *pOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询成交响应
-	virtual void OnRspQryTrade(CThostFtdcTradeField *pTrade, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryTrade(CThostFtdcTradeField *pTrade, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询投资者持仓响应
-	virtual void OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询资金账户响应
-	virtual void OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询投资者响应
-	virtual void OnRspQryInvestor(CThostFtdcInvestorField *pInvestor, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryInvestor(CThostFtdcInvestorField *pInvestor, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询交易编码响应
-	virtual void OnRspQryTradingCode(CThostFtdcTradingCodeField *pTradingCode, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryTradingCode(CThostFtdcTradingCodeField *pTradingCode, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询合约保证金率响应
-	virtual void OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询合约手续费率响应
-	virtual void OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询交易所响应
-	virtual void OnRspQryExchange(CThostFtdcExchangeField *pExchange, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryExchange(CThostFtdcExchangeField *pExchange, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询产品响应
-	virtual void OnRspQryProduct(CThostFtdcProductField *pProduct, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryProduct(CThostFtdcProductField *pProduct, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询合约响应
-	virtual void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
+
+	///请求查询申请组合合约响应
+	virtual void OnRspQryCombInstrument(CThostFtdcCombInstrumentField *pCombInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
+
+	///请求查询申请组合响应
+	virtual void OnRspQryCombAction(CThostFtdcCombActionField *pCombAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
+
+	///请求查询组合单腿汇总表响应
+	virtual void OnRspQryInvestorPositionForComb(CThostFtdcInvestorPositionForCombField *pCombAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询行情响应
-	virtual void OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询投资者结算结果响应
-	virtual void OnRspQrySettlementInfo(CThostFtdcSettlementInfoField *pSettlementInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询合约状态响应
-	virtual void OnRspQryInstrumentStatus(CThostFtdcInstrumentStatusField *pInstrumentStatus, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询转帐银行响应
-	virtual void OnRspQryTransferBank(CThostFtdcTransferBankField *pTransferBank, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryInstrumentStatus(CThostFtdcInstrumentStatusField *pInstrumentStatus, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询投资者持仓明细响应
-	virtual void OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询客户通知响应
-	virtual void OnRspQryNotice(CThostFtdcNoticeField *pNotice, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询结算信息确认响应
-	virtual void OnRspQrySettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询投资者持仓明细响应
-	virtual void OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///查询保证金监管系统经纪公司资金账户密钥响应
-	virtual void OnRspQryCFMMCTradingAccountKey(CThostFtdcCFMMCTradingAccountKeyField *pCFMMCTradingAccountKey, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询仓单折抵信息响应
-	virtual void OnRspQryEWarrantOffset(CThostFtdcEWarrantOffsetField *pEWarrantOffset, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询投资者品种/跨品种保证金响应
-	virtual void OnRspQryInvestorProductGroupMargin(CThostFtdcInvestorProductGroupMarginField *pInvestorProductGroupMargin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询交易所保证金率响应
-	virtual void OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField *pExchangeMarginRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField *pExchangeMarginRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询交易所调整保证金率响应
-	virtual void OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjust, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询汇率响应
-	virtual void OnRspQryExchangeRate(CThostFtdcExchangeRateField *pExchangeRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询二级代理操作员银期权限响应
-	virtual void OnRspQrySecAgentACIDMap(CThostFtdcSecAgentACIDMapField *pSecAgentACIDMap, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjust, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询期权交易成本响应
-	virtual void OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCost, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCost, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询期权合约手续费响应
-	virtual void OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询执行宣告响应
-	virtual void OnRspQryExecOrder(CThostFtdcExecOrderField *pExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryExecOrder(CThostFtdcExecOrderField *pExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询询价响应
-	virtual void OnRspQryForQuote(CThostFtdcForQuoteField *pForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryForQuote(CThostFtdcForQuoteField *pForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询报价响应
-	virtual void OnRspQryQuote(CThostFtdcQuoteField *pQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryQuote(CThostFtdcQuoteField *pQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///请求查询期权自对冲响应
-	virtual void OnRspQryOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询转帐流水响应
-	virtual void OnRspQryTransferSerial(CThostFtdcTransferSerialField *pTransferSerial, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询银期签约关系响应
-	virtual void OnRspQryAccountregister(CThostFtdcAccountregisterField *pAccountregister, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspQryOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///错误应答
-	virtual void OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	virtual void OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
 	///报单通知
-	virtual void OnRtnOrder(CThostFtdcOrderField *pOrder);
+	virtual void OnRtnOrder(CThostFtdcOrderField *pOrder) ;
 
 	///成交通知
-	virtual void OnRtnTrade(CThostFtdcTradeField *pTrade);
+	virtual void OnRtnTrade(CThostFtdcTradeField *pTrade) ;
 
 	///报单录入错误回报
-	virtual void OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo) ;
 
 	///报单操作错误回报
-	virtual void OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThostFtdcRspInfoField *pRspInfo) ;
 
 	///合约交易状态通知
-	virtual void OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField *pInstrumentStatus);
-
-	///交易通知
-	virtual void OnRtnTradingNotice(CThostFtdcTradingNoticeInfoField *pTradingNoticeInfo);
-
-	///提示条件单校验错误
-	virtual void OnRtnErrorConditionalOrder(CThostFtdcErrorConditionalOrderField *pErrorConditionalOrder);
+	virtual void OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField *pInstrumentStatus) ;
 
 	///执行宣告通知
-	virtual void OnRtnExecOrder(CThostFtdcExecOrderField *pExecOrder);
+	virtual void OnRtnExecOrder(CThostFtdcExecOrderField *pExecOrder) ;
 
 	///执行宣告录入错误回报
-	virtual void OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo) ;
 
 	///执行宣告操作错误回报
-	virtual void OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField *pExecOrderAction, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField *pExecOrderAction, CThostFtdcRspInfoField *pRspInfo) ;
 
 	///询价录入错误回报
-	virtual void OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo) ;
 
 	///报价通知
-	virtual void OnRtnQuote(CThostFtdcQuoteField *pQuote);
+	virtual void OnRtnQuote(CThostFtdcQuoteField *pQuote) ;
 
 	///报价录入错误回报
-	virtual void OnErrRtnQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo) ;
 
 	///报价操作错误回报
-	virtual void OnErrRtnQuoteAction(CThostFtdcQuoteActionField *pQuoteAction, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnQuoteAction(CThostFtdcQuoteActionField *pQuoteAction, CThostFtdcRspInfoField *pRspInfo) ;
 
 	///询价通知
-	virtual void OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp);
+	virtual void OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp) ;
 
 	///批量报单操作错误回报
 	virtual void OnErrRtnBatchOrderAction(CThostFtdcBatchOrderActionField *pBatchOrderAction, CThostFtdcRspInfoField *pRspInfo);
 
 	///期权自对冲通知
-	virtual void OnRtnOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose);
+	virtual void OnRtnOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose) ;
 
 	///期权自对冲录入错误回报
-	virtual void OnErrRtnOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo) ;
 
 	///期权自对冲操作错误回报
-	virtual void OnErrRtnOptionSelfCloseAction(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo);
+	virtual void OnErrRtnOptionSelfCloseAction(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo) ;
 
-	///请求查询签约银行响应
-	virtual void OnRspQryContractBank(CThostFtdcContractBankField *pContractBank, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	///申请组合通知
+	virtual void OnRtnCombAction(CThostFtdcCombActionField *pCombAction) ;
 
-	///请求查询预埋单响应
-	virtual void OnRspQryParkedOrder(CThostFtdcParkedOrderField *pParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
+	///请求查询申报费响应
+	virtual void OnRspQryInstrumentOrderCommRate(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
-	///请求查询预埋撤单响应
-	virtual void OnRspQryParkedOrderAction(CThostFtdcParkedOrderActionField *pParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询交易通知响应
-	virtual void OnRspQryTradingNotice(CThostFtdcTradingNoticeField *pTradingNotice, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询经纪公司交易参数响应
-	virtual void OnRspQryBrokerTradingParams(CThostFtdcBrokerTradingParamsField *pBrokerTradingParams, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///请求查询经纪公司交易算法响应
-	virtual void OnRspQryBrokerTradingAlgos(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlgos, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///银行发起银行资金转期货通知
-	virtual void OnRtnFromBankToFutureByBank(CThostFtdcRspTransferField *pRspTransfer);
-
-	///银行发起期货资金转银行通知
-	virtual void OnRtnFromFutureToBankByBank(CThostFtdcRspTransferField *pRspTransfer);
-
-	///银行发起冲正银行转期货通知
-	virtual void OnRtnRepealFromBankToFutureByBank(CThostFtdcRspRepealField *pRspRepeal);
-
-	///银行发起冲正期货转银行通知
-	virtual void OnRtnRepealFromFutureToBankByBank(CThostFtdcRspRepealField *pRspRepeal);
-
-	///期货发起银行资金转期货通知
-	virtual void OnRtnFromBankToFutureByFuture(CThostFtdcRspTransferField *pRspTransfer);
-
-	///期货发起期货资金转银行通知
-	virtual void OnRtnFromFutureToBankByFuture(CThostFtdcRspTransferField *pRspTransfer);
-
-	///系统运行时期货端手工发起冲正银行转期货请求，银行处理完毕后报盘发回的通知
-	virtual void OnRtnRepealFromBankToFutureByFutureManual(CThostFtdcRspRepealField *pRspRepeal);
-
-	///系统运行时期货端手工发起冲正期货转银行请求，银行处理完毕后报盘发回的通知
-	virtual void OnRtnRepealFromFutureToBankByFutureManual(CThostFtdcRspRepealField *pRspRepeal);
-
-	///期货发起查询银行余额通知
-	virtual void OnRtnQueryBankBalanceByFuture(CThostFtdcNotifyQueryAccountField *pNotifyQueryAccount);
-
-	///期货发起银行资金转期货错误回报
-	virtual void OnErrRtnBankToFutureByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo);
-
-	///期货发起期货资金转银行错误回报
-	virtual void OnErrRtnFutureToBankByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo);
-
-	///系统运行时期货端手工发起冲正银行转期货错误回报
-	virtual void OnErrRtnRepealBankToFutureByFutureManual(CThostFtdcReqRepealField *pReqRepeal, CThostFtdcRspInfoField *pRspInfo);
-
-	///系统运行时期货端手工发起冲正期货转银行错误回报
-	virtual void OnErrRtnRepealFutureToBankByFutureManual(CThostFtdcReqRepealField *pReqRepeal, CThostFtdcRspInfoField *pRspInfo);
-
-	///期货发起查询银行余额错误回报
-	virtual void OnErrRtnQueryBankBalanceByFuture(CThostFtdcReqQueryAccountField *pReqQueryAccount, CThostFtdcRspInfoField *pRspInfo);
-
-	///期货发起冲正银行转期货请求，银行处理完毕后报盘发回的通知
-	virtual void OnRtnRepealFromBankToFutureByFuture(CThostFtdcRspRepealField *pRspRepeal);
-
-	///期货发起冲正期货转银行请求，银行处理完毕后报盘发回的通知
-	virtual void OnRtnRepealFromFutureToBankByFuture(CThostFtdcRspRepealField *pRspRepeal);
-
-	///期货发起银行资金转期货应答
-	virtual void OnRspFromBankToFutureByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///期货发起期货资金转银行应答
-	virtual void OnRspFromFutureToBankByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///期货发起查询银行余额应答
-	virtual void OnRspQueryBankAccountMoneyByFuture(CThostFtdcReqQueryAccountField *pReqQueryAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
-
-	///银行发起银期开户通知
-	virtual void OnRtnOpenAccountByBank(CThostFtdcOpenAccountField *pOpenAccount);
-
-	///银行发起银期销户通知
-	virtual void OnRtnCancelAccountByBank(CThostFtdcCancelAccountField *pCancelAccount);
-
-	///银行发起变更银行账号通知
-	virtual void OnRtnChangeAccountByBank(CThostFtdcChangeAccountField *pChangeAccount);
 
     //-------------------------------------------------------------------------------------
     //task：任务
     //-------------------------------------------------------------------------------------
     void processTask();
 
-	void processFrontConnected(Task *task);
+    void processFrontConnected(Task *task);
 
-	void processFrontDisconnected(Task *task);
+    void processFrontDisconnected(Task *task);
 
-	void processHeartBeatWarning(Task *task);
+    void processHeartBeatWarning(Task *task);
 
-	void processRspAuthenticate(Task *task);
+    void processRspAuthenticate(Task *task);
 
-	void processRspUserLogin(Task *task);
+    void processRspUserLogin(Task *task);
 
-	void processRspUserLogout(Task *task);
+    void processRspUserLogout(Task *task);
 
-	void processRspUserPasswordUpdate(Task *task);
+    void processRspOrderInsert(Task *task);
 
-	void processRspTradingAccountPasswordUpdate(Task *task);
+    void processRspOrderAction(Task *task);
 
-	void processRspOrderInsert(Task *task);
+    void processRspExecOrderInsert(Task *task);
 
-	void processRspParkedOrderInsert(Task *task);
+    void processRspExecOrderAction(Task *task);
 
-	void processRspParkedOrderAction(Task *task);
+    void processRspForQuoteInsert(Task *task);
 
-	void processRspOrderAction(Task *task);
+    void processRspQuoteInsert(Task *task);
 
-	void processRspQueryMaxOrderVolume(Task *task);
+    void processRspQuoteAction(Task *task);
 
-	void processRspSettlementInfoConfirm(Task *task);
+    void processRspBatchOrderAction(Task *task);
 
-	void processRspRemoveParkedOrder(Task *task);
+    void processRspOptionSelfCloseInsert(Task *task);
 
-	void processRspRemoveParkedOrderAction(Task *task);
+    void processRspOptionSelfCloseAction(Task *task);
 
-	void processRspExecOrderInsert(Task *task);
+    void processRspCombActionInsert(Task *task);
 
-	void processRspExecOrderAction(Task *task);
+    void processRspQryOrder(Task *task);
 
-	void processRspForQuoteInsert(Task *task);
+    void processRspQryTrade(Task *task);
 
-	void processRspQuoteInsert(Task *task);
+    void processRspQryInvestorPosition(Task *task);
 
-	void processRspQuoteAction(Task *task);
+    void processRspQryTradingAccount(Task *task);
 
-	void processRspBatchOrderAction(Task *task);
+    void processRspQryInvestor(Task *task);
 
-	void processRspOptionSelfCloseInsert(Task *task);
+    void processRspQryTradingCode(Task *task);
 
-	void processRspOptionSelfCloseAction(Task *task);
+    void processRspQryInstrumentMarginRate(Task *task);
 
-	void processRspTransFund(Task *task);
+    void processRspQryInstrumentCommissionRate(Task *task);
 
-	void processRspQryOrder(Task *task);
+    void processRspQryExchange(Task *task);
 
-	void processRspQryTrade(Task *task);
+    void processRspQryProduct(Task *task);
 
-	void processRspQryInvestorPosition(Task *task);
+    void processRspQryInstrument(Task *task);
 
-	void processRspQryTradingAccount(Task *task);
+    void processRspQryCombInstrument(Task *task);
 
-	void processRspQryInvestor(Task *task);
+    void processRspQryCombAction(Task *task);
 
-	void processRspQryTradingCode(Task *task);
+    void processRspQryInvestorPositionForComb(Task *task);
 
-	void processRspQryInstrumentMarginRate(Task *task);
+    void processRspQryDepthMarketData(Task *task);
 
-	void processRspQryInstrumentCommissionRate(Task *task);
+    void processRspQryInstrumentStatus(Task *task);
 
-	void processRspQryExchange(Task *task);
+    void processRspQryInvestorPositionDetail(Task *task);
 
-	void processRspQryProduct(Task *task);
+    void processRspQryInvestorPositionCombineDetail(Task *task);
 
-	void processRspQryInstrument(Task *task);
+    void processRspQryExchangeMarginRate(Task *task);
 
-	void processRspQryDepthMarketData(Task *task);
+    void processRspQryExchangeMarginRateAdjust(Task *task);
 
-	void processRspQrySettlementInfo(Task *task);
+    void processRspQryOptionInstrTradeCost(Task *task);
 
-	void processRspQryInstrumentStatus(Task *task);
+    void processRspQryOptionInstrCommRate(Task *task);
 
-	void processRspQryTransferBank(Task *task);
+    void processRspQryExecOrder(Task *task);
 
-	void processRspQryInvestorPositionDetail(Task *task);
+    void processRspQryForQuote(Task *task);
 
-	void processRspQryNotice(Task *task);
+    void processRspQryQuote(Task *task);
 
-	void processRspQrySettlementInfoConfirm(Task *task);
+    void processRspQryOptionSelfClose(Task *task);
 
-	void processRspQryInvestorPositionCombineDetail(Task *task);
+    void processRspError(Task *task);
 
-	void processRspQryCFMMCTradingAccountKey(Task *task);
+    void processRtnOrder(Task *task);
 
-	void processRspQryEWarrantOffset(Task *task);
+    void processRtnTrade(Task *task);
 
-	void processRspQryInvestorProductGroupMargin(Task *task);
+    void processErrRtnOrderInsert(Task *task);
 
-	void processRspQryExchangeMarginRate(Task *task);
+    void processErrRtnOrderAction(Task *task);
 
-	void processRspQryExchangeMarginRateAdjust(Task *task);
+    void processRtnInstrumentStatus(Task *task);
 
-	void processRspQryExchangeRate(Task *task);
+    void processRtnExecOrder(Task *task);
 
-	void processRspQrySecAgentACIDMap(Task *task);
+    void processErrRtnExecOrderInsert(Task *task);
 
-	void processRspQryOptionInstrTradeCost(Task *task);
+    void processErrRtnExecOrderAction(Task *task);
 
-	void processRspQryOptionInstrCommRate(Task *task);
+    void processErrRtnForQuoteInsert(Task *task);
 
-	void processRspQryExecOrder(Task *task);
+    void processRtnQuote(Task *task);
 
-	void processRspQryForQuote(Task *task);
+    void processErrRtnQuoteInsert(Task *task);
 
-	void processRspQryQuote(Task *task);
+    void processErrRtnQuoteAction(Task *task);
 
-	void processRspQryOptionSelfClose(Task *task);
+    void processRtnForQuoteRsp(Task *task);
 
-	void processRspQryTransferSerial(Task *task);
+    void processErrRtnBatchOrderAction(Task *task);
 
-	void processRspQryAccountregister(Task *task);
+    void processRtnOptionSelfClose(Task *task);
 
-	void processRspError(Task *task);
+    void processErrRtnOptionSelfCloseInsert(Task *task);
 
-	void processRtnOrder(Task *task);
+    void processErrRtnOptionSelfCloseAction(Task *task);
 
-	void processRtnTrade(Task *task);
+    void processRtnCombAction(Task *task);
 
-	void processErrRtnOrderInsert(Task *task);
+    void processRspQryInstrumentOrderCommRate(Task *task);
 
-	void processErrRtnOrderAction(Task *task);
-
-	void processRtnInstrumentStatus(Task *task);
-
-	void processRtnTradingNotice(Task *task);
-
-	void processRtnErrorConditionalOrder(Task *task);
-
-	void processRtnExecOrder(Task *task);
-
-	void processErrRtnExecOrderInsert(Task *task);
-
-	void processErrRtnExecOrderAction(Task *task);
-
-	void processErrRtnForQuoteInsert(Task *task);
-
-	void processRtnQuote(Task *task);
-
-	void processErrRtnQuoteInsert(Task *task);
-
-	void processErrRtnQuoteAction(Task *task);
-
-	void processRtnForQuoteRsp(Task *task);
-
-	void processErrRtnBatchOrderAction(Task *task);
-
-	void processRtnOptionSelfClose(Task *task);
-
-	void processErrRtnOptionSelfCloseInsert(Task *task);
-
-	void processErrRtnOptionSelfCloseAction(Task *task);
-
-	void processRspQryContractBank(Task *task);
-
-	void processRspQryParkedOrder(Task *task);
-
-	void processRspQryParkedOrderAction(Task *task);
-
-	void processRspQryTradingNotice(Task *task);
-
-	void processRspQryBrokerTradingParams(Task *task);
-
-	void processRspQryBrokerTradingAlgos(Task *task);
-
-	void processRtnFromBankToFutureByBank(Task *task);
-
-	void processRtnFromFutureToBankByBank(Task *task);
-
-	void processRtnRepealFromBankToFutureByBank(Task *task);
-
-	void processRtnRepealFromFutureToBankByBank(Task *task);
-
-	void processRtnFromBankToFutureByFuture(Task *task);
-
-	void processRtnFromFutureToBankByFuture(Task *task);
-
-	void processRtnRepealFromBankToFutureByFutureManual(Task *task);
-
-	void processRtnRepealFromFutureToBankByFutureManual(Task *task);
-
-	void processRtnQueryBankBalanceByFuture(Task *task);
-
-	void processErrRtnBankToFutureByFuture(Task *task);
-
-	void processErrRtnFutureToBankByFuture(Task *task);
-
-	void processErrRtnRepealBankToFutureByFutureManual(Task *task);
-
-	void processErrRtnRepealFutureToBankByFutureManual(Task *task);
-
-	void processErrRtnQueryBankBalanceByFuture(Task *task);
-
-	void processRtnRepealFromBankToFutureByFuture(Task *task);
-
-	void processRtnRepealFromFutureToBankByFuture(Task *task);
-
-	void processRspFromBankToFutureByFuture(Task *task);
-
-	void processRspFromFutureToBankByFuture(Task *task);
-
-	void processRspQueryBankAccountMoneyByFuture(Task *task);
-
-	void processRtnOpenAccountByBank(Task *task);
-
-	void processRtnCancelAccountByBank(Task *task);
-
-	void processRtnChangeAccountByBank(Task *task);
 
     //-------------------------------------------------------------------------------------
     //data：回调函数的数据字典
@@ -704,220 +442,135 @@ public:
     //last：是否为最后返回
     //i：整数
     //-------------------------------------------------------------------------------------
-    
-	virtual void onFrontConnected() {};
 
-	virtual void onFrontDisconnected(int reqid) {};
+    virtual void onFrontConnected() {};
 
-	virtual void onHeartBeatWarning(int reqid) {};
+    virtual void onFrontDisconnected(int reqid) {};
 
-	virtual void onRspAuthenticate(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onHeartBeatWarning(int reqid) {};
 
-	virtual void onRspUserLogin(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspAuthenticate(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspUserLogout(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspUserLogin(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspUserPasswordUpdate(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspUserLogout(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspTradingAccountPasswordUpdate(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspOrderInsert(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspOrderInsert(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspParkedOrderInsert(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspExecOrderInsert(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspExecOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspForQuoteInsert(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQueryMaxOrderVolume(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQuoteInsert(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspSettlementInfoConfirm(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQuoteAction(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspRemoveParkedOrder(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspBatchOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspRemoveParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspOptionSelfCloseInsert(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspExecOrderInsert(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspOptionSelfCloseAction(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspExecOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspCombActionInsert(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspForQuoteInsert(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryOrder(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQuoteInsert(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryTrade(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQuoteAction(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInvestorPosition(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspBatchOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryTradingAccount(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspOptionSelfCloseInsert(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInvestor(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspOptionSelfCloseAction(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryTradingCode(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspTransFund(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInstrumentMarginRate(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryOrder(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInstrumentCommissionRate(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryTrade(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryExchange(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryInvestorPosition(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryProduct(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryTradingAccount(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInstrument(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryInvestor(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryCombInstrument(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryTradingCode(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryCombAction(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryInstrumentMarginRate(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInvestorPositionForComb(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryInstrumentCommissionRate(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryDepthMarketData(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryExchange(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInstrumentStatus(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryProduct(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInvestorPositionDetail(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryInstrument(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryInvestorPositionCombineDetail(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryDepthMarketData(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryExchangeMarginRate(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQrySettlementInfo(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryExchangeMarginRateAdjust(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryInstrumentStatus(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryOptionInstrTradeCost(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryTransferBank(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryOptionInstrCommRate(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryInvestorPositionDetail(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryExecOrder(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryNotice(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryForQuote(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQrySettlementInfoConfirm(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryQuote(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryInvestorPositionCombineDetail(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryOptionSelfClose(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryCFMMCTradingAccountKey(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspError(const dict &error, int reqid, bool last) {};
 
-	virtual void onRspQryEWarrantOffset(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRtnOrder(const dict &data) {};
 
-	virtual void onRspQryInvestorProductGroupMargin(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRtnTrade(const dict &data) {};
 
-	virtual void onRspQryExchangeMarginRate(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onErrRtnOrderInsert(const dict &data, const dict &error) {};
 
-	virtual void onRspQryExchangeMarginRateAdjust(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onErrRtnOrderAction(const dict &data, const dict &error) {};
 
-	virtual void onRspQryExchangeRate(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRtnInstrumentStatus(const dict &data) {};
 
-	virtual void onRspQrySecAgentACIDMap(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRtnExecOrder(const dict &data) {};
 
-	virtual void onRspQryOptionInstrTradeCost(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onErrRtnExecOrderInsert(const dict &data, const dict &error) {};
 
-	virtual void onRspQryOptionInstrCommRate(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onErrRtnExecOrderAction(const dict &data, const dict &error) {};
 
-	virtual void onRspQryExecOrder(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onErrRtnForQuoteInsert(const dict &data, const dict &error) {};
 
-	virtual void onRspQryForQuote(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRtnQuote(const dict &data) {};
 
-	virtual void onRspQryQuote(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onErrRtnQuoteInsert(const dict &data, const dict &error) {};
 
-	virtual void onRspQryOptionSelfClose(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onErrRtnQuoteAction(const dict &data, const dict &error) {};
 
-	virtual void onRspQryTransferSerial(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRtnForQuoteRsp(const dict &data) {};
 
-	virtual void onRspQryAccountregister(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onErrRtnBatchOrderAction(const dict &data, const dict &error) {};
 
-	virtual void onRspError(const dict &error, int reqid, bool last) {};
+    virtual void onRtnOptionSelfClose(const dict &data) {};
 
-	virtual void onRtnOrder(const dict &data) {};
+    virtual void onErrRtnOptionSelfCloseInsert(const dict &data, const dict &error) {};
 
-	virtual void onRtnTrade(const dict &data) {};
+    virtual void onErrRtnOptionSelfCloseAction(const dict &data, const dict &error) {};
 
-	virtual void onErrRtnOrderInsert(const dict &data, const dict &error) {};
+    virtual void onRtnCombAction(const dict &data) {};
 
-	virtual void onErrRtnOrderAction(const dict &data, const dict &error) {};
+    virtual void onRspQryInstrumentOrderCommRate(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRtnInstrumentStatus(const dict &data) {};
 
-	virtual void onRtnTradingNotice(const dict &data) {};
 
-	virtual void onRtnErrorConditionalOrder(const dict &data) {};
-
-	virtual void onRtnExecOrder(const dict &data) {};
-
-	virtual void onErrRtnExecOrderInsert(const dict &data, const dict &error) {};
-
-	virtual void onErrRtnExecOrderAction(const dict &data, const dict &error) {};
-
-	virtual void onErrRtnForQuoteInsert(const dict &data, const dict &error) {};
-
-	virtual void onRtnQuote(const dict &data) {};
-
-	virtual void onErrRtnQuoteInsert(const dict &data, const dict &error) {};
-
-	virtual void onErrRtnQuoteAction(const dict &data, const dict &error) {};
-
-	virtual void onRtnForQuoteRsp(const dict &data) {};
-
-	virtual void onErrRtnBatchOrderAction(const dict &data, const dict &error) {};
-
-	virtual void onRtnOptionSelfClose(const dict &data) {};
-
-	virtual void onErrRtnOptionSelfCloseInsert(const dict &data, const dict &error) {};
-
-	virtual void onErrRtnOptionSelfCloseAction(const dict &data, const dict &error) {};
-
-	virtual void onRspQryContractBank(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRspQryParkedOrder(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRspQryParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRspQryTradingNotice(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRspQryBrokerTradingParams(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRspQryBrokerTradingAlgos(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRtnFromBankToFutureByBank(const dict &data) {};
-
-	virtual void onRtnFromFutureToBankByBank(const dict &data) {};
-
-	virtual void onRtnRepealFromBankToFutureByBank(const dict &data) {};
-
-	virtual void onRtnRepealFromFutureToBankByBank(const dict &data) {};
-
-	virtual void onRtnFromBankToFutureByFuture(const dict &data) {};
-
-	virtual void onRtnFromFutureToBankByFuture(const dict &data) {};
-
-	virtual void onRtnRepealFromBankToFutureByFutureManual(const dict &data) {};
-
-	virtual void onRtnRepealFromFutureToBankByFutureManual(const dict &data) {};
-
-	virtual void onRtnQueryBankBalanceByFuture(const dict &data) {};
-
-	virtual void onErrRtnBankToFutureByFuture(const dict &data, const dict &error) {};
-
-	virtual void onErrRtnFutureToBankByFuture(const dict &data, const dict &error) {};
-
-	virtual void onErrRtnRepealBankToFutureByFutureManual(const dict &data, const dict &error) {};
-
-	virtual void onErrRtnRepealFutureToBankByFutureManual(const dict &data, const dict &error) {};
-
-	virtual void onErrRtnQueryBankBalanceByFuture(const dict &data, const dict &error) {};
-
-	virtual void onRtnRepealFromBankToFutureByFuture(const dict &data) {};
-
-	virtual void onRtnRepealFromFutureToBankByFuture(const dict &data) {};
-
-	virtual void onRspFromBankToFutureByFuture(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRspFromFutureToBankByFuture(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRspQueryBankAccountMoneyByFuture(const dict &data, const dict &error, int reqid, bool last) {};
-
-	virtual void onRtnOpenAccountByBank(const dict &data) {};
-
-	virtual void onRtnCancelAccountByBank(const dict &data) {};
-
-	virtual void onRtnChangeAccountByBank(const dict &data) {};
 
     //-------------------------------------------------------------------------------------
     //req:主动函数的请求字典
@@ -943,133 +596,85 @@ public:
 
 	int reqAuthenticate(const dict &req, int reqid);
 
-	int reqUserLogin(const dict &req, int reqid);
+    int reqUserLogin(const dict &req, int reqid);
 
-	int reqUserLoginEncrypt(const dict &req, int reqid);
+    int reqUserLoginEncrypt(const dict &req, int reqid);
 
-	int reqUserLogout(const dict &req, int reqid);
+    int reqUserLogout(const dict &req, int reqid);
 
-	int reqUserPasswordUpdate(const dict &req, int reqid);
+    int reqOrderInsert(const dict &req, int reqid);
 
-	int reqTradingAccountPasswordUpdate(const dict &req, int reqid);
+    int reqOrderAction(const dict &req, int reqid);
 
-	int reqOrderInsert(const dict &req, int reqid);
+    int reqExecOrderInsert(const dict &req, int reqid);
 
-	int reqParkedOrderInsert(const dict &req, int reqid);
+    int reqExecOrderAction(const dict &req, int reqid);
 
-	int reqParkedOrderAction(const dict &req, int reqid);
+    int reqForQuoteInsert(const dict &req, int reqid);
 
-	int reqOrderAction(const dict &req, int reqid);
+    int reqQuoteInsert(const dict &req, int reqid);
 
-	int reqQueryMaxOrderVolume(const dict &req, int reqid);
+    int reqQuoteAction(const dict &req, int reqid);
 
-	int reqSettlementInfoConfirm(const dict &req, int reqid);
+    int reqBatchOrderAction(const dict &req, int reqid);
 
-	int reqRemoveParkedOrder(const dict &req, int reqid);
+    int reqOptionSelfCloseInsert(const dict &req, int reqid);
 
-	int reqRemoveParkedOrderAction(const dict &req, int reqid);
+    int reqOptionSelfCloseAction(const dict &req, int reqid);
 
-	int reqExecOrderInsert(const dict &req, int reqid);
+    int reqCombActionInsert(const dict &req, int reqid);
 
-	int reqExecOrderAction(const dict &req, int reqid);
+    int reqQryOrder(const dict &req, int reqid);
 
-	int reqForQuoteInsert(const dict &req, int reqid);
+    int reqQryTrade(const dict &req, int reqid);
 
-	int reqQuoteInsert(const dict &req, int reqid);
+    int reqQryInvestorPosition(const dict &req, int reqid);
 
-	int reqQuoteAction(const dict &req, int reqid);
+    int reqQryTradingAccount(const dict &req, int reqid);
 
-	int reqBatchOrderAction(const dict &req, int reqid);
+    int reqQryInvestor(const dict &req, int reqid);
 
-	int reqOptionSelfCloseInsert(const dict &req, int reqid);
+    int reqQryTradingCode(const dict &req, int reqid);
 
-	int reqOptionSelfCloseAction(const dict &req, int reqid);
+    int reqQryInstrumentMarginRate(const dict &req, int reqid);
 
-	int reqTransFund(const dict &req, int reqid);
+    int reqQryInstrumentCommissionRate(const dict &req, int reqid);
 
-	int reqQryOrder(const dict &req, int reqid);
+    int reqQryExchange(const dict &req, int reqid);
 
-	int reqQryTrade(const dict &req, int reqid);
+    int reqQryProduct(const dict &req, int reqid);
 
-	int reqQryInvestorPosition(const dict &req, int reqid);
+    int reqQryInstrument(const dict &req, int reqid);
 
-	int reqQryTradingAccount(const dict &req, int reqid);
+    int reqQryCombInstrument(const dict &req, int reqid);
 
-	int reqQryInvestor(const dict &req, int reqid);
+    int reqQryInvestorPositionForComb(const dict &req, int reqid);
 
-	int reqQryTradingCode(const dict &req, int reqid);
+    int reqQryCombAction(const dict &req, int reqid);
 
-	int reqQryInstrumentMarginRate(const dict &req, int reqid);
+    int reqQryDepthMarketData(const dict &req, int reqid);
 
-	int reqQryInstrumentCommissionRate(const dict &req, int reqid);
+    int reqQryOptionSelfClose(const dict &req, int reqid);
 
-	int reqQryExchange(const dict &req, int reqid);
+    int reqQryInstrumentStatus(const dict &req, int reqid);
 
-	int reqQryProduct(const dict &req, int reqid);
+    int reqQryInvestorPositionDetail(const dict &req, int reqid);
 
-	int reqQryInstrument(const dict &req, int reqid);
+    int reqQryInvestorPositionCombineDetail(const dict &req, int reqid);
 
-	int reqQryDepthMarketData(const dict &req, int reqid);
+    int reqQryExchangeMarginRate(const dict &req, int reqid);
 
-	int reqQryOptionSelfClose(const dict &req, int reqid);
+    int reqQryExchangeMarginRateAdjust(const dict &req, int reqid);
 
-	int reqQrySettlementInfo(const dict &req, int reqid);
+    int reqQryOptionInstrTradeCost(const dict &req, int reqid);
 
-	int reqQryInstrumentStatus(const dict &req, int reqid);
+    int reqQryOptionInstrCommRate(const dict &req, int reqid);
 
-	int reqQryTransferBank(const dict &req, int reqid);
+    int reqQryExecOrder(const dict &req, int reqid);
 
-	int reqQryInvestorPositionDetail(const dict &req, int reqid);
+    int reqQryForQuote(const dict &req, int reqid);
 
-	int reqQryNotice(const dict &req, int reqid);
+    int reqQryQuote(const dict &req, int reqid);
 
-	int reqQrySettlementInfoConfirm(const dict &req, int reqid);
-
-	int reqQryInvestorPositionCombineDetail(const dict &req, int reqid);
-
-	int reqQryCFMMCTradingAccountKey(const dict &req, int reqid);
-
-	int reqQryEWarrantOffset(const dict &req, int reqid);
-
-	int reqQryInvestorProductGroupMargin(const dict &req, int reqid);
-
-	int reqQryExchangeMarginRate(const dict &req, int reqid);
-
-	int reqQryExchangeMarginRateAdjust(const dict &req, int reqid);
-
-	int reqQryExchangeRate(const dict &req, int reqid);
-
-	int reqQrySecAgentACIDMap(const dict &req, int reqid);
-
-	int reqQryOptionInstrTradeCost(const dict &req, int reqid);
-
-	int reqQryOptionInstrCommRate(const dict &req, int reqid);
-
-	int reqQryExecOrder(const dict &req, int reqid);
-
-	int reqQryForQuote(const dict &req, int reqid);
-
-	int reqQryQuote(const dict &req, int reqid);
-
-	int reqQryTransferSerial(const dict &req, int reqid);
-
-	int reqQryAccountregister(const dict &req, int reqid);
-
-	int reqQryContractBank(const dict &req, int reqid);
-
-	int reqQryParkedOrder(const dict &req, int reqid);
-
-	int reqQryParkedOrderAction(const dict &req, int reqid);
-
-	int reqQryTradingNotice(const dict &req, int reqid);
-
-	int reqQryBrokerTradingParams(const dict &req, int reqid);
-
-	int reqQryBrokerTradingAlgos(const dict &req, int reqid);
-
-	int reqFromBankToFutureByFuture(const dict &req, int reqid);
-
-	int reqFromFutureToBankByFuture(const dict &req, int reqid);
-
-	int reqQueryBankAccountMoneyByFuture(const dict &req, int reqid);
+    int reqQryInstrumentOrderCommRate(const dict &req, int reqid);
 };

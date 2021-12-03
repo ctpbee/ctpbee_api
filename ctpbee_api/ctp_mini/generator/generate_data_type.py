@@ -61,7 +61,7 @@ class DataTypeGenerator:
 
         name = words[2]
         typedef = TYPE_CPP2PY[words[1]]
-
+        print(name)
         if typedef == "char":
             if "[" in name:
                 typedef = "string"

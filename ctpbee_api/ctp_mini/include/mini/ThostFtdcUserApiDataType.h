@@ -45,7 +45,7 @@ typedef char TThostFtdcBrokerNameType[81];
 /////////////////////////////////////////////////////////////////////////
 ///TFtdcExchangeInstIDType是一个合约在交易所的代码类型
 /////////////////////////////////////////////////////////////////////////
-typedef char TThostFtdcExchangeInstIDType[31];
+typedef char TThostFtdcExchangeInstIDType[81];
 
 /////////////////////////////////////////////////////////////////////////
 ///TFtdcOrderRefType是一个报单引用类型
@@ -75,7 +75,7 @@ typedef char TThostFtdcClientIDType[11];
 /////////////////////////////////////////////////////////////////////////
 ///TFtdcInstrumentIDType是一个合约代码类型
 /////////////////////////////////////////////////////////////////////////
-typedef char TThostFtdcInstrumentIDType[31];
+typedef char TThostFtdcInstrumentIDType[81];
 
 /////////////////////////////////////////////////////////////////////////
 ///TFtdcMarketIDType是一个市场代码类型
@@ -683,6 +683,10 @@ typedef char TThostFtdcRatioAttrType;
 #define THOST_FTDC_HF_Hedge '3'
 ///做市商
 #define THOST_FTDC_HF_MarketMaker '5'
+///第一腿投机第二腿套保 大商所专用
+#define THOST_FTDC_HF_SpecHedge '6'
+///第一腿套保第二腿投机  大商所专用
+#define THOST_FTDC_HF_HedgeSpec '7'
 
 typedef char TThostFtdcHedgeFlagType;
 
@@ -4765,7 +4769,7 @@ typedef char TThostFtdcCSRCTradeIDType[21];
 /////////////////////////////////////////////////////////////////////////
 ///TFtdcCSRCExchangeInstIDType是一个合约代码类型
 /////////////////////////////////////////////////////////////////////////
-typedef char TThostFtdcCSRCExchangeInstIDType[31];
+typedef char TThostFtdcCSRCExchangeInstIDType[81];
 
 /////////////////////////////////////////////////////////////////////////
 ///TFtdcCSRCMortgageNameType是一个质押品名称类型
@@ -6140,6 +6144,35 @@ typedef char TThostFtdcStrikeTimeType[13];
 
 typedef char TThostFtdcCombinationTypeType;
 
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcDceCombinationTypeType是一个大商所组合类型类型
+/////////////////////////////////////////////////////////////////////////
+///期货对锁组合
+#define THOST_FTDC_DCECOMBT_SPL '0'
+// 期权对锁组合
+#define THOST_FTDC_DCECOMBT_OPL '1'
+///期货跨期组合
+#define THOST_FTDC_DCECOMBT_SP '2'
+///期货跨品种组合
+#define THOST_FTDC_DCECOMBT_SPC '3'
+// 买入期权垂直价差组合
+#define THOST_FTDC_DCECOMBT_BLS '4'
+// 卖出期权垂直价差组合
+#define THOST_FTDC_DCECOMBT_BES '5'
+// 期权日历价差组合
+#define THOST_FTDC_DCECOMBT_CAS '6'
+// 期权跨式组合
+#define THOST_FTDC_DCECOMBT_STD '7'
+// 期权宽跨式组合
+#define THOST_FTDC_DCECOMBT_STG '8'
+// 买入期货期权组合
+#define THOST_FTDC_DCECOMBT_BFO '9'
+// 卖出期货期权组合
+#define THOST_FTDC_DCECOMBT_SFO 'a'
+
+typedef char TThostFtdcDceCombinationTypeType;
+
 /////////////////////////////////////////////////////////////////////////
 ///TFtdcOptionRoyaltyPriceTypeType是一个期权权利金价格类型类型
 /////////////////////////////////////////////////////////////////////////
@@ -6301,6 +6334,8 @@ typedef char TThostFtdcCFFEXUploadFileNameType;
 #define THOST_FTDC_CMDR_Comb '0'
 ///申请拆分
 #define THOST_FTDC_CMDR_UnComb '1'
+///操作员删组合单
+#define THOST_FTDC_CMDR_DelComb '2'
 
 typedef char TThostFtdcCombDirectionType;
 
@@ -6413,11 +6448,11 @@ typedef char TThostFtdcClientSystemInfoType[273];
 /////////////////////////////////////////////////////////////////////////
 ///TThostFtdcAppIDType是App代码类型
 /////////////////////////////////////////////////////////////////////////
-typedef char  TThostFtdcClientAppIDType[33];
+typedef char TThostFtdcClientAppIDType[33];
 
 /////////////////////////////////////////////////////////////////////////
 ///TThostFtdcAutoCodeType是AutoCode代码类型
 /////////////////////////////////////////////////////////////////////////
-typedef char  TThostFtdcAutoCodeType[17];
+typedef char TThostFtdcAutoCodeType[17];
 
 #endif
