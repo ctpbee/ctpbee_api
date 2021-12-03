@@ -126,7 +126,7 @@ pkgs = ["ctpbee_api", 'ctpbee_api.ctp', "ctpbee_api.ctp_mini", ]
 
 setup(
     name='ctpbee_api',
-    version=0.25,
+    version=0.26,
     description="single CTP API support, From VNPY",
     author='somewheve',
     long_description=long_description,
