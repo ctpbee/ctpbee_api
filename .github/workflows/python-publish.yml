@@ -28,7 +28,7 @@ jobs:
         python -m pip install twine 
 
     - name: sdist file
-      run:|
+      run: |
         python setup.py sdist
 
         
