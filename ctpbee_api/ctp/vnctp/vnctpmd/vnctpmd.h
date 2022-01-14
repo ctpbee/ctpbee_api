@@ -16,13 +16,14 @@ using namespace pybind11;
 #define ONHEARTBEATWARNING 2
 #define ONRSPUSERLOGIN 3
 #define ONRSPUSERLOGOUT 4
-#define ONRSPERROR 5
-#define ONRSPSUBMARKETDATA 6
-#define ONRSPUNSUBMARKETDATA 7
-#define ONRSPSUBFORQUOTERSP 8
-#define ONRSPUNSUBFORQUOTERSP 9
-#define ONRTNDEPTHMARKETDATA 10
-#define ONRTNFORQUOTERSP 11
+#define ONRSPQRYMULTICASTINSTRUMENT 5
+#define ONRSPERROR 6
+#define ONRSPSUBMARKETDATA 7
+#define ONRSPUNSUBMARKETDATA 8
+#define ONRSPSUBFORQUOTERSP 9
+#define ONRSPUNSUBFORQUOTERSP 10
+#define ONRTNDEPTHMARKETDATA 11
+#define ONRTNFORQUOTERSP 12
 
 
 ///-------------------------------------------------------------------------------------
@@ -71,6 +72,8 @@ public:
 	///@param nTimeLapse 距离上次接收报文的时间
 	virtual void OnHeartBeatWarning(int nTimeLapse) ;
 
+	///请求查询组播合约响应
+	virtual void OnRspQryMulticastInstrument(CThostFtdcMulticastInstrumentField *pMulticastInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
 	///登录请求响应
 	virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
@@ -105,30 +108,31 @@ public:
 
 	void processTask();
 
-	void processFrontConnected(Task *task);
+    void processFrontConnected(Task *task);
 
-	void processFrontDisconnected(Task *task);
+    void processFrontDisconnected(Task *task);
 
-	void processHeartBeatWarning(Task *task);
+    void processHeartBeatWarning(Task *task);
 
-	void processRspUserLogin(Task *task);
+    void processRspUserLogin(Task *task);
 
-	void processRspUserLogout(Task *task);
+    void processRspUserLogout(Task *task);
 
-	void processRspError(Task *task);
+    void processRspQryMulticastInstrument(Task *task);
 
-	void processRspSubMarketData(Task *task);
+    void processRspError(Task *task);
 
-	void processRspUnSubMarketData(Task *task);
+    void processRspSubMarketData(Task *task);
 
-	void processRspSubForQuoteRsp(Task *task);
+    void processRspUnSubMarketData(Task *task);
 
-	void processRspUnSubForQuoteRsp(Task *task);
+    void processRspSubForQuoteRsp(Task *task);
 
-	void processRtnDepthMarketData(Task *task);
+    void processRspUnSubForQuoteRsp(Task *task);
 
-	void processRtnForQuoteRsp(Task *task);
+    void processRtnDepthMarketData(Task *task);
 
+    void processRtnForQuoteRsp(Task *task);
 
 	//-------------------------------------------------------------------------------------
 	//data：回调函数的数据字典
@@ -137,30 +141,35 @@ public:
 	//last：是否为最后返回
 	//i：整数
 	//-------------------------------------------------------------------------------------
+    virtual void onFrontConnected() {};
 
-	virtual void onFrontConnected() {};
+    virtual void onFrontDisconnected(int reqid) {};
 
-	virtual void onFrontDisconnected(int reqid) {};
+    virtual void onHeartBeatWarning(int reqid) {};
 
-	virtual void onHeartBeatWarning(int reqid) {};
+    virtual void onRspUserLogin(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspUserLogin(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspUserLogout(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspUserLogout(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspQryMulticastInstrument(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspError(const dict &error, int reqid, bool last) {};
+    virtual void onRspError(const dict &error, int reqid, bool last) {};
 
-	virtual void onRspSubMarketData(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspSubMarketData(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspUnSubMarketData(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspUnSubMarketData(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspSubForQuoteRsp(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspSubForQuoteRsp(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRspUnSubForQuoteRsp(const dict &data, const dict &error, int reqid, bool last) {};
+    virtual void onRspUnSubForQuoteRsp(const dict &data, const dict &error, int reqid, bool last) {};
 
-	virtual void onRtnDepthMarketData(const dict &data) {};
+    virtual void onRtnDepthMarketData(const dict &data) {};
 
-	virtual void onRtnForQuoteRsp(const dict &data) {};
+    virtual void onRtnForQuoteRsp(const dict &data) {};
+
+
+
+
 
 	//-------------------------------------------------------------------------------------
 	//req:主动函数的请求字典
@@ -188,7 +197,10 @@ public:
 
 	int unSubscribeForQuoteRsp(string instrumentID);
 
-	int reqUserLogin(const dict &req, int reqid);
+    int reqUserLogin(const dict &req, int reqid);
 
-	int reqUserLogout(const dict &req, int reqid);
+    int reqUserLogout(const dict &req, int reqid);
+
+    int reqQryMulticastInstrument(const dict &req, int reqid);
+
 };
