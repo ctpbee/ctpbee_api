@@ -24,8 +24,8 @@ class StructGenerator:
 
     def run(self):
         """运行生成"""
-        self.f_cpp = open(self.filename, "r")
-        self.f_struct = open(f"{self.prefix}_struct.py", "w")
+        self.f_cpp = open(self.filename, "r", encoding="gbk")
+        self.f_struct = open(f"{self.prefix}_struct.py", "w", encoding="gbk")
 
         for line in self.f_cpp:
             self.process_line(line)

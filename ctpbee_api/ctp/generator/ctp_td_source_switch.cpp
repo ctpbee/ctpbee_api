@@ -238,6 +238,12 @@ case ONRSPQRYDEPTHMARKETDATA:
 	break;
 }
 
+case ONRSPQRYTRADEROFFER:
+{
+	this->processRspQryTraderOffer(&task);
+	break;
+}
+
 case ONRSPQRYSETTLEMENTINFO:
 {
 	this->processRspQrySettlementInfo(&task);
@@ -769,6 +775,54 @@ case ONRSPQRYRISKSETTLEINVSTPOSITION:
 case ONRSPQRYRISKSETTLEPRODUCTSTATUS:
 {
 	this->processRspQryRiskSettleProductStatus(&task);
+	break;
+}
+
+case ONRSPQRYSPBMFUTUREPARAMETER:
+{
+	this->processRspQrySPBMFutureParameter(&task);
+	break;
+}
+
+case ONRSPQRYSPBMOPTIONPARAMETER:
+{
+	this->processRspQrySPBMOptionParameter(&task);
+	break;
+}
+
+case ONRSPQRYSPBMINTRAPARAMETER:
+{
+	this->processRspQrySPBMIntraParameter(&task);
+	break;
+}
+
+case ONRSPQRYSPBMINTERPARAMETER:
+{
+	this->processRspQrySPBMInterParameter(&task);
+	break;
+}
+
+case ONRSPQRYSPBMPORTFDEFINITION:
+{
+	this->processRspQrySPBMPortfDefinition(&task);
+	break;
+}
+
+case ONRSPQRYSPBMINVESTORPORTFDEF:
+{
+	this->processRspQrySPBMInvestorPortfDef(&task);
+	break;
+}
+
+case ONRSPQRYINVESTORPORTFMARGINRATIO:
+{
+	this->processRspQryInvestorPortfMarginRatio(&task);
+	break;
+}
+
+case ONRSPQRYINVESTORPRODSPBMDETAIL:
+{
+	this->processRspQryInvestorProdSPBMDetail(&task);
 	break;
 }
 

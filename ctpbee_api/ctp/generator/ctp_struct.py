@@ -33,6 +33,8 @@ CThostFtdcRspUserLoginField = {
     "CZCETime": "string",
     "FFEXTime": "string",
     "INETime": "string",
+    "SysVersion": "string",
+    "GFEXTime": "string",
 }
 
 CThostFtdcUserLogoutField = {
@@ -211,6 +213,8 @@ CThostFtdcProductField = {
     "UnderlyingMultiple": "double",
     "ProductID": "string",
     "ExchangeProductID": "string",
+    "OpenLimitControlLevel": "char",
+    "OrderFreqControlLevel": "char",
 }
 
 CThostFtdcInstrumentField = {
@@ -265,6 +269,7 @@ CThostFtdcTraderField = {
     "Password": "string",
     "InstallCount": "int",
     "BrokerID": "string",
+    "OrderCancelAlg": "char",
 }
 
 CThostFtdcInvestorField = {
@@ -281,6 +286,8 @@ CThostFtdcInvestorField = {
     "Mobile": "string",
     "CommModelID": "string",
     "MarginModelID": "string",
+    "IsOrderFreq": "char",
+    "IsOpenVolLimit": "char",
 }
 
 CThostFtdcTradingCodeField = {
@@ -564,6 +571,7 @@ CThostFtdcTraderOfferField = {
     "BrokerID": "string",
     "MaxTradeID": "string",
     "MaxOrderMessageReference": "string",
+    "OrderCancelAlg": "char",
 }
 
 CThostFtdcSettlementInfoField = {
@@ -1088,6 +1096,8 @@ CThostFtdcSyncingInvestorField = {
     "Mobile": "string",
     "CommModelID": "string",
     "MarginModelID": "string",
+    "IsOrderFreq": "char",
+    "IsOpenVolLimit": "char",
 }
 
 CThostFtdcSyncingTradingCodeField = {
@@ -3013,6 +3023,7 @@ CThostFtdcMDTraderOfferField = {
     "BrokerID": "string",
     "MaxTradeID": "string",
     "MaxOrderMessageReference": "string",
+    "OrderCancelAlg": "char",
 }
 
 CThostFtdcQryMDTraderOfferField = {
@@ -5202,6 +5213,23 @@ CThostFtdcCombPromotionParamField = {
     "Xparameter": "double",
 }
 
+CThostFtdcReqUserLoginSCField = {
+    "TradingDay": "string",
+    "BrokerID": "string",
+    "UserID": "string",
+    "Password": "string",
+    "UserProductInfo": "string",
+    "InterfaceProductInfo": "string",
+    "ProtocolInfo": "string",
+    "MacAddress": "string",
+    "OneTimePassword": "string",
+    "ClientIPAddress": "string",
+    "LoginRemark": "string",
+    "ClientIPPort": "int",
+    "AuthCode": "string",
+    "AppID": "string",
+}
+
 CThostFtdcQryRiskSettleInvstPositionField = {
     "BrokerID": "string",
     "InvestorID": "string",
@@ -5609,5 +5637,153 @@ CThostFtdcSyncDeltaEWarrantOffsetField = {
     "Volume": "int",
     "ActionDirection": "char",
     "SyncDeltaSequenceNo": "int",
+}
+
+CThostFtdcSPBMFutureParameterField = {
+    "TradingDay": "string",
+    "ExchangeID": "string",
+    "InstrumentID": "string",
+    "ProdFamilyCode": "string",
+    "Cvf": "int",
+    "TimeRange": "char",
+    "MarginRate": "double",
+    "LockRateX": "double",
+    "AddOnRate": "double",
+    "PreSettlementPrice": "double",
+}
+
+CThostFtdcSPBMOptionParameterField = {
+    "TradingDay": "string",
+    "ExchangeID": "string",
+    "InstrumentID": "string",
+    "ProdFamilyCode": "string",
+    "Cvf": "int",
+    "DownPrice": "double",
+    "Delta": "double",
+    "SlimiDelta": "double",
+    "PreSettlementPrice": "double",
+}
+
+CThostFtdcSPBMIntraParameterField = {
+    "TradingDay": "string",
+    "ExchangeID": "string",
+    "ProdFamilyCode": "string",
+    "IntraRateY": "double",
+}
+
+CThostFtdcSPBMInterParameterField = {
+    "TradingDay": "string",
+    "ExchangeID": "string",
+    "SpreadId": "int",
+    "InterRateZ": "double",
+    "Leg1ProdFamilyCode": "string",
+    "Leg2ProdFamilyCode": "string",
+}
+
+CThostFtdcSyncSPBMParameterEndField = {
+    "TradingDay": "string",
+}
+
+CThostFtdcQrySPBMFutureParameterField = {
+    "ExchangeID": "string",
+    "InstrumentID": "string",
+    "ProdFamilyCode": "string",
+}
+
+CThostFtdcQrySPBMOptionParameterField = {
+    "ExchangeID": "string",
+    "InstrumentID": "string",
+    "ProdFamilyCode": "string",
+}
+
+CThostFtdcQrySPBMIntraParameterField = {
+    "ExchangeID": "string",
+    "ProdFamilyCode": "string",
+}
+
+CThostFtdcQrySPBMInterParameterField = {
+    "ExchangeID": "string",
+    "Leg1ProdFamilyCode": "string",
+    "Leg2ProdFamilyCode": "string",
+}
+
+CThostFtdcSPBMPortfDefinitionField = {
+    "ExchangeID": "string",
+    "PortfolioDefID": "int",
+    "ProdFamilyCode": "string",
+    "IsSPBM": "int",
+}
+
+CThostFtdcSPBMInvestorPortfDefField = {
+    "ExchangeID": "string",
+    "BrokerID": "string",
+    "InvestorID": "string",
+    "PortfolioDefID": "int",
+}
+
+CThostFtdcInvestorPortfMarginRatioField = {
+    "InvestorRange": "char",
+    "BrokerID": "string",
+    "InvestorID": "string",
+    "ExchangeID": "string",
+    "MarginRatio": "double",
+}
+
+CThostFtdcQrySPBMPortfDefinitionField = {
+    "ExchangeID": "string",
+    "PortfolioDefID": "int",
+    "ProdFamilyCode": "string",
+}
+
+CThostFtdcQrySPBMInvestorPortfDefField = {
+    "ExchangeID": "string",
+    "BrokerID": "string",
+    "InvestorID": "string",
+}
+
+CThostFtdcQryInvestorPortfMarginRatioField = {
+    "BrokerID": "string",
+    "InvestorID": "string",
+    "ExchangeID": "string",
+}
+
+CThostFtdcInvestorProdSPBMDetailField = {
+    "ExchangeID": "string",
+    "BrokerID": "string",
+    "InvestorID": "string",
+    "ProdFamilyCode": "string",
+    "IntraInstrMargin": "double",
+    "BCollectingMargin": "double",
+    "SCollectingMargin": "double",
+    "IntraProdMargin": "double",
+    "NetMargin": "double",
+    "InterProdMargin": "double",
+    "SingleMargin": "double",
+    "AddOnMargin": "double",
+    "DeliveryMargin": "double",
+    "CallOptionMinRisk": "double",
+    "PutOptionMinRisk": "double",
+    "OptionMinRisk": "double",
+    "OptionValueOffset": "double",
+    "OptionRoyalty": "double",
+    "RealOptionValueOffset": "double",
+    "Margin": "double",
+    "ExchMargin": "double",
+}
+
+CThostFtdcQryInvestorProdSPBMDetailField = {
+    "ExchangeID": "string",
+    "BrokerID": "string",
+    "InvestorID": "string",
+    "ProdFamilyCode": "string",
+}
+
+CThostFtdcPortfTradeParamSettingField = {
+    "ExchangeID": "string",
+    "BrokerID": "string",
+    "InvestorID": "string",
+    "Portfolio": "char",
+    "IsActionVerify": "int",
+    "IsCloseVerify": "int",
 }
 
