@@ -140,12 +140,56 @@ mini_md = Extension(
     language="cpp",
 )
 
+rohon_td = Extension(
+    "ctpbee_api.ctp_rohon.vnrohontd",
+    [
+        "ctpbee_api/ctp_rohon/vnrohon/vnrohontd/vnrohontd.cpp",
+    ],
+    include_dirs=[
+        "ctpbee_api/ctp_rohon/include",
+        "ctpbee_api/ctp_rohon/vnrohon",
+    ],
+    define_macros=[],
+    undef_macros=[],
+    library_dirs=["ctpbee_api/ctp_rohon/libs",
+                  "ctpbee_api/ctp_rohon",
+                  ],
+    libraries=["thostmduserapi_se", "thosttraderapi_se"],
+    extra_compile_args=compiler_flags,
+    extra_link_args=extra_link_args,
+    runtime_library_dirs=runtime_library_dir,
+    depends=[],
+    language="cpp",
+)
+
+rohon_md = Extension(
+    "ctpbee_api.ctp_rohon.vnrohonmd",
+    [
+        "ctpbee_api/ctp_rohon/vnrohon/vnrohonmd/vnrohonmd.cpp",
+    ],
+    include_dirs=[
+        "ctpbee_api/ctp_rohon/include",
+        "ctpbee_api/ctp_rohon/vnrohon",
+    ],
+    define_macros=[],
+    undef_macros=[],
+    library_dirs=["ctpbee_api/ctp_rohon/libs",
+                  "ctpbee_api/ctp_rohon",
+                  ],
+    libraries=["thostmduserapi_se", "thosttraderapi_se"],
+    extra_compile_args=compiler_flags,
+    extra_link_args=extra_link_args,
+    runtime_library_dirs=runtime_library_dir,
+    depends=[],
+    language="cpp",
+)
+
 if platform.system() == "Windows":
-    ext_modules = [vnctptd, vnctpmd, mini_td, mini_md]
+    ext_modules = [vnctptd, vnctpmd, mini_td, mini_md, rohon_td, rohon_md]
 else:
     ext_modules = [vnctptd, vnctpmd]
 
-pkgs = ["ctpbee_api", 'ctpbee_api.ctp', "ctpbee_api.ctp_mini", ]
+pkgs = ["ctpbee_api", 'ctpbee_api.ctp', "ctpbee_api.ctp_mini", "ctpbee_api.ctp_rohon"]
 
 setup(
     name='ctpbee_api',
