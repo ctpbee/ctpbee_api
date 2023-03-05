@@ -1,7 +1,6 @@
 // vnminimd.cpp : ���� DLL Ӧ�ó���ĵ���������
 //
-#include "vnminimd.h"
-
+#include "vnctp_minimd.h"
 
 ///-------------------------------------------------------------------------------------
 ///C++�Ļص����������ݱ��浽������
@@ -850,8 +849,7 @@ public:
 
 };
 
-PYBIND11_MODULE(CMdApi, m)
-
+PYBIND11_MODULE(vnctp_minimd, m)
 {
 	class_<MdApi, PyMdApi> mdapi(m, "MdApi", module_local());
 	mdapi

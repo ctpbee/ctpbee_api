@@ -1,3 +1,3 @@
-from ctpbee_api.ctp_mini.CMdApi import MdApi as MiniMdApi
-from ctpbee_api.ctp_mini.CTdApi import TdApi as MiniTdApi
+from ctpbee_api.ctp_mini.vnctp_minimd import MdApi as MiniMdApi
+from ctpbee_api.ctp_mini.vnctp_minitd import TdApi as MiniTdApi
 from .mini_constant import *

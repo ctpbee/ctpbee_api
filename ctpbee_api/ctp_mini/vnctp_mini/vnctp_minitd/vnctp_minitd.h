@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #endif
 
-#include "vnmini.h"
+#include "vnctp_mini.h"
 #include "pybind11/pybind11.h"
 #include "mini/ThostFtdcTraderApi.h"
 

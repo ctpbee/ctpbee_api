@@ -1,16 +1,16 @@
-//ÏµÍ³
+//??
 #ifdef WIN32
 #include "stdafx.h"
 #endif
 
-#include "vnmini.h"
+#include "vnctp_mini.h"
 #include "pybind11/pybind11.h"
 #include "mini/ThostFtdcMdApi.h"
 
 
 using namespace pybind11;
 
-//³£Á¿
+//????
 #define ONFRONTCONNECTED 0
 #define ONFRONTDISCONNECTED 1
 #define ONHEARTBEATWARNING 2
@@ -28,17 +28,17 @@ using namespace pybind11;
 
 
 ///-------------------------------------------------------------------------------------
-///C++ SPIµÄ»Øµ÷º¯Êý·½·¨ÊµÏÖ
+///C++ SPI???????????????
 ///-------------------------------------------------------------------------------------
 
-//APIµÄ¼Ì³ÐÊµÏÖ
+//API???????
 class MdApi : public CThostFtdcMdSpi
 {
 private:
-	CThostFtdcMdApi* api;				//API¶ÔÏó
-	thread task_thread;					//¹¤×÷Ïß³ÌÖ¸Õë£¨ÏòpythonÖÐÍÆËÍÊý¾Ý£©
-	TaskQueue task_queue;			    //ÈÎÎñ¶ÓÁÐ
-	bool active = false;				//¹¤×÷×´Ì¬
+	CThostFtdcMdApi* api;				//API????
+	thread task_thread;					//????????????python???????????
+	TaskQueue task_queue;			    //???????
+	bool active = false;				//??????
 
 public:
 	MdApi()
@@ -54,56 +54,56 @@ public:
 	};
 
 	//-------------------------------------------------------------------------------------
-	//API»Øµ÷º¯Êý
+	//API???????
 	//-------------------------------------------------------------------------------------
 
 	virtual void OnFrontConnected();
 
-	///µ±¿Í»§¶ËÓë½»Ò×ºóÌ¨Í¨ÐÅÁ¬½Ó¶Ï¿ªÊ±£¬¸Ã·½·¨±»µ÷ÓÃ¡£µ±·¢ÉúÕâ¸öÇé¿öºó£¬API»á×Ô¶¯ÖØÐÂÁ¬½Ó£¬¿Í»§¶Ë¿É²»×ö´¦Àí¡£
-	///@param nReason ´íÎóÔ­Òò
-	///        0x1001 ÍøÂç¶ÁÊ§°Ü
-	///        0x1002 ÍøÂçÐ´Ê§°Ü
-	///        0x2001 ½ÓÊÕÐÄÌø³¬Ê±
-	///        0x2002 ·¢ËÍÐÄÌøÊ§°Ü
-	///        0x2003 ÊÕµ½´íÎó±¨ÎÄ
+	///??????????????????????????Ã·????????Ã¡???????????????API???????????????????????????
+	///@param nReason ???????
+	///        0x1001 ????????
+	///        0x1002 ????Ð´???
+	///        0x2001 ???????????
+	///        0x2002 ???????????
+	///        0x2003 ?????????
 	virtual void OnFrontDisconnected(int nReason);
 
-	///ÐÄÌø³¬Ê±¾¯¸æ¡£µ±³¤Ê±¼äÎ´ÊÕµ½±¨ÎÄÊ±£¬¸Ã·½·¨±»µ÷ÓÃ¡£
-	///@param nTimeLapse ¾àÀëÉÏ´Î½ÓÊÕ±¨ÎÄµÄÊ±¼ä
+	///??????????æ¡£???????Î´???????????Ã·????????Ã¡?
+	///@param nTimeLapse ??????Î½??????????
 	virtual void OnHeartBeatWarning(int nTimeLapse);
 
-	///µÇÂ¼ÇëÇóÏìÓ¦
+	///??????????
 	virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast);
 
-	///µÇ³öÇëÇóÏìÓ¦
+	///??????????
 	virtual void OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
-	///´íÎóÓ¦´ð
+	///???????
 	virtual void OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
-	///¶©ÔÄÐÐÇéÓ¦´ð
+	///???????????
 	virtual void OnRspSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
-	///È¡Ïû¶©ÔÄÐÐÇéÓ¦´ð
+	///??????????????
 	virtual void OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
-	///¶©ÔÄÑ¯¼ÛÓ¦´ð
+	///??????????
 	virtual void OnRspSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
-	///È¡Ïû¶©ÔÄÑ¯¼ÛÓ¦´ð
+	///?????????????
 	virtual void OnRspUnSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) ;
 
-	///Éî¶ÈÐÐÇéÍ¨Öª
+	///?????????
 	virtual void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData) ;
 
-	///·Ö¼Û±íÍ¨Öª
+	///??????
 	virtual void OnRtnMBLMarketData(CThostFtdcMBLMarketDataField *pMBLMarketData) ;
 
-	///Ñ¯¼ÛÍ¨Öª
+	///?????
 	virtual void OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp);
 
 	//-------------------------------------------------------------------------------------
-	//task£ºÈÎÎñ
+	//task??????
 	//-------------------------------------------------------------------------------------
 
 	void processTask();
@@ -137,11 +137,11 @@ public:
 
 
 	//-------------------------------------------------------------------------------------
-	//data£º»Øµ÷º¯ÊýµÄÊý¾Ý×Öµä
-	//error£º»Øµ÷º¯ÊýµÄ´íÎó×Öµä
-	//id£ºÇëÇóid
-	//last£ºÊÇ·ñÎª×îºó·µ»Ø
-	//i£ºÕûÊý
+	//data??????????????????
+	//error?????????????????
+	//id??????id
+	//last??????????
+	//i??????
 	//-------------------------------------------------------------------------------------
 
 	virtual void onFrontConnected() {};
@@ -171,7 +171,7 @@ public:
     virtual void onRtnForQuoteRsp(const dict &data) {};
 
 	//-------------------------------------------------------------------------------------
-	//req:Ö÷¶¯º¯ÊýµÄÇëÇó×Öµä
+	//req:?????????????????
 	//-------------------------------------------------------------------------------------
 
 	void createFtdcMdApi(string pszFlowPath = "");
