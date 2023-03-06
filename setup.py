@@ -117,21 +117,48 @@ class ApiExt:
 
 
 ext_modules = []
-ctp_md, ctp_td = ApiExt(module_name="ctp", library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
-ext_modules.append(ctp_md)
-ext_modules.append(ctp_td)
+pkgs = ["ctpbee_api"]
 
-ctp_mini_md, ctp_mini_td = ApiExt(module_name="ctp_mini",
-                                  library_list=["thostmduserapi", "thosttraderapi"]).as_ext()
-ext_modules.append(ctp_mini_md)
-ext_modules.append(ctp_mini_td)
 
-ctp_rohon_md, ctp_rohon_td = ApiExt(module_name="rohon",
-                                    library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
-ext_modules.append(ctp_rohon_md)
-ext_modules.append(ctp_rohon_td)
+def build_ctp():
+    ctp_md, ctp_td = ApiExt(module_name="ctp", library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
+    ext_modules.append(ctp_md)
+    ext_modules.append(ctp_td)
+    pkgs.append('ctpbee_api.ctp')
 
-pkgs = ["ctpbee_api", 'ctpbee_api.ctp', "ctpbee_api.ctp_mini", "ctpbee_api.rohon"]
+
+def build_ctp_mini():
+    ctp_mini_md, ctp_mini_td = ApiExt(module_name="ctp_mini",
+                                      library_list=["thostmduserapi", "thosttraderapi"]).as_ext()
+    ext_modules.append(ctp_mini_md)
+    ext_modules.append(ctp_mini_td)
+    pkgs.append("ctpbee_api.ctp_mini")
+
+
+def build_rohon():
+    ctp_rohon_md, ctp_rohon_td = ApiExt(module_name="rohon",
+                                        library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
+    ext_modules.append(ctp_rohon_md)
+    ext_modules.append(ctp_rohon_td)
+    pkgs.append("ctpbee_api.rohon")
+
+
+def build_ctp_mac():
+    pkgs.append("ctpbee_api.ctp_mac")
+
+
+if system_name == "Windows":
+    build_ctp()
+    build_ctp_mini()
+    build_rohon()
+elif system_name == "Linux":
+    build_ctp()
+    build_ctp_mini()
+    build_rohon()
+elif system_name == "Darwin":
+    build_ctp_mac()
+else:
+    raise ValueError(f"{system_name} not support, only support Linux, Windows, Darwin")
 
 setup(
     name='ctpbee_api',
