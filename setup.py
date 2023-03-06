@@ -65,7 +65,10 @@ class ApiExt:
 
     @property
     def library_dir(self) -> library:
-        return [f"ctpbee_api/{self.module_name}/libs", f"ctpbee_api/{self.module_name}"]
+        dirs = [f"ctpbee_api/{self.module_name}"]
+        if system_name != "Linux":
+            dirs.append(f"ctpbee_api/{self.module_name}/libs")
+        return dirs
 
     def td_api_file(self) -> (str, str):
         return f"ctpbee_api.{self.module_name}.vn{self.module_name}td", f"ctpbee_api/{self.module_name}/vn{self.module_name}/vn{self.module_name}td/vn{self.module_name}td.cpp"
@@ -94,13 +97,13 @@ class ApiExt:
 
     def as_md_api(self) -> Extension:
         mod, file = self.md_api_file()
-        print(mod, file)
-        print("include", self.include)
-        print("library_dir", self.library_dir)
-        print("compiled_flag", self.compiled_flag)
-        print("run_time_library", self.run_time_library)
-        print("library", self.library)
-        print("extral_link_args", self.extral_link_args)
+        # print(mod, file)
+        # print("include", self.include)
+        # print("library_dir", self.library_dir)
+        # print("compiled_flag", self.compiled_flag)
+        # print("run_time_library", self.run_time_library)
+        # print("library", self.library)
+        # print("extral_link_args", self.extral_link_args)
         return Extension(
             mod,
             [
