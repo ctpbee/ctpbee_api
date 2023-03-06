@@ -94,6 +94,7 @@ class ApiExt:
         print("compiled_flag", self.compiled_flag)
         print("run_time_library", self.run_time_library)
         print("library", self.library)
+        print("extral_link_args", self.extral_link_args)
         return Extension(
             mod,
             [
@@ -129,7 +130,8 @@ ctp_rohon_md, ctp_rohon_td = ApiExt(module_name="rohon",
                                     library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
 ext_modules.append(ctp_rohon_md)
 ext_modules.append(ctp_rohon_td)
-pkgs = ["ctpbee_api", 'ctpbee_api.ctp', "ctpbee_api.ctp_mini", "ctpbee_api.rohon", "ctpbee_api.ctp_mac"]
+
+pkgs = ["ctpbee_api", 'ctpbee_api.ctp', "ctpbee_api.ctp_mini", "ctpbee_api.rohon"]
 
 setup(
     name='ctpbee_api',
