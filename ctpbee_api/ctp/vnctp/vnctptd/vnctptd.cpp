@@ -1,5 +1,13 @@
+// vnctptd.cpp : 定义 DLL 应用程序的导出函数。
+//
 
 #include "vnctptd.h"
+
+
+///-------------------------------------------------------------------------------------
+///C++的回调函数将数据保存到队列中
+///-------------------------------------------------------------------------------------
+
 void TdApi::OnFrontConnected()
 {
 	Task task = Task();
@@ -23,7 +31,7 @@ void TdApi::OnHeartBeatWarning(int nTimeLapse)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenticateField, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenticateField, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPAUTHENTICATE;
@@ -44,7 +52,7 @@ void TdApi::OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenticateFi
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPUSERLOGIN;
@@ -65,7 +73,7 @@ void TdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtd
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPUSERLOGOUT;
@@ -86,7 +94,7 @@ void TdApi::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRs
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspUserPasswordUpdate(CThostFtdcUserPasswordUpdateField *pUserPasswordUpdate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspUserPasswordUpdate(CThostFtdcUserPasswordUpdateField *pUserPasswordUpdate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPUSERPASSWORDUPDATE;
@@ -107,7 +115,7 @@ void TdApi::OnRspUserPasswordUpdate(CThostFtdcUserPasswordUpdateField *pUserPass
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspTradingAccountPasswordUpdate(CThostFtdcTradingAccountPasswordUpdateField *pTradingAccountPasswordUpdate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspTradingAccountPasswordUpdate(CThostFtdcTradingAccountPasswordUpdateField *pTradingAccountPasswordUpdate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPTRADINGACCOUNTPASSWORDUPDATE;
@@ -128,7 +136,7 @@ void TdApi::OnRspTradingAccountPasswordUpdate(CThostFtdcTradingAccountPasswordUp
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspUserAuthMethod(CThostFtdcRspUserAuthMethodField *pRspUserAuthMethod, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspUserAuthMethod(CThostFtdcRspUserAuthMethodField *pRspUserAuthMethod, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPUSERAUTHMETHOD;
@@ -149,7 +157,7 @@ void TdApi::OnRspUserAuthMethod(CThostFtdcRspUserAuthMethodField *pRspUserAuthMe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspGenUserCaptcha(CThostFtdcRspGenUserCaptchaField *pRspGenUserCaptcha, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspGenUserCaptcha(CThostFtdcRspGenUserCaptchaField *pRspGenUserCaptcha, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPGENUSERCAPTCHA;
@@ -170,7 +178,7 @@ void TdApi::OnRspGenUserCaptcha(CThostFtdcRspGenUserCaptchaField *pRspGenUserCap
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspGenUserText(CThostFtdcRspGenUserTextField *pRspGenUserText, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspGenUserText(CThostFtdcRspGenUserTextField *pRspGenUserText, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPGENUSERTEXT;
@@ -191,7 +199,7 @@ void TdApi::OnRspGenUserText(CThostFtdcRspGenUserTextField *pRspGenUserText, CTh
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPORDERINSERT;
@@ -212,7 +220,7 @@ void TdApi::OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcR
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspParkedOrderInsert(CThostFtdcParkedOrderField *pParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspParkedOrderInsert(CThostFtdcParkedOrderField *pParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPPARKEDORDERINSERT;
@@ -233,7 +241,7 @@ void TdApi::OnRspParkedOrderInsert(CThostFtdcParkedOrderField *pParkedOrder, CTh
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspParkedOrderAction(CThostFtdcParkedOrderActionField *pParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspParkedOrderAction(CThostFtdcParkedOrderActionField *pParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPPARKEDORDERACTION;
@@ -254,7 +262,7 @@ void TdApi::OnRspParkedOrderAction(CThostFtdcParkedOrderActionField *pParkedOrde
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPORDERACTION;
@@ -275,7 +283,7 @@ void TdApi::OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryMaxOrderVolume(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolume, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryMaxOrderVolume(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrderVolume, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYMAXORDERVOLUME;
@@ -296,7 +304,7 @@ void TdApi::OnRspQryMaxOrderVolume(CThostFtdcQryMaxOrderVolumeField *pQryMaxOrde
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPSETTLEMENTINFOCONFIRM;
@@ -317,7 +325,7 @@ void TdApi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField *pRemoveParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField *pRemoveParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPREMOVEPARKEDORDER;
@@ -338,7 +346,7 @@ void TdApi::OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField *pRemovePark
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField *pRemoveParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField *pRemoveParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPREMOVEPARKEDORDERACTION;
@@ -359,7 +367,7 @@ void TdApi::OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField 
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPEXECORDERINSERT;
@@ -380,7 +388,7 @@ void TdApi::OnRspExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspExecOrderAction(CThostFtdcInputExecOrderActionField *pInputExecOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspExecOrderAction(CThostFtdcInputExecOrderActionField *pInputExecOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPEXECORDERACTION;
@@ -401,7 +409,7 @@ void TdApi::OnRspExecOrderAction(CThostFtdcInputExecOrderActionField *pInputExec
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPFORQUOTEINSERT;
@@ -422,7 +430,7 @@ void TdApi::OnRspForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CT
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQUOTEINSERT;
@@ -443,7 +451,7 @@ void TdApi::OnRspQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcR
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQuoteAction(CThostFtdcInputQuoteActionField *pInputQuoteAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQuoteAction(CThostFtdcInputQuoteActionField *pInputQuoteAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQUOTEACTION;
@@ -464,7 +472,7 @@ void TdApi::OnRspQuoteAction(CThostFtdcInputQuoteActionField *pInputQuoteAction,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspBatchOrderAction(CThostFtdcInputBatchOrderActionField *pInputBatchOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspBatchOrderAction(CThostFtdcInputBatchOrderActionField *pInputBatchOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPBATCHORDERACTION;
@@ -485,7 +493,7 @@ void TdApi::OnRspBatchOrderAction(CThostFtdcInputBatchOrderActionField *pInputBa
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPOPTIONSELFCLOSEINSERT;
@@ -506,7 +514,7 @@ void TdApi::OnRspOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInp
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOptionSelfCloseAction(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspOptionSelfCloseAction(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPOPTIONSELFCLOSEACTION;
@@ -527,7 +535,7 @@ void TdApi::OnRspOptionSelfCloseAction(CThostFtdcInputOptionSelfCloseActionField
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspCombActionInsert(CThostFtdcInputCombActionField *pInputCombAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspCombActionInsert(CThostFtdcInputCombActionField *pInputCombAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPCOMBACTIONINSERT;
@@ -548,7 +556,7 @@ void TdApi::OnRspCombActionInsert(CThostFtdcInputCombActionField *pInputCombActi
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryOrder(CThostFtdcOrderField *pOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryOrder(CThostFtdcOrderField *pOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYORDER;
@@ -569,7 +577,7 @@ void TdApi::OnRspQryOrder(CThostFtdcOrderField *pOrder, CThostFtdcRspInfoField *
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTrade(CThostFtdcTradeField *pTrade, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryTrade(CThostFtdcTradeField *pTrade, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRADE;
@@ -590,7 +598,7 @@ void TdApi::OnRspQryTrade(CThostFtdcTradeField *pTrade, CThostFtdcRspInfoField *
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINVESTORPOSITION;
@@ -611,7 +619,7 @@ void TdApi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorP
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRADINGACCOUNT;
@@ -632,7 +640,7 @@ void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccoun
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInvestor(CThostFtdcInvestorField *pInvestor, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInvestor(CThostFtdcInvestorField *pInvestor, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINVESTOR;
@@ -653,7 +661,7 @@ void TdApi::OnRspQryInvestor(CThostFtdcInvestorField *pInvestor, CThostFtdcRspIn
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTradingCode(CThostFtdcTradingCodeField *pTradingCode, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryTradingCode(CThostFtdcTradingCodeField *pTradingCode, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRADINGCODE;
@@ -674,7 +682,7 @@ void TdApi::OnRspQryTradingCode(CThostFtdcTradingCodeField *pTradingCode, CThost
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField *pInstrumentMarginRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINSTRUMENTMARGINRATE;
@@ -695,7 +703,7 @@ void TdApi::OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField *pI
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINSTRUMENTCOMMISSIONRATE;
@@ -716,7 +724,7 @@ void TdApi::OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateF
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryExchange(CThostFtdcExchangeField *pExchange, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryExchange(CThostFtdcExchangeField *pExchange, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYEXCHANGE;
@@ -737,7 +745,7 @@ void TdApi::OnRspQryExchange(CThostFtdcExchangeField *pExchange, CThostFtdcRspIn
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryProduct(CThostFtdcProductField *pProduct, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryProduct(CThostFtdcProductField *pProduct, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYPRODUCT;
@@ -758,7 +766,7 @@ void TdApi::OnRspQryProduct(CThostFtdcProductField *pProduct, CThostFtdcRspInfoF
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINSTRUMENT;
@@ -779,7 +787,7 @@ void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtd
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYDEPTHMARKETDATA;
@@ -800,7 +808,7 @@ void TdApi::OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarket
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTraderOffer(CThostFtdcTraderOfferField *pTraderOffer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryTraderOffer(CThostFtdcTraderOfferField *pTraderOffer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRADEROFFER;
@@ -821,7 +829,7 @@ void TdApi::OnRspQryTraderOffer(CThostFtdcTraderOfferField *pTraderOffer, CThost
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQrySettlementInfo(CThostFtdcSettlementInfoField *pSettlementInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQrySettlementInfo(CThostFtdcSettlementInfoField *pSettlementInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYSETTLEMENTINFO;
@@ -842,7 +850,7 @@ void TdApi::OnRspQrySettlementInfo(CThostFtdcSettlementInfoField *pSettlementInf
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTransferBank(CThostFtdcTransferBankField *pTransferBank, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryTransferBank(CThostFtdcTransferBankField *pTransferBank, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRANSFERBANK;
@@ -863,7 +871,7 @@ void TdApi::OnRspQryTransferBank(CThostFtdcTransferBankField *pTransferBank, CTh
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField *pInvestorPositionDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINVESTORPOSITIONDETAIL;
@@ -884,7 +892,7 @@ void TdApi::OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryNotice(CThostFtdcNoticeField *pNotice, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryNotice(CThostFtdcNoticeField *pNotice, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYNOTICE;
@@ -905,7 +913,7 @@ void TdApi::OnRspQryNotice(CThostFtdcNoticeField *pNotice, CThostFtdcRspInfoFiel
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQrySettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQrySettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYSETTLEMENTINFOCONFIRM;
@@ -926,7 +934,7 @@ void TdApi::OnRspQrySettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionCombineDetailField *pInvestorPositionCombineDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINVESTORPOSITIONCOMBINEDETAIL;
@@ -947,7 +955,7 @@ void TdApi::OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionComb
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryCFMMCTradingAccountKey(CThostFtdcCFMMCTradingAccountKeyField *pCFMMCTradingAccountKey, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryCFMMCTradingAccountKey(CThostFtdcCFMMCTradingAccountKeyField *pCFMMCTradingAccountKey, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCFMMCTRADINGACCOUNTKEY;
@@ -968,7 +976,7 @@ void TdApi::OnRspQryCFMMCTradingAccountKey(CThostFtdcCFMMCTradingAccountKeyField
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryEWarrantOffset(CThostFtdcEWarrantOffsetField *pEWarrantOffset, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryEWarrantOffset(CThostFtdcEWarrantOffsetField *pEWarrantOffset, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYEWARRANTOFFSET;
@@ -989,7 +997,7 @@ void TdApi::OnRspQryEWarrantOffset(CThostFtdcEWarrantOffsetField *pEWarrantOffse
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInvestorProductGroupMargin(CThostFtdcInvestorProductGroupMarginField *pInvestorProductGroupMargin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInvestorProductGroupMargin(CThostFtdcInvestorProductGroupMarginField *pInvestorProductGroupMargin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINVESTORPRODUCTGROUPMARGIN;
@@ -1010,7 +1018,7 @@ void TdApi::OnRspQryInvestorProductGroupMargin(CThostFtdcInvestorProductGroupMar
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField *pExchangeMarginRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField *pExchangeMarginRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYEXCHANGEMARGINRATE;
@@ -1031,7 +1039,7 @@ void TdApi::OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField *pExcha
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjust, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjust, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYEXCHANGEMARGINRATEADJUST;
@@ -1052,7 +1060,7 @@ void TdApi::OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjustF
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryExchangeRate(CThostFtdcExchangeRateField *pExchangeRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryExchangeRate(CThostFtdcExchangeRateField *pExchangeRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYEXCHANGERATE;
@@ -1073,7 +1081,7 @@ void TdApi::OnRspQryExchangeRate(CThostFtdcExchangeRateField *pExchangeRate, CTh
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQrySecAgentACIDMap(CThostFtdcSecAgentACIDMapField *pSecAgentACIDMap, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQrySecAgentACIDMap(CThostFtdcSecAgentACIDMapField *pSecAgentACIDMap, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYSECAGENTACIDMAP;
@@ -1094,7 +1102,7 @@ void TdApi::OnRspQrySecAgentACIDMap(CThostFtdcSecAgentACIDMapField *pSecAgentACI
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryProductExchRate(CThostFtdcProductExchRateField *pProductExchRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryProductExchRate(CThostFtdcProductExchRateField *pProductExchRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYPRODUCTEXCHRATE;
@@ -1115,7 +1123,7 @@ void TdApi::OnRspQryProductExchRate(CThostFtdcProductExchRateField *pProductExch
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryProductGroup(CThostFtdcProductGroupField *pProductGroup, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryProductGroup(CThostFtdcProductGroupField *pProductGroup, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYPRODUCTGROUP;
@@ -1136,7 +1144,7 @@ void TdApi::OnRspQryProductGroup(CThostFtdcProductGroupField *pProductGroup, CTh
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryMMInstrumentCommissionRate(CThostFtdcMMInstrumentCommissionRateField *pMMInstrumentCommissionRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryMMInstrumentCommissionRate(CThostFtdcMMInstrumentCommissionRateField *pMMInstrumentCommissionRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYMMINSTRUMENTCOMMISSIONRATE;
@@ -1157,7 +1165,7 @@ void TdApi::OnRspQryMMInstrumentCommissionRate(CThostFtdcMMInstrumentCommissionR
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryMMOptionInstrCommRate(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstrCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryMMOptionInstrCommRate(CThostFtdcMMOptionInstrCommRateField *pMMOptionInstrCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYMMOPTIONINSTRCOMMRATE;
@@ -1178,7 +1186,7 @@ void TdApi::OnRspQryMMOptionInstrCommRate(CThostFtdcMMOptionInstrCommRateField *
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInstrumentOrderCommRate(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInstrumentOrderCommRate(CThostFtdcInstrumentOrderCommRateField *pInstrumentOrderCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINSTRUMENTORDERCOMMRATE;
@@ -1199,7 +1207,7 @@ void TdApi::OnRspQryInstrumentOrderCommRate(CThostFtdcInstrumentOrderCommRateFie
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQrySecAgentTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQrySecAgentTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYSECAGENTTRADINGACCOUNT;
@@ -1220,7 +1228,7 @@ void TdApi::OnRspQrySecAgentTradingAccount(CThostFtdcTradingAccountField *pTradi
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQrySecAgentCheckMode(CThostFtdcSecAgentCheckModeField *pSecAgentCheckMode, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQrySecAgentCheckMode(CThostFtdcSecAgentCheckModeField *pSecAgentCheckMode, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYSECAGENTCHECKMODE;
@@ -1241,7 +1249,7 @@ void TdApi::OnRspQrySecAgentCheckMode(CThostFtdcSecAgentCheckModeField *pSecAgen
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQrySecAgentTradeInfo(CThostFtdcSecAgentTradeInfoField *pSecAgentTradeInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQrySecAgentTradeInfo(CThostFtdcSecAgentTradeInfoField *pSecAgentTradeInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYSECAGENTTRADEINFO;
@@ -1262,7 +1270,7 @@ void TdApi::OnRspQrySecAgentTradeInfo(CThostFtdcSecAgentTradeInfoField *pSecAgen
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCost, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCost, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYOPTIONINSTRTRADECOST;
@@ -1283,7 +1291,7 @@ void TdApi::OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField *pO
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField *pOptionInstrCommRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYOPTIONINSTRCOMMRATE;
@@ -1304,7 +1312,7 @@ void TdApi::OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField *pOpt
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryExecOrder(CThostFtdcExecOrderField *pExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryExecOrder(CThostFtdcExecOrderField *pExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYEXECORDER;
@@ -1325,7 +1333,7 @@ void TdApi::OnRspQryExecOrder(CThostFtdcExecOrderField *pExecOrder, CThostFtdcRs
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryForQuote(CThostFtdcForQuoteField *pForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryForQuote(CThostFtdcForQuoteField *pForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYFORQUOTE;
@@ -1346,7 +1354,7 @@ void TdApi::OnRspQryForQuote(CThostFtdcForQuoteField *pForQuote, CThostFtdcRspIn
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryQuote(CThostFtdcQuoteField *pQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryQuote(CThostFtdcQuoteField *pQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYQUOTE;
@@ -1367,7 +1375,7 @@ void TdApi::OnRspQryQuote(CThostFtdcQuoteField *pQuote, CThostFtdcRspInfoField *
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYOPTIONSELFCLOSE;
@@ -1388,7 +1396,7 @@ void TdApi::OnRspQryOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfC
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInvestUnit(CThostFtdcInvestUnitField *pInvestUnit, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryInvestUnit(CThostFtdcInvestUnitField *pInvestUnit, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYINVESTUNIT;
@@ -1409,7 +1417,7 @@ void TdApi::OnRspQryInvestUnit(CThostFtdcInvestUnitField *pInvestUnit, CThostFtd
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryCombInstrumentGuard(CThostFtdcCombInstrumentGuardField *pCombInstrumentGuard, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryCombInstrumentGuard(CThostFtdcCombInstrumentGuardField *pCombInstrumentGuard, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCOMBINSTRUMENTGUARD;
@@ -1430,7 +1438,7 @@ void TdApi::OnRspQryCombInstrumentGuard(CThostFtdcCombInstrumentGuardField *pCom
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryCombAction(CThostFtdcCombActionField *pCombAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryCombAction(CThostFtdcCombActionField *pCombAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCOMBACTION;
@@ -1451,7 +1459,7 @@ void TdApi::OnRspQryCombAction(CThostFtdcCombActionField *pCombAction, CThostFtd
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTransferSerial(CThostFtdcTransferSerialField *pTransferSerial, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryTransferSerial(CThostFtdcTransferSerialField *pTransferSerial, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRANSFERSERIAL;
@@ -1472,7 +1480,7 @@ void TdApi::OnRspQryTransferSerial(CThostFtdcTransferSerialField *pTransferSeria
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryAccountregister(CThostFtdcAccountregisterField *pAccountregister, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryAccountregister(CThostFtdcAccountregisterField *pAccountregister, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYACCOUNTREGISTER;
@@ -1493,7 +1501,7 @@ void TdApi::OnRspQryAccountregister(CThostFtdcAccountregisterField *pAccountregi
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPERROR;
@@ -1508,7 +1516,7 @@ void TdApi::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bI
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnOrder(CThostFtdcOrderField *pOrder) 
+void TdApi::OnRtnOrder(CThostFtdcOrderField *pOrder)
 {
 	Task task = Task();
 	task.task_name = ONRTNORDER;
@@ -1521,7 +1529,7 @@ void TdApi::OnRtnOrder(CThostFtdcOrderField *pOrder)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnTrade(CThostFtdcTradeField *pTrade) 
+void TdApi::OnRtnTrade(CThostFtdcTradeField *pTrade)
 {
 	Task task = Task();
 	task.task_name = ONRTNTRADE;
@@ -1534,7 +1542,7 @@ void TdApi::OnRtnTrade(CThostFtdcTradeField *pTrade)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNORDERINSERT;
@@ -1553,7 +1561,7 @@ void TdApi::OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFt
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNORDERACTION;
@@ -1572,7 +1580,7 @@ void TdApi::OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThost
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField *pInstrumentStatus) 
+void TdApi::OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField *pInstrumentStatus)
 {
 	Task task = Task();
 	task.task_name = ONRTNINSTRUMENTSTATUS;
@@ -1585,7 +1593,7 @@ void TdApi::OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField *pInstrumentSt
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnBulletin(CThostFtdcBulletinField *pBulletin) 
+void TdApi::OnRtnBulletin(CThostFtdcBulletinField *pBulletin)
 {
 	Task task = Task();
 	task.task_name = ONRTNBULLETIN;
@@ -1598,7 +1606,7 @@ void TdApi::OnRtnBulletin(CThostFtdcBulletinField *pBulletin)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnTradingNotice(CThostFtdcTradingNoticeInfoField *pTradingNoticeInfo) 
+void TdApi::OnRtnTradingNotice(CThostFtdcTradingNoticeInfoField *pTradingNoticeInfo)
 {
 	Task task = Task();
 	task.task_name = ONRTNTRADINGNOTICE;
@@ -1611,7 +1619,7 @@ void TdApi::OnRtnTradingNotice(CThostFtdcTradingNoticeInfoField *pTradingNoticeI
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnErrorConditionalOrder(CThostFtdcErrorConditionalOrderField *pErrorConditionalOrder) 
+void TdApi::OnRtnErrorConditionalOrder(CThostFtdcErrorConditionalOrderField *pErrorConditionalOrder)
 {
 	Task task = Task();
 	task.task_name = ONRTNERRORCONDITIONALORDER;
@@ -1624,7 +1632,7 @@ void TdApi::OnRtnErrorConditionalOrder(CThostFtdcErrorConditionalOrderField *pEr
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnExecOrder(CThostFtdcExecOrderField *pExecOrder) 
+void TdApi::OnRtnExecOrder(CThostFtdcExecOrderField *pExecOrder)
 {
 	Task task = Task();
 	task.task_name = ONRTNEXECORDER;
@@ -1637,7 +1645,7 @@ void TdApi::OnRtnExecOrder(CThostFtdcExecOrderField *pExecOrder)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNEXECORDERINSERT;
@@ -1656,7 +1664,7 @@ void TdApi::OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrd
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField *pExecOrderAction, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField *pExecOrderAction, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNEXECORDERACTION;
@@ -1675,7 +1683,7 @@ void TdApi::OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField *pExecOrderAc
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNFORQUOTEINSERT;
@@ -1694,7 +1702,7 @@ void TdApi::OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnQuote(CThostFtdcQuoteField *pQuote) 
+void TdApi::OnRtnQuote(CThostFtdcQuoteField *pQuote)
 {
 	Task task = Task();
 	task.task_name = ONRTNQUOTE;
@@ -1707,7 +1715,7 @@ void TdApi::OnRtnQuote(CThostFtdcQuoteField *pQuote)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNQUOTEINSERT;
@@ -1726,7 +1734,7 @@ void TdApi::OnErrRtnQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFt
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnQuoteAction(CThostFtdcQuoteActionField *pQuoteAction, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnQuoteAction(CThostFtdcQuoteActionField *pQuoteAction, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNQUOTEACTION;
@@ -1745,7 +1753,7 @@ void TdApi::OnErrRtnQuoteAction(CThostFtdcQuoteActionField *pQuoteAction, CThost
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp) 
+void TdApi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp)
 {
 	Task task = Task();
 	task.task_name = ONRTNFORQUOTERSP;
@@ -1758,7 +1766,7 @@ void TdApi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnCFMMCTradingAccountToken(CThostFtdcCFMMCTradingAccountTokenField *pCFMMCTradingAccountToken) 
+void TdApi::OnRtnCFMMCTradingAccountToken(CThostFtdcCFMMCTradingAccountTokenField *pCFMMCTradingAccountToken)
 {
 	Task task = Task();
 	task.task_name = ONRTNCFMMCTRADINGACCOUNTTOKEN;
@@ -1771,7 +1779,7 @@ void TdApi::OnRtnCFMMCTradingAccountToken(CThostFtdcCFMMCTradingAccountTokenFiel
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnBatchOrderAction(CThostFtdcBatchOrderActionField *pBatchOrderAction, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnBatchOrderAction(CThostFtdcBatchOrderActionField *pBatchOrderAction, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNBATCHORDERACTION;
@@ -1790,7 +1798,7 @@ void TdApi::OnErrRtnBatchOrderAction(CThostFtdcBatchOrderActionField *pBatchOrde
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose) 
+void TdApi::OnRtnOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose)
 {
 	Task task = Task();
 	task.task_name = ONRTNOPTIONSELFCLOSE;
@@ -1803,7 +1811,7 @@ void TdApi::OnRtnOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClos
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNOPTIONSELFCLOSEINSERT;
@@ -1822,7 +1830,7 @@ void TdApi::OnErrRtnOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *p
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnOptionSelfCloseAction(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnOptionSelfCloseAction(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNOPTIONSELFCLOSEACTION;
@@ -1841,7 +1849,7 @@ void TdApi::OnErrRtnOptionSelfCloseAction(CThostFtdcOptionSelfCloseActionField *
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnCombAction(CThostFtdcCombActionField *pCombAction) 
+void TdApi::OnRtnCombAction(CThostFtdcCombActionField *pCombAction)
 {
 	Task task = Task();
 	task.task_name = ONRTNCOMBACTION;
@@ -1854,7 +1862,7 @@ void TdApi::OnRtnCombAction(CThostFtdcCombActionField *pCombAction)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnCombActionInsert(CThostFtdcInputCombActionField *pInputCombAction, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnCombActionInsert(CThostFtdcInputCombActionField *pInputCombAction, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNCOMBACTIONINSERT;
@@ -1873,7 +1881,7 @@ void TdApi::OnErrRtnCombActionInsert(CThostFtdcInputCombActionField *pInputCombA
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryContractBank(CThostFtdcContractBankField *pContractBank, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryContractBank(CThostFtdcContractBankField *pContractBank, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCONTRACTBANK;
@@ -1894,7 +1902,7 @@ void TdApi::OnRspQryContractBank(CThostFtdcContractBankField *pContractBank, CTh
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryParkedOrder(CThostFtdcParkedOrderField *pParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryParkedOrder(CThostFtdcParkedOrderField *pParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYPARKEDORDER;
@@ -1915,7 +1923,7 @@ void TdApi::OnRspQryParkedOrder(CThostFtdcParkedOrderField *pParkedOrder, CThost
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryParkedOrderAction(CThostFtdcParkedOrderActionField *pParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryParkedOrderAction(CThostFtdcParkedOrderActionField *pParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYPARKEDORDERACTION;
@@ -1936,7 +1944,7 @@ void TdApi::OnRspQryParkedOrderAction(CThostFtdcParkedOrderActionField *pParkedO
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTradingNotice(CThostFtdcTradingNoticeField *pTradingNotice, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryTradingNotice(CThostFtdcTradingNoticeField *pTradingNotice, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRADINGNOTICE;
@@ -1957,7 +1965,7 @@ void TdApi::OnRspQryTradingNotice(CThostFtdcTradingNoticeField *pTradingNotice, 
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryBrokerTradingParams(CThostFtdcBrokerTradingParamsField *pBrokerTradingParams, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryBrokerTradingParams(CThostFtdcBrokerTradingParamsField *pBrokerTradingParams, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYBROKERTRADINGPARAMS;
@@ -1978,7 +1986,7 @@ void TdApi::OnRspQryBrokerTradingParams(CThostFtdcBrokerTradingParamsField *pBro
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryBrokerTradingAlgos(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlgos, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryBrokerTradingAlgos(CThostFtdcBrokerTradingAlgosField *pBrokerTradingAlgos, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYBROKERTRADINGALGOS;
@@ -1999,7 +2007,7 @@ void TdApi::OnRspQryBrokerTradingAlgos(CThostFtdcBrokerTradingAlgosField *pBroke
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQueryCFMMCTradingAccountToken(CThostFtdcQueryCFMMCTradingAccountTokenField *pQueryCFMMCTradingAccountToken, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQueryCFMMCTradingAccountToken(CThostFtdcQueryCFMMCTradingAccountTokenField *pQueryCFMMCTradingAccountToken, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQUERYCFMMCTRADINGACCOUNTTOKEN;
@@ -2020,7 +2028,7 @@ void TdApi::OnRspQueryCFMMCTradingAccountToken(CThostFtdcQueryCFMMCTradingAccoun
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnFromBankToFutureByBank(CThostFtdcRspTransferField *pRspTransfer) 
+void TdApi::OnRtnFromBankToFutureByBank(CThostFtdcRspTransferField *pRspTransfer)
 {
 	Task task = Task();
 	task.task_name = ONRTNFROMBANKTOFUTUREBYBANK;
@@ -2033,7 +2041,7 @@ void TdApi::OnRtnFromBankToFutureByBank(CThostFtdcRspTransferField *pRspTransfer
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnFromFutureToBankByBank(CThostFtdcRspTransferField *pRspTransfer) 
+void TdApi::OnRtnFromFutureToBankByBank(CThostFtdcRspTransferField *pRspTransfer)
 {
 	Task task = Task();
 	task.task_name = ONRTNFROMFUTURETOBANKBYBANK;
@@ -2046,7 +2054,7 @@ void TdApi::OnRtnFromFutureToBankByBank(CThostFtdcRspTransferField *pRspTransfer
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnRepealFromBankToFutureByBank(CThostFtdcRspRepealField *pRspRepeal) 
+void TdApi::OnRtnRepealFromBankToFutureByBank(CThostFtdcRspRepealField *pRspRepeal)
 {
 	Task task = Task();
 	task.task_name = ONRTNREPEALFROMBANKTOFUTUREBYBANK;
@@ -2059,7 +2067,7 @@ void TdApi::OnRtnRepealFromBankToFutureByBank(CThostFtdcRspRepealField *pRspRepe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnRepealFromFutureToBankByBank(CThostFtdcRspRepealField *pRspRepeal) 
+void TdApi::OnRtnRepealFromFutureToBankByBank(CThostFtdcRspRepealField *pRspRepeal)
 {
 	Task task = Task();
 	task.task_name = ONRTNREPEALFROMFUTURETOBANKBYBANK;
@@ -2072,7 +2080,7 @@ void TdApi::OnRtnRepealFromFutureToBankByBank(CThostFtdcRspRepealField *pRspRepe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnFromBankToFutureByFuture(CThostFtdcRspTransferField *pRspTransfer) 
+void TdApi::OnRtnFromBankToFutureByFuture(CThostFtdcRspTransferField *pRspTransfer)
 {
 	Task task = Task();
 	task.task_name = ONRTNFROMBANKTOFUTUREBYFUTURE;
@@ -2085,7 +2093,7 @@ void TdApi::OnRtnFromBankToFutureByFuture(CThostFtdcRspTransferField *pRspTransf
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnFromFutureToBankByFuture(CThostFtdcRspTransferField *pRspTransfer) 
+void TdApi::OnRtnFromFutureToBankByFuture(CThostFtdcRspTransferField *pRspTransfer)
 {
 	Task task = Task();
 	task.task_name = ONRTNFROMFUTURETOBANKBYFUTURE;
@@ -2098,7 +2106,7 @@ void TdApi::OnRtnFromFutureToBankByFuture(CThostFtdcRspTransferField *pRspTransf
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnRepealFromBankToFutureByFutureManual(CThostFtdcRspRepealField *pRspRepeal) 
+void TdApi::OnRtnRepealFromBankToFutureByFutureManual(CThostFtdcRspRepealField *pRspRepeal)
 {
 	Task task = Task();
 	task.task_name = ONRTNREPEALFROMBANKTOFUTUREBYFUTUREMANUAL;
@@ -2111,7 +2119,7 @@ void TdApi::OnRtnRepealFromBankToFutureByFutureManual(CThostFtdcRspRepealField *
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnRepealFromFutureToBankByFutureManual(CThostFtdcRspRepealField *pRspRepeal) 
+void TdApi::OnRtnRepealFromFutureToBankByFutureManual(CThostFtdcRspRepealField *pRspRepeal)
 {
 	Task task = Task();
 	task.task_name = ONRTNREPEALFROMFUTURETOBANKBYFUTUREMANUAL;
@@ -2124,7 +2132,7 @@ void TdApi::OnRtnRepealFromFutureToBankByFutureManual(CThostFtdcRspRepealField *
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnQueryBankBalanceByFuture(CThostFtdcNotifyQueryAccountField *pNotifyQueryAccount) 
+void TdApi::OnRtnQueryBankBalanceByFuture(CThostFtdcNotifyQueryAccountField *pNotifyQueryAccount)
 {
 	Task task = Task();
 	task.task_name = ONRTNQUERYBANKBALANCEBYFUTURE;
@@ -2137,7 +2145,7 @@ void TdApi::OnRtnQueryBankBalanceByFuture(CThostFtdcNotifyQueryAccountField *pNo
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnBankToFutureByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnBankToFutureByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNBANKTOFUTUREBYFUTURE;
@@ -2156,7 +2164,7 @@ void TdApi::OnErrRtnBankToFutureByFuture(CThostFtdcReqTransferField *pReqTransfe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnFutureToBankByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnFutureToBankByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNFUTURETOBANKBYFUTURE;
@@ -2175,7 +2183,7 @@ void TdApi::OnErrRtnFutureToBankByFuture(CThostFtdcReqTransferField *pReqTransfe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnRepealBankToFutureByFutureManual(CThostFtdcReqRepealField *pReqRepeal, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnRepealBankToFutureByFutureManual(CThostFtdcReqRepealField *pReqRepeal, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNREPEALBANKTOFUTUREBYFUTUREMANUAL;
@@ -2194,7 +2202,7 @@ void TdApi::OnErrRtnRepealBankToFutureByFutureManual(CThostFtdcReqRepealField *p
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnRepealFutureToBankByFutureManual(CThostFtdcReqRepealField *pReqRepeal, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnRepealFutureToBankByFutureManual(CThostFtdcReqRepealField *pReqRepeal, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNREPEALFUTURETOBANKBYFUTUREMANUAL;
@@ -2213,7 +2221,7 @@ void TdApi::OnErrRtnRepealFutureToBankByFutureManual(CThostFtdcReqRepealField *p
 	this->task_queue.push(task);
 };
 
-void TdApi::OnErrRtnQueryBankBalanceByFuture(CThostFtdcReqQueryAccountField *pReqQueryAccount, CThostFtdcRspInfoField *pRspInfo) 
+void TdApi::OnErrRtnQueryBankBalanceByFuture(CThostFtdcReqQueryAccountField *pReqQueryAccount, CThostFtdcRspInfoField *pRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONERRRTNQUERYBANKBALANCEBYFUTURE;
@@ -2232,7 +2240,7 @@ void TdApi::OnErrRtnQueryBankBalanceByFuture(CThostFtdcReqQueryAccountField *pRe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnRepealFromBankToFutureByFuture(CThostFtdcRspRepealField *pRspRepeal) 
+void TdApi::OnRtnRepealFromBankToFutureByFuture(CThostFtdcRspRepealField *pRspRepeal)
 {
 	Task task = Task();
 	task.task_name = ONRTNREPEALFROMBANKTOFUTUREBYFUTURE;
@@ -2245,7 +2253,7 @@ void TdApi::OnRtnRepealFromBankToFutureByFuture(CThostFtdcRspRepealField *pRspRe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnRepealFromFutureToBankByFuture(CThostFtdcRspRepealField *pRspRepeal) 
+void TdApi::OnRtnRepealFromFutureToBankByFuture(CThostFtdcRspRepealField *pRspRepeal)
 {
 	Task task = Task();
 	task.task_name = ONRTNREPEALFROMFUTURETOBANKBYFUTURE;
@@ -2258,7 +2266,7 @@ void TdApi::OnRtnRepealFromFutureToBankByFuture(CThostFtdcRspRepealField *pRspRe
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspFromBankToFutureByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspFromBankToFutureByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPFROMBANKTOFUTUREBYFUTURE;
@@ -2279,7 +2287,7 @@ void TdApi::OnRspFromBankToFutureByFuture(CThostFtdcReqTransferField *pReqTransf
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspFromFutureToBankByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspFromFutureToBankByFuture(CThostFtdcReqTransferField *pReqTransfer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPFROMFUTURETOBANKBYFUTURE;
@@ -2300,7 +2308,7 @@ void TdApi::OnRspFromFutureToBankByFuture(CThostFtdcReqTransferField *pReqTransf
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQueryBankAccountMoneyByFuture(CThostFtdcReqQueryAccountField *pReqQueryAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQueryBankAccountMoneyByFuture(CThostFtdcReqQueryAccountField *pReqQueryAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQUERYBANKACCOUNTMONEYBYFUTURE;
@@ -2321,7 +2329,7 @@ void TdApi::OnRspQueryBankAccountMoneyByFuture(CThostFtdcReqQueryAccountField *p
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnOpenAccountByBank(CThostFtdcOpenAccountField *pOpenAccount) 
+void TdApi::OnRtnOpenAccountByBank(CThostFtdcOpenAccountField *pOpenAccount)
 {
 	Task task = Task();
 	task.task_name = ONRTNOPENACCOUNTBYBANK;
@@ -2334,7 +2342,7 @@ void TdApi::OnRtnOpenAccountByBank(CThostFtdcOpenAccountField *pOpenAccount)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnCancelAccountByBank(CThostFtdcCancelAccountField *pCancelAccount) 
+void TdApi::OnRtnCancelAccountByBank(CThostFtdcCancelAccountField *pCancelAccount)
 {
 	Task task = Task();
 	task.task_name = ONRTNCANCELACCOUNTBYBANK;
@@ -2347,7 +2355,7 @@ void TdApi::OnRtnCancelAccountByBank(CThostFtdcCancelAccountField *pCancelAccoun
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnChangeAccountByBank(CThostFtdcChangeAccountField *pChangeAccount) 
+void TdApi::OnRtnChangeAccountByBank(CThostFtdcChangeAccountField *pChangeAccount)
 {
 	Task task = Task();
 	task.task_name = ONRTNCHANGEACCOUNTBYBANK;
@@ -2360,7 +2368,7 @@ void TdApi::OnRtnChangeAccountByBank(CThostFtdcChangeAccountField *pChangeAccoun
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryClassifiedInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryClassifiedInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCLASSIFIEDINSTRUMENT;
@@ -2381,7 +2389,7 @@ void TdApi::OnRspQryClassifiedInstrument(CThostFtdcInstrumentField *pInstrument,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryCombPromotionParam(CThostFtdcCombPromotionParamField *pCombPromotionParam, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryCombPromotionParam(CThostFtdcCombPromotionParamField *pCombPromotionParam, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCOMBPROMOTIONPARAM;
@@ -2402,7 +2410,7 @@ void TdApi::OnRspQryCombPromotionParam(CThostFtdcCombPromotionParamField *pCombP
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryRiskSettleInvstPosition(CThostFtdcRiskSettleInvstPositionField *pRiskSettleInvstPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryRiskSettleInvstPosition(CThostFtdcRiskSettleInvstPositionField *pRiskSettleInvstPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYRISKSETTLEINVSTPOSITION;
@@ -2423,7 +2431,7 @@ void TdApi::OnRspQryRiskSettleInvstPosition(CThostFtdcRiskSettleInvstPositionFie
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryRiskSettleProductStatus(CThostFtdcRiskSettleProductStatusField *pRiskSettleProductStatus, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+void TdApi::OnRspQryRiskSettleProductStatus(CThostFtdcRiskSettleProductStatusField *pRiskSettleProductStatus, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYRISKSETTLEPRODUCTSTATUS;
@@ -2444,174 +2452,9 @@ void TdApi::OnRspQryRiskSettleProductStatus(CThostFtdcRiskSettleProductStatusFie
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQrySPBMFutureParameter(CThostFtdcSPBMFutureParameterField *pSPBMFutureParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYSPBMFUTUREPARAMETER;
-	if (pSPBMFutureParameter)
-	{
-		CThostFtdcSPBMFutureParameterField *task_data = new CThostFtdcSPBMFutureParameterField();
-		*task_data = *pSPBMFutureParameter;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQrySPBMOptionParameter(CThostFtdcSPBMOptionParameterField *pSPBMOptionParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYSPBMOPTIONPARAMETER;
-	if (pSPBMOptionParameter)
-	{
-		CThostFtdcSPBMOptionParameterField *task_data = new CThostFtdcSPBMOptionParameterField();
-		*task_data = *pSPBMOptionParameter;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQrySPBMIntraParameter(CThostFtdcSPBMIntraParameterField *pSPBMIntraParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYSPBMINTRAPARAMETER;
-	if (pSPBMIntraParameter)
-	{
-		CThostFtdcSPBMIntraParameterField *task_data = new CThostFtdcSPBMIntraParameterField();
-		*task_data = *pSPBMIntraParameter;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQrySPBMInterParameter(CThostFtdcSPBMInterParameterField *pSPBMInterParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYSPBMINTERPARAMETER;
-	if (pSPBMInterParameter)
-	{
-		CThostFtdcSPBMInterParameterField *task_data = new CThostFtdcSPBMInterParameterField();
-		*task_data = *pSPBMInterParameter;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQrySPBMPortfDefinition(CThostFtdcSPBMPortfDefinitionField *pSPBMPortfDefinition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYSPBMPORTFDEFINITION;
-	if (pSPBMPortfDefinition)
-	{
-		CThostFtdcSPBMPortfDefinitionField *task_data = new CThostFtdcSPBMPortfDefinitionField();
-		*task_data = *pSPBMPortfDefinition;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQrySPBMInvestorPortfDef(CThostFtdcSPBMInvestorPortfDefField *pSPBMInvestorPortfDef, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYSPBMINVESTORPORTFDEF;
-	if (pSPBMInvestorPortfDef)
-	{
-		CThostFtdcSPBMInvestorPortfDefField *task_data = new CThostFtdcSPBMInvestorPortfDefField();
-		*task_data = *pSPBMInvestorPortfDef;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQryInvestorPortfMarginRatio(CThostFtdcInvestorPortfMarginRatioField *pInvestorPortfMarginRatio, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYINVESTORPORTFMARGINRATIO;
-	if (pInvestorPortfMarginRatio)
-	{
-		CThostFtdcInvestorPortfMarginRatioField *task_data = new CThostFtdcInvestorPortfMarginRatioField();
-		*task_data = *pInvestorPortfMarginRatio;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQryInvestorProdSPBMDetail(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYINVESTORPRODSPBMDETAIL;
-	if (pInvestorProdSPBMDetail)
-	{
-		CThostFtdcInvestorProdSPBMDetailField *task_data = new CThostFtdcInvestorProdSPBMDetailField();
-		*task_data = *pInvestorProdSPBMDetail;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
+///-------------------------------------------------------------------------------------
+///工作线程从队列中取出数据，转化为python对象后，进行推送
+///-------------------------------------------------------------------------------------
 
 void TdApi::processTask()
 {
@@ -2623,837 +2466,785 @@ void TdApi::processTask()
 
             switch (task.task_name)
             {
-case ONFRONTCONNECTED:
-{
-	this->processFrontConnected(&task);
-	break;
-}
-
-case ONFRONTDISCONNECTED:
-{
-	this->processFrontDisconnected(&task);
-	break;
-}
-
-case ONHEARTBEATWARNING:
-{
-	this->processHeartBeatWarning(&task);
-	break;
-}
-
-case ONRSPAUTHENTICATE:
-{
-	this->processRspAuthenticate(&task);
-	break;
-}
-
-case ONRSPUSERLOGIN:
-{
-	this->processRspUserLogin(&task);
-	break;
-}
-
-case ONRSPUSERLOGOUT:
-{
-	this->processRspUserLogout(&task);
-	break;
-}
-
-case ONRSPUSERPASSWORDUPDATE:
-{
-	this->processRspUserPasswordUpdate(&task);
-	break;
-}
-
-case ONRSPTRADINGACCOUNTPASSWORDUPDATE:
-{
-	this->processRspTradingAccountPasswordUpdate(&task);
-	break;
-}
-
-case ONRSPUSERAUTHMETHOD:
-{
-	this->processRspUserAuthMethod(&task);
-	break;
-}
-
-case ONRSPGENUSERCAPTCHA:
-{
-	this->processRspGenUserCaptcha(&task);
-	break;
-}
-
-case ONRSPGENUSERTEXT:
-{
-	this->processRspGenUserText(&task);
-	break;
-}
-
-case ONRSPORDERINSERT:
-{
-	this->processRspOrderInsert(&task);
-	break;
-}
-
-case ONRSPPARKEDORDERINSERT:
-{
-	this->processRspParkedOrderInsert(&task);
-	break;
-}
-
-case ONRSPPARKEDORDERACTION:
-{
-	this->processRspParkedOrderAction(&task);
-	break;
-}
-
-case ONRSPORDERACTION:
-{
-	this->processRspOrderAction(&task);
-	break;
-}
-
-case ONRSPQRYMAXORDERVOLUME:
-{
-	this->processRspQryMaxOrderVolume(&task);
-	break;
-}
-
-case ONRSPSETTLEMENTINFOCONFIRM:
-{
-	this->processRspSettlementInfoConfirm(&task);
-	break;
-}
-
-case ONRSPREMOVEPARKEDORDER:
-{
-	this->processRspRemoveParkedOrder(&task);
-	break;
-}
-
-case ONRSPREMOVEPARKEDORDERACTION:
-{
-	this->processRspRemoveParkedOrderAction(&task);
-	break;
-}
-
-case ONRSPEXECORDERINSERT:
-{
-	this->processRspExecOrderInsert(&task);
-	break;
-}
-
-case ONRSPEXECORDERACTION:
-{
-	this->processRspExecOrderAction(&task);
-	break;
-}
-
-case ONRSPFORQUOTEINSERT:
-{
-	this->processRspForQuoteInsert(&task);
-	break;
-}
-
-case ONRSPQUOTEINSERT:
-{
-	this->processRspQuoteInsert(&task);
-	break;
-}
-
-case ONRSPQUOTEACTION:
-{
-	this->processRspQuoteAction(&task);
-	break;
-}
-
-case ONRSPBATCHORDERACTION:
-{
-	this->processRspBatchOrderAction(&task);
-	break;
-}
-
-case ONRSPOPTIONSELFCLOSEINSERT:
-{
-	this->processRspOptionSelfCloseInsert(&task);
-	break;
-}
-
-case ONRSPOPTIONSELFCLOSEACTION:
-{
-	this->processRspOptionSelfCloseAction(&task);
-	break;
-}
-
-case ONRSPCOMBACTIONINSERT:
-{
-	this->processRspCombActionInsert(&task);
-	break;
-}
-
-case ONRSPQRYORDER:
-{
-	this->processRspQryOrder(&task);
-	break;
-}
-
-case ONRSPQRYTRADE:
-{
-	this->processRspQryTrade(&task);
-	break;
-}
-
-case ONRSPQRYINVESTORPOSITION:
-{
-	this->processRspQryInvestorPosition(&task);
-	break;
-}
-
-case ONRSPQRYTRADINGACCOUNT:
-{
-	this->processRspQryTradingAccount(&task);
-	break;
-}
-
-case ONRSPQRYINVESTOR:
-{
-	this->processRspQryInvestor(&task);
-	break;
-}
-
-case ONRSPQRYTRADINGCODE:
-{
-	this->processRspQryTradingCode(&task);
-	break;
-}
-
-case ONRSPQRYINSTRUMENTMARGINRATE:
-{
-	this->processRspQryInstrumentMarginRate(&task);
-	break;
-}
-
-case ONRSPQRYINSTRUMENTCOMMISSIONRATE:
-{
-	this->processRspQryInstrumentCommissionRate(&task);
-	break;
-}
-
-case ONRSPQRYEXCHANGE:
-{
-	this->processRspQryExchange(&task);
-	break;
-}
-
-case ONRSPQRYPRODUCT:
-{
-	this->processRspQryProduct(&task);
-	break;
-}
-
-case ONRSPQRYINSTRUMENT:
-{
-	this->processRspQryInstrument(&task);
-	break;
-}
-
-case ONRSPQRYDEPTHMARKETDATA:
-{
-	this->processRspQryDepthMarketData(&task);
-	break;
-}
-
-case ONRSPQRYTRADEROFFER:
-{
-	this->processRspQryTraderOffer(&task);
-	break;
-}
-
-case ONRSPQRYSETTLEMENTINFO:
-{
-	this->processRspQrySettlementInfo(&task);
-	break;
-}
-
-case ONRSPQRYTRANSFERBANK:
-{
-	this->processRspQryTransferBank(&task);
-	break;
-}
-
-case ONRSPQRYINVESTORPOSITIONDETAIL:
-{
-	this->processRspQryInvestorPositionDetail(&task);
-	break;
-}
-
-case ONRSPQRYNOTICE:
-{
-	this->processRspQryNotice(&task);
-	break;
-}
-
-case ONRSPQRYSETTLEMENTINFOCONFIRM:
-{
-	this->processRspQrySettlementInfoConfirm(&task);
-	break;
-}
-
-case ONRSPQRYINVESTORPOSITIONCOMBINEDETAIL:
-{
-	this->processRspQryInvestorPositionCombineDetail(&task);
-	break;
-}
-
-case ONRSPQRYCFMMCTRADINGACCOUNTKEY:
-{
-	this->processRspQryCFMMCTradingAccountKey(&task);
-	break;
-}
-
-case ONRSPQRYEWARRANTOFFSET:
-{
-	this->processRspQryEWarrantOffset(&task);
-	break;
-}
-
-case ONRSPQRYINVESTORPRODUCTGROUPMARGIN:
-{
-	this->processRspQryInvestorProductGroupMargin(&task);
-	break;
-}
-
-case ONRSPQRYEXCHANGEMARGINRATE:
-{
-	this->processRspQryExchangeMarginRate(&task);
-	break;
-}
-
-case ONRSPQRYEXCHANGEMARGINRATEADJUST:
-{
-	this->processRspQryExchangeMarginRateAdjust(&task);
-	break;
-}
-
-case ONRSPQRYEXCHANGERATE:
-{
-	this->processRspQryExchangeRate(&task);
-	break;
-}
-
-case ONRSPQRYSECAGENTACIDMAP:
-{
-	this->processRspQrySecAgentACIDMap(&task);
-	break;
-}
-
-case ONRSPQRYPRODUCTEXCHRATE:
-{
-	this->processRspQryProductExchRate(&task);
-	break;
-}
-
-case ONRSPQRYPRODUCTGROUP:
-{
-	this->processRspQryProductGroup(&task);
-	break;
-}
-
-case ONRSPQRYMMINSTRUMENTCOMMISSIONRATE:
-{
-	this->processRspQryMMInstrumentCommissionRate(&task);
-	break;
-}
-
-case ONRSPQRYMMOPTIONINSTRCOMMRATE:
-{
-	this->processRspQryMMOptionInstrCommRate(&task);
-	break;
-}
-
-case ONRSPQRYINSTRUMENTORDERCOMMRATE:
-{
-	this->processRspQryInstrumentOrderCommRate(&task);
-	break;
-}
-
-case ONRSPQRYSECAGENTTRADINGACCOUNT:
-{
-	this->processRspQrySecAgentTradingAccount(&task);
-	break;
-}
-
-case ONRSPQRYSECAGENTCHECKMODE:
-{
-	this->processRspQrySecAgentCheckMode(&task);
-	break;
-}
-
-case ONRSPQRYSECAGENTTRADEINFO:
-{
-	this->processRspQrySecAgentTradeInfo(&task);
-	break;
-}
-
-case ONRSPQRYOPTIONINSTRTRADECOST:
-{
-	this->processRspQryOptionInstrTradeCost(&task);
-	break;
-}
-
-case ONRSPQRYOPTIONINSTRCOMMRATE:
-{
-	this->processRspQryOptionInstrCommRate(&task);
-	break;
-}
-
-case ONRSPQRYEXECORDER:
-{
-	this->processRspQryExecOrder(&task);
-	break;
-}
-
-case ONRSPQRYFORQUOTE:
-{
-	this->processRspQryForQuote(&task);
-	break;
-}
-
-case ONRSPQRYQUOTE:
-{
-	this->processRspQryQuote(&task);
-	break;
-}
-
-case ONRSPQRYOPTIONSELFCLOSE:
-{
-	this->processRspQryOptionSelfClose(&task);
-	break;
-}
-
-case ONRSPQRYINVESTUNIT:
-{
-	this->processRspQryInvestUnit(&task);
-	break;
-}
-
-case ONRSPQRYCOMBINSTRUMENTGUARD:
-{
-	this->processRspQryCombInstrumentGuard(&task);
-	break;
-}
-
-case ONRSPQRYCOMBACTION:
-{
-	this->processRspQryCombAction(&task);
-	break;
-}
-
-case ONRSPQRYTRANSFERSERIAL:
-{
-	this->processRspQryTransferSerial(&task);
-	break;
-}
-
-case ONRSPQRYACCOUNTREGISTER:
-{
-	this->processRspQryAccountregister(&task);
-	break;
-}
-
-case ONRSPERROR:
-{
-	this->processRspError(&task);
-	break;
-}
-
-case ONRTNORDER:
-{
-	this->processRtnOrder(&task);
-	break;
-}
-
-case ONRTNTRADE:
-{
-	this->processRtnTrade(&task);
-	break;
-}
-
-case ONERRRTNORDERINSERT:
-{
-	this->processErrRtnOrderInsert(&task);
-	break;
-}
-
-case ONERRRTNORDERACTION:
-{
-	this->processErrRtnOrderAction(&task);
-	break;
-}
-
-case ONRTNINSTRUMENTSTATUS:
-{
-	this->processRtnInstrumentStatus(&task);
-	break;
-}
-
-case ONRTNBULLETIN:
-{
-	this->processRtnBulletin(&task);
-	break;
-}
-
-case ONRTNTRADINGNOTICE:
-{
-	this->processRtnTradingNotice(&task);
-	break;
-}
-
-case ONRTNERRORCONDITIONALORDER:
-{
-	this->processRtnErrorConditionalOrder(&task);
-	break;
-}
-
-case ONRTNEXECORDER:
-{
-	this->processRtnExecOrder(&task);
-	break;
-}
-
-case ONERRRTNEXECORDERINSERT:
-{
-	this->processErrRtnExecOrderInsert(&task);
-	break;
-}
-
-case ONERRRTNEXECORDERACTION:
-{
-	this->processErrRtnExecOrderAction(&task);
-	break;
-}
-
-case ONERRRTNFORQUOTEINSERT:
-{
-	this->processErrRtnForQuoteInsert(&task);
-	break;
-}
-
-case ONRTNQUOTE:
-{
-	this->processRtnQuote(&task);
-	break;
-}
-
-case ONERRRTNQUOTEINSERT:
-{
-	this->processErrRtnQuoteInsert(&task);
-	break;
-}
-
-case ONERRRTNQUOTEACTION:
-{
-	this->processErrRtnQuoteAction(&task);
-	break;
-}
-
-case ONRTNFORQUOTERSP:
-{
-	this->processRtnForQuoteRsp(&task);
-	break;
-}
-
-case ONRTNCFMMCTRADINGACCOUNTTOKEN:
-{
-	this->processRtnCFMMCTradingAccountToken(&task);
-	break;
-}
-
-case ONERRRTNBATCHORDERACTION:
-{
-	this->processErrRtnBatchOrderAction(&task);
-	break;
-}
-
-case ONRTNOPTIONSELFCLOSE:
-{
-	this->processRtnOptionSelfClose(&task);
-	break;
-}
-
-case ONERRRTNOPTIONSELFCLOSEINSERT:
-{
-	this->processErrRtnOptionSelfCloseInsert(&task);
-	break;
-}
-
-case ONERRRTNOPTIONSELFCLOSEACTION:
-{
-	this->processErrRtnOptionSelfCloseAction(&task);
-	break;
-}
-
-case ONRTNCOMBACTION:
-{
-	this->processRtnCombAction(&task);
-	break;
-}
-
-case ONERRRTNCOMBACTIONINSERT:
-{
-	this->processErrRtnCombActionInsert(&task);
-	break;
-}
-
-case ONRSPQRYCONTRACTBANK:
-{
-	this->processRspQryContractBank(&task);
-	break;
-}
-
-case ONRSPQRYPARKEDORDER:
-{
-	this->processRspQryParkedOrder(&task);
-	break;
-}
-
-case ONRSPQRYPARKEDORDERACTION:
-{
-	this->processRspQryParkedOrderAction(&task);
-	break;
-}
-
-case ONRSPQRYTRADINGNOTICE:
-{
-	this->processRspQryTradingNotice(&task);
-	break;
-}
-
-case ONRSPQRYBROKERTRADINGPARAMS:
-{
-	this->processRspQryBrokerTradingParams(&task);
-	break;
-}
-
-case ONRSPQRYBROKERTRADINGALGOS:
-{
-	this->processRspQryBrokerTradingAlgos(&task);
-	break;
-}
-
-case ONRSPQUERYCFMMCTRADINGACCOUNTTOKEN:
-{
-	this->processRspQueryCFMMCTradingAccountToken(&task);
-	break;
-}
-
-case ONRTNFROMBANKTOFUTUREBYBANK:
-{
-	this->processRtnFromBankToFutureByBank(&task);
-	break;
-}
-
-case ONRTNFROMFUTURETOBANKBYBANK:
-{
-	this->processRtnFromFutureToBankByBank(&task);
-	break;
-}
-
-case ONRTNREPEALFROMBANKTOFUTUREBYBANK:
-{
-	this->processRtnRepealFromBankToFutureByBank(&task);
-	break;
-}
-
-case ONRTNREPEALFROMFUTURETOBANKBYBANK:
-{
-	this->processRtnRepealFromFutureToBankByBank(&task);
-	break;
-}
-
-case ONRTNFROMBANKTOFUTUREBYFUTURE:
-{
-	this->processRtnFromBankToFutureByFuture(&task);
-	break;
-}
-
-case ONRTNFROMFUTURETOBANKBYFUTURE:
-{
-	this->processRtnFromFutureToBankByFuture(&task);
-	break;
-}
-
-case ONRTNREPEALFROMBANKTOFUTUREBYFUTUREMANUAL:
-{
-	this->processRtnRepealFromBankToFutureByFutureManual(&task);
-	break;
-}
-
-case ONRTNREPEALFROMFUTURETOBANKBYFUTUREMANUAL:
-{
-	this->processRtnRepealFromFutureToBankByFutureManual(&task);
-	break;
-}
-
-case ONRTNQUERYBANKBALANCEBYFUTURE:
-{
-	this->processRtnQueryBankBalanceByFuture(&task);
-	break;
-}
-
-case ONERRRTNBANKTOFUTUREBYFUTURE:
-{
-	this->processErrRtnBankToFutureByFuture(&task);
-	break;
-}
-
-case ONERRRTNFUTURETOBANKBYFUTURE:
-{
-	this->processErrRtnFutureToBankByFuture(&task);
-	break;
-}
-
-case ONERRRTNREPEALBANKTOFUTUREBYFUTUREMANUAL:
-{
-	this->processErrRtnRepealBankToFutureByFutureManual(&task);
-	break;
-}
-
-case ONERRRTNREPEALFUTURETOBANKBYFUTUREMANUAL:
-{
-	this->processErrRtnRepealFutureToBankByFutureManual(&task);
-	break;
-}
-
-case ONERRRTNQUERYBANKBALANCEBYFUTURE:
-{
-	this->processErrRtnQueryBankBalanceByFuture(&task);
-	break;
-}
-
-case ONRTNREPEALFROMBANKTOFUTUREBYFUTURE:
-{
-	this->processRtnRepealFromBankToFutureByFuture(&task);
-	break;
-}
-
-case ONRTNREPEALFROMFUTURETOBANKBYFUTURE:
-{
-	this->processRtnRepealFromFutureToBankByFuture(&task);
-	break;
-}
-
-case ONRSPFROMBANKTOFUTUREBYFUTURE:
-{
-	this->processRspFromBankToFutureByFuture(&task);
-	break;
-}
-
-case ONRSPFROMFUTURETOBANKBYFUTURE:
-{
-	this->processRspFromFutureToBankByFuture(&task);
-	break;
-}
-
-case ONRSPQUERYBANKACCOUNTMONEYBYFUTURE:
-{
-	this->processRspQueryBankAccountMoneyByFuture(&task);
-	break;
-}
-
-case ONRTNOPENACCOUNTBYBANK:
-{
-	this->processRtnOpenAccountByBank(&task);
-	break;
-}
-
-case ONRTNCANCELACCOUNTBYBANK:
-{
-	this->processRtnCancelAccountByBank(&task);
-	break;
-}
-
-case ONRTNCHANGEACCOUNTBYBANK:
-{
-	this->processRtnChangeAccountByBank(&task);
-	break;
-}
-
-case ONRSPQRYCLASSIFIEDINSTRUMENT:
-{
-	this->processRspQryClassifiedInstrument(&task);
-	break;
-}
-
-case ONRSPQRYCOMBPROMOTIONPARAM:
-{
-	this->processRspQryCombPromotionParam(&task);
-	break;
-}
-
-case ONRSPQRYRISKSETTLEINVSTPOSITION:
-{
-	this->processRspQryRiskSettleInvstPosition(&task);
-	break;
-}
-
-case ONRSPQRYRISKSETTLEPRODUCTSTATUS:
-{
-	this->processRspQryRiskSettleProductStatus(&task);
-	break;
-}
-
-case ONRSPQRYSPBMFUTUREPARAMETER:
-{
-	this->processRspQrySPBMFutureParameter(&task);
-	break;
-}
-
-case ONRSPQRYSPBMOPTIONPARAMETER:
-{
-	this->processRspQrySPBMOptionParameter(&task);
-	break;
-}
-
-case ONRSPQRYSPBMINTRAPARAMETER:
-{
-	this->processRspQrySPBMIntraParameter(&task);
-	break;
-}
-
-case ONRSPQRYSPBMINTERPARAMETER:
-{
-	this->processRspQrySPBMInterParameter(&task);
-	break;
-}
-
-case ONRSPQRYSPBMPORTFDEFINITION:
-{
-	this->processRspQrySPBMPortfDefinition(&task);
-	break;
-}
-
-case ONRSPQRYSPBMINVESTORPORTFDEF:
-{
-	this->processRspQrySPBMInvestorPortfDef(&task);
-	break;
-}
-
-case ONRSPQRYINVESTORPORTFMARGINRATIO:
-{
-	this->processRspQryInvestorPortfMarginRatio(&task);
-	break;
-}
-
-case ONRSPQRYINVESTORPRODSPBMDETAIL:
-{
-	this->processRspQryInvestorProdSPBMDetail(&task);
-	break;
-}
-
-
-
-
+			case ONFRONTCONNECTED:
+			{
+				this->processFrontConnected(&task);
+				break;
+			}
+
+			case ONFRONTDISCONNECTED:
+			{
+				this->processFrontDisconnected(&task);
+				break;
+			}
+
+			case ONHEARTBEATWARNING:
+			{
+				this->processHeartBeatWarning(&task);
+				break;
+			}
+
+			case ONRSPAUTHENTICATE:
+			{
+				this->processRspAuthenticate(&task);
+				break;
+			}
+
+			case ONRSPUSERLOGIN:
+			{
+				this->processRspUserLogin(&task);
+				break;
+			}
+
+			case ONRSPUSERLOGOUT:
+			{
+				this->processRspUserLogout(&task);
+				break;
+			}
+
+			case ONRSPUSERPASSWORDUPDATE:
+			{
+				this->processRspUserPasswordUpdate(&task);
+				break;
+			}
+
+			case ONRSPTRADINGACCOUNTPASSWORDUPDATE:
+			{
+				this->processRspTradingAccountPasswordUpdate(&task);
+				break;
+			}
+
+			case ONRSPUSERAUTHMETHOD:
+			{
+				this->processRspUserAuthMethod(&task);
+				break;
+			}
+
+			case ONRSPGENUSERCAPTCHA:
+			{
+				this->processRspGenUserCaptcha(&task);
+				break;
+			}
+
+			case ONRSPGENUSERTEXT:
+			{
+				this->processRspGenUserText(&task);
+				break;
+			}
+
+			case ONRSPORDERINSERT:
+			{
+				this->processRspOrderInsert(&task);
+				break;
+			}
+
+			case ONRSPPARKEDORDERINSERT:
+			{
+				this->processRspParkedOrderInsert(&task);
+				break;
+			}
+
+			case ONRSPPARKEDORDERACTION:
+			{
+				this->processRspParkedOrderAction(&task);
+				break;
+			}
+
+			case ONRSPORDERACTION:
+			{
+				this->processRspOrderAction(&task);
+				break;
+			}
+
+			case ONRSPQRYMAXORDERVOLUME:
+			{
+				this->processRspQryMaxOrderVolume(&task);
+				break;
+			}
+
+			case ONRSPSETTLEMENTINFOCONFIRM:
+			{
+				this->processRspSettlementInfoConfirm(&task);
+				break;
+			}
+
+			case ONRSPREMOVEPARKEDORDER:
+			{
+				this->processRspRemoveParkedOrder(&task);
+				break;
+			}
+
+			case ONRSPREMOVEPARKEDORDERACTION:
+			{
+				this->processRspRemoveParkedOrderAction(&task);
+				break;
+			}
+
+			case ONRSPEXECORDERINSERT:
+			{
+				this->processRspExecOrderInsert(&task);
+				break;
+			}
+
+			case ONRSPEXECORDERACTION:
+			{
+				this->processRspExecOrderAction(&task);
+				break;
+			}
+
+			case ONRSPFORQUOTEINSERT:
+			{
+				this->processRspForQuoteInsert(&task);
+				break;
+			}
+
+			case ONRSPQUOTEINSERT:
+			{
+				this->processRspQuoteInsert(&task);
+				break;
+			}
+
+			case ONRSPQUOTEACTION:
+			{
+				this->processRspQuoteAction(&task);
+				break;
+			}
+
+			case ONRSPBATCHORDERACTION:
+			{
+				this->processRspBatchOrderAction(&task);
+				break;
+			}
+
+			case ONRSPOPTIONSELFCLOSEINSERT:
+			{
+				this->processRspOptionSelfCloseInsert(&task);
+				break;
+			}
+
+			case ONRSPOPTIONSELFCLOSEACTION:
+			{
+				this->processRspOptionSelfCloseAction(&task);
+				break;
+			}
+
+			case ONRSPCOMBACTIONINSERT:
+			{
+				this->processRspCombActionInsert(&task);
+				break;
+			}
+
+			case ONRSPQRYORDER:
+			{
+				this->processRspQryOrder(&task);
+				break;
+			}
+
+			case ONRSPQRYTRADE:
+			{
+				this->processRspQryTrade(&task);
+				break;
+			}
+
+			case ONRSPQRYINVESTORPOSITION:
+			{
+				this->processRspQryInvestorPosition(&task);
+				break;
+			}
+
+			case ONRSPQRYTRADINGACCOUNT:
+			{
+				this->processRspQryTradingAccount(&task);
+				break;
+			}
+
+			case ONRSPQRYINVESTOR:
+			{
+				this->processRspQryInvestor(&task);
+				break;
+			}
+
+			case ONRSPQRYTRADINGCODE:
+			{
+				this->processRspQryTradingCode(&task);
+				break;
+			}
+
+			case ONRSPQRYINSTRUMENTMARGINRATE:
+			{
+				this->processRspQryInstrumentMarginRate(&task);
+				break;
+			}
+
+			case ONRSPQRYINSTRUMENTCOMMISSIONRATE:
+			{
+				this->processRspQryInstrumentCommissionRate(&task);
+				break;
+			}
+
+			case ONRSPQRYEXCHANGE:
+			{
+				this->processRspQryExchange(&task);
+				break;
+			}
+
+			case ONRSPQRYPRODUCT:
+			{
+				this->processRspQryProduct(&task);
+				break;
+			}
+
+			case ONRSPQRYINSTRUMENT:
+			{
+				this->processRspQryInstrument(&task);
+				break;
+			}
+
+			case ONRSPQRYDEPTHMARKETDATA:
+			{
+				this->processRspQryDepthMarketData(&task);
+				break;
+			}
+
+			case ONRSPQRYTRADEROFFER:
+			{
+				this->processRspQryTraderOffer(&task);
+				break;
+			}
+
+			case ONRSPQRYSETTLEMENTINFO:
+			{
+				this->processRspQrySettlementInfo(&task);
+				break;
+			}
+
+			case ONRSPQRYTRANSFERBANK:
+			{
+				this->processRspQryTransferBank(&task);
+				break;
+			}
+
+			case ONRSPQRYINVESTORPOSITIONDETAIL:
+			{
+				this->processRspQryInvestorPositionDetail(&task);
+				break;
+			}
+
+			case ONRSPQRYNOTICE:
+			{
+				this->processRspQryNotice(&task);
+				break;
+			}
+
+			case ONRSPQRYSETTLEMENTINFOCONFIRM:
+			{
+				this->processRspQrySettlementInfoConfirm(&task);
+				break;
+			}
+
+			case ONRSPQRYINVESTORPOSITIONCOMBINEDETAIL:
+			{
+				this->processRspQryInvestorPositionCombineDetail(&task);
+				break;
+			}
+
+			case ONRSPQRYCFMMCTRADINGACCOUNTKEY:
+			{
+				this->processRspQryCFMMCTradingAccountKey(&task);
+				break;
+			}
+
+			case ONRSPQRYEWARRANTOFFSET:
+			{
+				this->processRspQryEWarrantOffset(&task);
+				break;
+			}
+
+			case ONRSPQRYINVESTORPRODUCTGROUPMARGIN:
+			{
+				this->processRspQryInvestorProductGroupMargin(&task);
+				break;
+			}
+
+			case ONRSPQRYEXCHANGEMARGINRATE:
+			{
+				this->processRspQryExchangeMarginRate(&task);
+				break;
+			}
+
+			case ONRSPQRYEXCHANGEMARGINRATEADJUST:
+			{
+				this->processRspQryExchangeMarginRateAdjust(&task);
+				break;
+			}
+
+			case ONRSPQRYEXCHANGERATE:
+			{
+				this->processRspQryExchangeRate(&task);
+				break;
+			}
+
+			case ONRSPQRYSECAGENTACIDMAP:
+			{
+				this->processRspQrySecAgentACIDMap(&task);
+				break;
+			}
+
+			case ONRSPQRYPRODUCTEXCHRATE:
+			{
+				this->processRspQryProductExchRate(&task);
+				break;
+			}
+
+			case ONRSPQRYPRODUCTGROUP:
+			{
+				this->processRspQryProductGroup(&task);
+				break;
+			}
+
+			case ONRSPQRYMMINSTRUMENTCOMMISSIONRATE:
+			{
+				this->processRspQryMMInstrumentCommissionRate(&task);
+				break;
+			}
+
+			case ONRSPQRYMMOPTIONINSTRCOMMRATE:
+			{
+				this->processRspQryMMOptionInstrCommRate(&task);
+				break;
+			}
+
+			case ONRSPQRYINSTRUMENTORDERCOMMRATE:
+			{
+				this->processRspQryInstrumentOrderCommRate(&task);
+				break;
+			}
+
+			case ONRSPQRYSECAGENTTRADINGACCOUNT:
+			{
+				this->processRspQrySecAgentTradingAccount(&task);
+				break;
+			}
+
+			case ONRSPQRYSECAGENTCHECKMODE:
+			{
+				this->processRspQrySecAgentCheckMode(&task);
+				break;
+			}
+
+			case ONRSPQRYSECAGENTTRADEINFO:
+			{
+				this->processRspQrySecAgentTradeInfo(&task);
+				break;
+			}
+
+			case ONRSPQRYOPTIONINSTRTRADECOST:
+			{
+				this->processRspQryOptionInstrTradeCost(&task);
+				break;
+			}
+
+			case ONRSPQRYOPTIONINSTRCOMMRATE:
+			{
+				this->processRspQryOptionInstrCommRate(&task);
+				break;
+			}
+
+			case ONRSPQRYEXECORDER:
+			{
+				this->processRspQryExecOrder(&task);
+				break;
+			}
+
+			case ONRSPQRYFORQUOTE:
+			{
+				this->processRspQryForQuote(&task);
+				break;
+			}
+
+			case ONRSPQRYQUOTE:
+			{
+				this->processRspQryQuote(&task);
+				break;
+			}
+
+			case ONRSPQRYOPTIONSELFCLOSE:
+			{
+				this->processRspQryOptionSelfClose(&task);
+				break;
+			}
+
+			case ONRSPQRYINVESTUNIT:
+			{
+				this->processRspQryInvestUnit(&task);
+				break;
+			}
+
+			case ONRSPQRYCOMBINSTRUMENTGUARD:
+			{
+				this->processRspQryCombInstrumentGuard(&task);
+				break;
+			}
+
+			case ONRSPQRYCOMBACTION:
+			{
+				this->processRspQryCombAction(&task);
+				break;
+			}
+
+			case ONRSPQRYTRANSFERSERIAL:
+			{
+				this->processRspQryTransferSerial(&task);
+				break;
+			}
+
+			case ONRSPQRYACCOUNTREGISTER:
+			{
+				this->processRspQryAccountregister(&task);
+				break;
+			}
+
+			case ONRSPERROR:
+			{
+				this->processRspError(&task);
+				break;
+			}
+
+			case ONRTNORDER:
+			{
+				this->processRtnOrder(&task);
+				break;
+			}
+
+			case ONRTNTRADE:
+			{
+				this->processRtnTrade(&task);
+				break;
+			}
+
+			case ONERRRTNORDERINSERT:
+			{
+				this->processErrRtnOrderInsert(&task);
+				break;
+			}
+
+			case ONERRRTNORDERACTION:
+			{
+				this->processErrRtnOrderAction(&task);
+				break;
+			}
+
+			case ONRTNINSTRUMENTSTATUS:
+			{
+				this->processRtnInstrumentStatus(&task);
+				break;
+			}
+
+			case ONRTNBULLETIN:
+			{
+				this->processRtnBulletin(&task);
+				break;
+			}
+
+			case ONRTNTRADINGNOTICE:
+			{
+				this->processRtnTradingNotice(&task);
+				break;
+			}
+
+			case ONRTNERRORCONDITIONALORDER:
+			{
+				this->processRtnErrorConditionalOrder(&task);
+				break;
+			}
+
+			case ONRTNEXECORDER:
+			{
+				this->processRtnExecOrder(&task);
+				break;
+			}
+
+			case ONERRRTNEXECORDERINSERT:
+			{
+				this->processErrRtnExecOrderInsert(&task);
+				break;
+			}
+
+			case ONERRRTNEXECORDERACTION:
+			{
+				this->processErrRtnExecOrderAction(&task);
+				break;
+			}
+
+			case ONERRRTNFORQUOTEINSERT:
+			{
+				this->processErrRtnForQuoteInsert(&task);
+				break;
+			}
+
+			case ONRTNQUOTE:
+			{
+				this->processRtnQuote(&task);
+				break;
+			}
+
+			case ONERRRTNQUOTEINSERT:
+			{
+				this->processErrRtnQuoteInsert(&task);
+				break;
+			}
+
+			case ONERRRTNQUOTEACTION:
+			{
+				this->processErrRtnQuoteAction(&task);
+				break;
+			}
+
+			case ONRTNFORQUOTERSP:
+			{
+				this->processRtnForQuoteRsp(&task);
+				break;
+			}
+
+			case ONRTNCFMMCTRADINGACCOUNTTOKEN:
+			{
+				this->processRtnCFMMCTradingAccountToken(&task);
+				break;
+			}
+
+			case ONERRRTNBATCHORDERACTION:
+			{
+				this->processErrRtnBatchOrderAction(&task);
+				break;
+			}
+
+			case ONRTNOPTIONSELFCLOSE:
+			{
+				this->processRtnOptionSelfClose(&task);
+				break;
+			}
+
+			case ONERRRTNOPTIONSELFCLOSEINSERT:
+			{
+				this->processErrRtnOptionSelfCloseInsert(&task);
+				break;
+			}
+
+			case ONERRRTNOPTIONSELFCLOSEACTION:
+			{
+				this->processErrRtnOptionSelfCloseAction(&task);
+				break;
+			}
+
+			case ONRTNCOMBACTION:
+			{
+				this->processRtnCombAction(&task);
+				break;
+			}
+
+			case ONERRRTNCOMBACTIONINSERT:
+			{
+				this->processErrRtnCombActionInsert(&task);
+				break;
+			}
+
+			case ONRSPQRYCONTRACTBANK:
+			{
+				this->processRspQryContractBank(&task);
+				break;
+			}
+
+			case ONRSPQRYPARKEDORDER:
+			{
+				this->processRspQryParkedOrder(&task);
+				break;
+			}
+
+			case ONRSPQRYPARKEDORDERACTION:
+			{
+				this->processRspQryParkedOrderAction(&task);
+				break;
+			}
+
+			case ONRSPQRYTRADINGNOTICE:
+			{
+				this->processRspQryTradingNotice(&task);
+				break;
+			}
+
+			case ONRSPQRYBROKERTRADINGPARAMS:
+			{
+				this->processRspQryBrokerTradingParams(&task);
+				break;
+			}
+
+			case ONRSPQRYBROKERTRADINGALGOS:
+			{
+				this->processRspQryBrokerTradingAlgos(&task);
+				break;
+			}
+
+			case ONRSPQUERYCFMMCTRADINGACCOUNTTOKEN:
+			{
+				this->processRspQueryCFMMCTradingAccountToken(&task);
+				break;
+			}
+
+			case ONRTNFROMBANKTOFUTUREBYBANK:
+			{
+				this->processRtnFromBankToFutureByBank(&task);
+				break;
+			}
+
+			case ONRTNFROMFUTURETOBANKBYBANK:
+			{
+				this->processRtnFromFutureToBankByBank(&task);
+				break;
+			}
+
+			case ONRTNREPEALFROMBANKTOFUTUREBYBANK:
+			{
+				this->processRtnRepealFromBankToFutureByBank(&task);
+				break;
+			}
+
+			case ONRTNREPEALFROMFUTURETOBANKBYBANK:
+			{
+				this->processRtnRepealFromFutureToBankByBank(&task);
+				break;
+			}
+
+			case ONRTNFROMBANKTOFUTUREBYFUTURE:
+			{
+				this->processRtnFromBankToFutureByFuture(&task);
+				break;
+			}
+
+			case ONRTNFROMFUTURETOBANKBYFUTURE:
+			{
+				this->processRtnFromFutureToBankByFuture(&task);
+				break;
+			}
+
+			case ONRTNREPEALFROMBANKTOFUTUREBYFUTUREMANUAL:
+			{
+				this->processRtnRepealFromBankToFutureByFutureManual(&task);
+				break;
+			}
+
+			case ONRTNREPEALFROMFUTURETOBANKBYFUTUREMANUAL:
+			{
+				this->processRtnRepealFromFutureToBankByFutureManual(&task);
+				break;
+			}
+
+			case ONRTNQUERYBANKBALANCEBYFUTURE:
+			{
+				this->processRtnQueryBankBalanceByFuture(&task);
+				break;
+			}
+
+			case ONERRRTNBANKTOFUTUREBYFUTURE:
+			{
+				this->processErrRtnBankToFutureByFuture(&task);
+				break;
+			}
+
+			case ONERRRTNFUTURETOBANKBYFUTURE:
+			{
+				this->processErrRtnFutureToBankByFuture(&task);
+				break;
+			}
+
+			case ONERRRTNREPEALBANKTOFUTUREBYFUTUREMANUAL:
+			{
+				this->processErrRtnRepealBankToFutureByFutureManual(&task);
+				break;
+			}
+
+			case ONERRRTNREPEALFUTURETOBANKBYFUTUREMANUAL:
+			{
+				this->processErrRtnRepealFutureToBankByFutureManual(&task);
+				break;
+			}
+
+			case ONERRRTNQUERYBANKBALANCEBYFUTURE:
+			{
+				this->processErrRtnQueryBankBalanceByFuture(&task);
+				break;
+			}
+
+			case ONRTNREPEALFROMBANKTOFUTUREBYFUTURE:
+			{
+				this->processRtnRepealFromBankToFutureByFuture(&task);
+				break;
+			}
+
+			case ONRTNREPEALFROMFUTURETOBANKBYFUTURE:
+			{
+				this->processRtnRepealFromFutureToBankByFuture(&task);
+				break;
+			}
+
+			case ONRSPFROMBANKTOFUTUREBYFUTURE:
+			{
+				this->processRspFromBankToFutureByFuture(&task);
+				break;
+			}
+
+			case ONRSPFROMFUTURETOBANKBYFUTURE:
+			{
+				this->processRspFromFutureToBankByFuture(&task);
+				break;
+			}
+
+			case ONRSPQUERYBANKACCOUNTMONEYBYFUTURE:
+			{
+				this->processRspQueryBankAccountMoneyByFuture(&task);
+				break;
+			}
+
+			case ONRTNOPENACCOUNTBYBANK:
+			{
+				this->processRtnOpenAccountByBank(&task);
+				break;
+			}
+
+			case ONRTNCANCELACCOUNTBYBANK:
+			{
+				this->processRtnCancelAccountByBank(&task);
+				break;
+			}
+
+			case ONRTNCHANGEACCOUNTBYBANK:
+			{
+				this->processRtnChangeAccountByBank(&task);
+				break;
+			}
+
+			case ONRSPQRYCLASSIFIEDINSTRUMENT:
+			{
+				this->processRspQryClassifiedInstrument(&task);
+				break;
+			}
+
+			case ONRSPQRYCOMBPROMOTIONPARAM:
+			{
+				this->processRspQryCombPromotionParam(&task);
+				break;
+			}
+
+			case ONRSPQRYRISKSETTLEINVSTPOSITION:
+			{
+				this->processRspQryRiskSettleInvstPosition(&task);
+				break;
+			}
+
+			case ONRSPQRYRISKSETTLEPRODUCTSTATUS:
+			{
+				this->processRspQryRiskSettleProductStatus(&task);
+				break;
+			}
             };
         }
     }
@@ -3461,6 +3252,7 @@ case ONRSPQRYINVESTORPRODSPBMDETAIL:
     {
     }
 };
+
 void TdApi::processFrontConnected(Task *task)
 {
 	gil_scoped_acquire acquire;
@@ -3525,7 +3317,6 @@ void TdApi::processRspUserLogin(Task *task)
 		data["FFEXTime"] = toUtf(task_data->FFEXTime);
 		data["INETime"] = toUtf(task_data->INETime);
 		data["SysVersion"] = toUtf(task_data->SysVersion);
-		data["GFEXTime"] = toUtf(task_data->GFEXTime);
 		delete task_data;
 	}
 	dict error;
@@ -4961,7 +4752,7 @@ void TdApi::processRspQrySettlementInfo(Task *task)
 		data["BrokerID"] = toUtf(task_data->BrokerID);
 		data["InvestorID"] = toUtf(task_data->InvestorID);
 		data["SequenceNo"] = task_data->SequenceNo;
-		data["Content"] = toUtf(task_data->Content);
+		data["Content"] = pybind11::bytes(task_data->Content);
 		data["AccountID"] = toUtf(task_data->AccountID);
 		data["CurrencyID"] = toUtf(task_data->CurrencyID);
 		delete task_data;
@@ -8934,230 +8725,9 @@ void TdApi::processRspQryRiskSettleProductStatus(Task *task)
 	this->onRspQryRiskSettleProductStatus(data, error, task->task_id, task->task_last);
 };
 
-void TdApi::processRspQrySPBMFutureParameter(Task *task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPBMFutureParameterField *task_data = (CThostFtdcSPBMFutureParameterField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["InstrumentID"] = toUtf(task_data->InstrumentID);
-		data["ProdFamilyCode"] = toUtf(task_data->ProdFamilyCode);
-		data["Cvf"] = task_data->Cvf;
-		data["TimeRange"] = task_data->TimeRange;
-		data["MarginRate"] = task_data->MarginRate;
-		data["LockRateX"] = task_data->LockRateX;
-		data["AddOnRate"] = task_data->AddOnRate;
-		data["PreSettlementPrice"] = task_data->PreSettlementPrice;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPBMFutureParameter(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQrySPBMOptionParameter(Task *task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPBMOptionParameterField *task_data = (CThostFtdcSPBMOptionParameterField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["InstrumentID"] = toUtf(task_data->InstrumentID);
-		data["ProdFamilyCode"] = toUtf(task_data->ProdFamilyCode);
-		data["Cvf"] = task_data->Cvf;
-		data["DownPrice"] = task_data->DownPrice;
-		data["Delta"] = task_data->Delta;
-		data["SlimiDelta"] = task_data->SlimiDelta;
-		data["PreSettlementPrice"] = task_data->PreSettlementPrice;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPBMOptionParameter(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQrySPBMIntraParameter(Task *task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPBMIntraParameterField *task_data = (CThostFtdcSPBMIntraParameterField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["ProdFamilyCode"] = toUtf(task_data->ProdFamilyCode);
-		data["IntraRateY"] = task_data->IntraRateY;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPBMIntraParameter(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQrySPBMInterParameter(Task *task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPBMInterParameterField *task_data = (CThostFtdcSPBMInterParameterField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["SpreadId"] = task_data->SpreadId;
-		data["InterRateZ"] = task_data->InterRateZ;
-		data["Leg1ProdFamilyCode"] = toUtf(task_data->Leg1ProdFamilyCode);
-		data["Leg2ProdFamilyCode"] = toUtf(task_data->Leg2ProdFamilyCode);
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPBMInterParameter(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQrySPBMPortfDefinition(Task *task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPBMPortfDefinitionField *task_data = (CThostFtdcSPBMPortfDefinitionField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["PortfolioDefID"] = task_data->PortfolioDefID;
-		data["ProdFamilyCode"] = toUtf(task_data->ProdFamilyCode);
-		data["IsSPBM"] = task_data->IsSPBM;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPBMPortfDefinition(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQrySPBMInvestorPortfDef(Task *task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPBMInvestorPortfDefField *task_data = (CThostFtdcSPBMInvestorPortfDefField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["BrokerID"] = toUtf(task_data->BrokerID);
-		data["InvestorID"] = toUtf(task_data->InvestorID);
-		data["PortfolioDefID"] = task_data->PortfolioDefID;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPBMInvestorPortfDef(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryInvestorPortfMarginRatio(Task *task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcInvestorPortfMarginRatioField *task_data = (CThostFtdcInvestorPortfMarginRatioField*)task->task_data;
-		data["InvestorRange"] = task_data->InvestorRange;
-		data["BrokerID"] = toUtf(task_data->BrokerID);
-		data["InvestorID"] = toUtf(task_data->InvestorID);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["MarginRatio"] = task_data->MarginRatio;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryInvestorPortfMarginRatio(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryInvestorProdSPBMDetail(Task *task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcInvestorProdSPBMDetailField *task_data = (CThostFtdcInvestorProdSPBMDetailField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["BrokerID"] = toUtf(task_data->BrokerID);
-		data["InvestorID"] = toUtf(task_data->InvestorID);
-		data["ProdFamilyCode"] = toUtf(task_data->ProdFamilyCode);
-		data["IntraInstrMargin"] = task_data->IntraInstrMargin;
-		data["BCollectingMargin"] = task_data->BCollectingMargin;
-		data["SCollectingMargin"] = task_data->SCollectingMargin;
-		data["IntraProdMargin"] = task_data->IntraProdMargin;
-		data["NetMargin"] = task_data->NetMargin;
-		data["InterProdMargin"] = task_data->InterProdMargin;
-		data["SingleMargin"] = task_data->SingleMargin;
-		data["AddOnMargin"] = task_data->AddOnMargin;
-		data["DeliveryMargin"] = task_data->DeliveryMargin;
-		data["CallOptionMinRisk"] = task_data->CallOptionMinRisk;
-		data["PutOptionMinRisk"] = task_data->PutOptionMinRisk;
-		data["OptionMinRisk"] = task_data->OptionMinRisk;
-		data["OptionValueOffset"] = task_data->OptionValueOffset;
-		data["OptionRoyalty"] = task_data->OptionRoyalty;
-		data["RealOptionValueOffset"] = task_data->RealOptionValueOffset;
-		data["Margin"] = task_data->Margin;
-		data["ExchMargin"] = task_data->ExchMargin;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryInvestorProdSPBMDetail(data, error, task->task_id, task->task_last);
-};
-
-
+///-------------------------------------------------------------------------------------
+///主动函数
+///-------------------------------------------------------------------------------------
 
 void TdApi::createFtdcTraderApi(string pszFlowPath)
 {
@@ -9202,9 +8772,30 @@ string TdApi::getTradingDay()
     return day;
 };
 
+string TdApi::getApiVersion()
+{
+	string version = this->api->GetApiVersion();
+	return version;
+};
+
 void TdApi::registerFront(string pszFrontAddress)
 {
     this->api->RegisterFront((char*)pszFrontAddress.c_str());
+};
+
+void TdApi::registerNameServer(string pszNsAddress)
+{
+	this->api->RegisterNameServer((char*)pszNsAddress.c_str());
+};
+
+void TdApi::registerFensUserInfo(const dict &req)
+{
+	CThostFtdcFensUserInfoField myreq = CThostFtdcFensUserInfoField();
+	memset(&myreq, 0, sizeof(myreq));
+	getString(req, "BrokerID", myreq.BrokerID);
+	getString(req, "UserID", myreq.UserID);
+	getChar(req, "LoginMode", &myreq.LoginMode);
+	this->api->RegisterFensUserInfo(&myreq);
 };
 
 void TdApi::subscribePrivateTopic(int nType)
@@ -9216,6 +8807,7 @@ void TdApi::subscribePublicTopic(int nType)
 {
     this->api->SubscribePublicTopic((THOST_TE_RESUME_TYPE)nType);
 };
+
 int TdApi::reqAuthenticate(const dict &req, int reqid)
 {
 	CThostFtdcReqAuthenticateField myreq = CThostFtdcReqAuthenticateField();
@@ -9246,7 +8838,14 @@ int TdApi::reqUserLogin(const dict &req, int reqid)
 	getString(req, "LoginRemark", myreq.LoginRemark);
 	getInt(req, "ClientIPPort", &myreq.ClientIPPort);
 	getString(req, "ClientIPAddress", myreq.ClientIPAddress);
-	int i = this->api->ReqUserLogin(&myreq, reqid);
+
+	//Mac版本的登录函数多了两个参数
+	#ifndef __APPLE__
+		int i = this->api->ReqUserLogin(&myreq, reqid);
+	#else
+		int i = this->api->ReqUserLogin(&myreq, reqid, 2, "vn");
+	#endif
+
 	return i;
 };
 
@@ -10672,1761 +10271,1580 @@ int TdApi::reqQryRiskSettleProductStatus(const dict &req, int reqid)
 	return i;
 };
 
-int TdApi::reqQrySPBMFutureParameter(const dict &req, int reqid)
-{
-	CThostFtdcQrySPBMFutureParameterField myreq = CThostFtdcQrySPBMFutureParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "InstrumentID", myreq.InstrumentID);
-	getString(req, "ProdFamilyCode", myreq.ProdFamilyCode);
-	int i = this->api->ReqQrySPBMFutureParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQrySPBMOptionParameter(const dict &req, int reqid)
-{
-	CThostFtdcQrySPBMOptionParameterField myreq = CThostFtdcQrySPBMOptionParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "InstrumentID", myreq.InstrumentID);
-	getString(req, "ProdFamilyCode", myreq.ProdFamilyCode);
-	int i = this->api->ReqQrySPBMOptionParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQrySPBMIntraParameter(const dict &req, int reqid)
-{
-	CThostFtdcQrySPBMIntraParameterField myreq = CThostFtdcQrySPBMIntraParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "ProdFamilyCode", myreq.ProdFamilyCode);
-	int i = this->api->ReqQrySPBMIntraParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQrySPBMInterParameter(const dict &req, int reqid)
-{
-	CThostFtdcQrySPBMInterParameterField myreq = CThostFtdcQrySPBMInterParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "Leg1ProdFamilyCode", myreq.Leg1ProdFamilyCode);
-	getString(req, "Leg2ProdFamilyCode", myreq.Leg2ProdFamilyCode);
-	int i = this->api->ReqQrySPBMInterParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQrySPBMPortfDefinition(const dict &req, int reqid)
-{
-	CThostFtdcQrySPBMPortfDefinitionField myreq = CThostFtdcQrySPBMPortfDefinitionField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getInt(req, "PortfolioDefID", &myreq.PortfolioDefID);
-	getString(req, "ProdFamilyCode", myreq.ProdFamilyCode);
-	int i = this->api->ReqQrySPBMPortfDefinition(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQrySPBMInvestorPortfDef(const dict &req, int reqid)
-{
-	CThostFtdcQrySPBMInvestorPortfDefField myreq = CThostFtdcQrySPBMInvestorPortfDefField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "BrokerID", myreq.BrokerID);
-	getString(req, "InvestorID", myreq.InvestorID);
-	int i = this->api->ReqQrySPBMInvestorPortfDef(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryInvestorPortfMarginRatio(const dict &req, int reqid)
-{
-	CThostFtdcQryInvestorPortfMarginRatioField myreq = CThostFtdcQryInvestorPortfMarginRatioField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "BrokerID", myreq.BrokerID);
-	getString(req, "InvestorID", myreq.InvestorID);
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	int i = this->api->ReqQryInvestorPortfMarginRatio(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryInvestorProdSPBMDetail(const dict &req, int reqid)
-{
-	CThostFtdcQryInvestorProdSPBMDetailField myreq = CThostFtdcQryInvestorProdSPBMDetailField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "BrokerID", myreq.BrokerID);
-	getString(req, "InvestorID", myreq.InvestorID);
-	getString(req, "ProdFamilyCode", myreq.ProdFamilyCode);
-	int i = this->api->ReqQryInvestorProdSPBMDetail(&myreq, reqid);
-	return i;
-};
-
+///-------------------------------------------------------------------------------------
+///Boost.Python封装
+///-------------------------------------------------------------------------------------
 
 class PyTdApi : public TdApi
 {
 public:
-    using TdApi::TdApi;void onFrontConnected() override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onFrontConnected);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onFrontDisconnected(int reqid) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onFrontDisconnected, reqid);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onHeartBeatWarning(int reqid) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onHeartBeatWarning, reqid);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspAuthenticate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspAuthenticate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspUserLogin(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspUserLogin, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspUserLogout(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspUserLogout, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspUserPasswordUpdate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspUserPasswordUpdate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspTradingAccountPasswordUpdate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspTradingAccountPasswordUpdate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspUserAuthMethod(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspUserAuthMethod, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspGenUserCaptcha(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspGenUserCaptcha, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspGenUserText(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspGenUserText, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspOrderInsert(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspOrderInsert, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspParkedOrderInsert(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspParkedOrderInsert, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspParkedOrderAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspOrderAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspOrderAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryMaxOrderVolume(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryMaxOrderVolume, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspSettlementInfoConfirm(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspSettlementInfoConfirm, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspRemoveParkedOrder(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspRemoveParkedOrder, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspRemoveParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspRemoveParkedOrderAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspExecOrderInsert(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspExecOrderInsert, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspExecOrderAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspExecOrderAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspForQuoteInsert(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspForQuoteInsert, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQuoteInsert(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQuoteInsert, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQuoteAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQuoteAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspBatchOrderAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspBatchOrderAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspOptionSelfCloseInsert(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspOptionSelfCloseInsert, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspOptionSelfCloseAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspOptionSelfCloseAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspCombActionInsert(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspCombActionInsert, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryOrder(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryOrder, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryTrade(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryTrade, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInvestorPosition(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorPosition, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryTradingAccount(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryTradingAccount, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInvestor(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestor, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryTradingCode(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryTradingCode, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInstrumentMarginRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInstrumentMarginRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInstrumentCommissionRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInstrumentCommissionRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryExchange(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryExchange, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryProduct(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryProduct, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInstrument(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInstrument, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryDepthMarketData(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryDepthMarketData, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryTraderOffer(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryTraderOffer, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySettlementInfo(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySettlementInfo, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryTransferBank(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryTransferBank, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInvestorPositionDetail(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorPositionDetail, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryNotice(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryNotice, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySettlementInfoConfirm(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySettlementInfoConfirm, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInvestorPositionCombineDetail(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorPositionCombineDetail, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryCFMMCTradingAccountKey(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryCFMMCTradingAccountKey, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryEWarrantOffset(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryEWarrantOffset, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInvestorProductGroupMargin(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorProductGroupMargin, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryExchangeMarginRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryExchangeMarginRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryExchangeMarginRateAdjust(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryExchangeMarginRateAdjust, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryExchangeRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryExchangeRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySecAgentACIDMap(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySecAgentACIDMap, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryProductExchRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryProductExchRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryProductGroup(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryProductGroup, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryMMInstrumentCommissionRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryMMInstrumentCommissionRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryMMOptionInstrCommRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryMMOptionInstrCommRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInstrumentOrderCommRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInstrumentOrderCommRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySecAgentTradingAccount(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySecAgentTradingAccount, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySecAgentCheckMode(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySecAgentCheckMode, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySecAgentTradeInfo(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySecAgentTradeInfo, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryOptionInstrTradeCost(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryOptionInstrTradeCost, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryOptionInstrCommRate(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryOptionInstrCommRate, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryExecOrder(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryExecOrder, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryForQuote(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryForQuote, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryQuote(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryQuote, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryOptionSelfClose(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryOptionSelfClose, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInvestUnit(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestUnit, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryCombInstrumentGuard(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryCombInstrumentGuard, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryCombAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryCombAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryTransferSerial(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryTransferSerial, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryAccountregister(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryAccountregister, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspError(const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspError, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnOrder(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnOrder, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnTrade(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnTrade, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnOrderInsert(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnOrderInsert, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnOrderAction(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnOrderAction, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnInstrumentStatus(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnInstrumentStatus, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnBulletin(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnBulletin, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnTradingNotice(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnTradingNotice, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnErrorConditionalOrder(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnErrorConditionalOrder, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnExecOrder(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnExecOrder, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnExecOrderInsert(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnExecOrderInsert, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnExecOrderAction(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnExecOrderAction, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnForQuoteInsert(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnForQuoteInsert, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnQuote(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnQuote, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnQuoteInsert(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnQuoteInsert, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnQuoteAction(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnQuoteAction, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnForQuoteRsp(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnForQuoteRsp, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnCFMMCTradingAccountToken(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnCFMMCTradingAccountToken, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnBatchOrderAction(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnBatchOrderAction, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnOptionSelfClose(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnOptionSelfClose, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnOptionSelfCloseInsert(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnOptionSelfCloseInsert, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnOptionSelfCloseAction(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnOptionSelfCloseAction, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnCombAction(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnCombAction, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnCombActionInsert(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnCombActionInsert, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryContractBank(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryContractBank, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryParkedOrder(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryParkedOrder, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryParkedOrderAction, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryTradingNotice(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryTradingNotice, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryBrokerTradingParams(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryBrokerTradingParams, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryBrokerTradingAlgos(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryBrokerTradingAlgos, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQueryCFMMCTradingAccountToken(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQueryCFMMCTradingAccountToken, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnFromBankToFutureByBank(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnFromBankToFutureByBank, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnFromFutureToBankByBank(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnFromFutureToBankByBank, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnRepealFromBankToFutureByBank(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromBankToFutureByBank, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnRepealFromFutureToBankByBank(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromFutureToBankByBank, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnFromBankToFutureByFuture(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnFromBankToFutureByFuture, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnFromFutureToBankByFuture(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnFromFutureToBankByFuture, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnRepealFromBankToFutureByFutureManual(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromBankToFutureByFutureManual, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnRepealFromFutureToBankByFutureManual(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromFutureToBankByFutureManual, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnQueryBankBalanceByFuture(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnQueryBankBalanceByFuture, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnBankToFutureByFuture(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnBankToFutureByFuture, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnFutureToBankByFuture(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnFutureToBankByFuture, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnRepealBankToFutureByFutureManual(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnRepealBankToFutureByFutureManual, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnRepealFutureToBankByFutureManual(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnRepealFutureToBankByFutureManual, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onErrRtnQueryBankBalanceByFuture(const dict &data, const dict &error) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onErrRtnQueryBankBalanceByFuture, data, error);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnRepealFromBankToFutureByFuture(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromBankToFutureByFuture, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnRepealFromFutureToBankByFuture(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromFutureToBankByFuture, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspFromBankToFutureByFuture(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspFromBankToFutureByFuture, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspFromFutureToBankByFuture(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspFromFutureToBankByFuture, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQueryBankAccountMoneyByFuture(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQueryBankAccountMoneyByFuture, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnOpenAccountByBank(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnOpenAccountByBank, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnCancelAccountByBank(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnCancelAccountByBank, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRtnChangeAccountByBank(const dict &data) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRtnChangeAccountByBank, data);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryClassifiedInstrument(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryClassifiedInstrument, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryCombPromotionParam(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryCombPromotionParam, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryRiskSettleInvstPosition(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryRiskSettleInvstPosition, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryRiskSettleProductStatus(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryRiskSettleProductStatus, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySPBMFutureParameter(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySPBMFutureParameter, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySPBMOptionParameter(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySPBMOptionParameter, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySPBMIntraParameter(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySPBMIntraParameter, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySPBMInterParameter(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySPBMInterParameter, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySPBMPortfDefinition(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySPBMPortfDefinition, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQrySPBMInvestorPortfDef(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQrySPBMInvestorPortfDef, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInvestorPortfMarginRatio(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorPortfMarginRatio, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-void onRspQryInvestorProdSPBMDetail(const dict &data, const dict &error, int reqid, bool last) override
-{
-	try
-	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorProdSPBMDetail, data, error, reqid, last);
-	}
-	catch (const error_already_set &e)
-	{
-		cout << e.what() << endl;
-	}
-};
-
-
+    using TdApi::TdApi;
+    
+	void onFrontConnected() override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onFrontConnected);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onFrontDisconnected(int reqid) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onFrontDisconnected, reqid);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onHeartBeatWarning(int reqid) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onHeartBeatWarning, reqid);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspAuthenticate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspAuthenticate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspUserLogin(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspUserLogin, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspUserLogout(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspUserLogout, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspUserPasswordUpdate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspUserPasswordUpdate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspTradingAccountPasswordUpdate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspTradingAccountPasswordUpdate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspUserAuthMethod(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspUserAuthMethod, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspGenUserCaptcha(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspGenUserCaptcha, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspGenUserText(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspGenUserText, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspOrderInsert(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspOrderInsert, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspParkedOrderInsert(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspParkedOrderInsert, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspParkedOrderAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspOrderAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspOrderAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryMaxOrderVolume(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryMaxOrderVolume, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspSettlementInfoConfirm(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspSettlementInfoConfirm, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspRemoveParkedOrder(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspRemoveParkedOrder, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspRemoveParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspRemoveParkedOrderAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspExecOrderInsert(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspExecOrderInsert, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspExecOrderAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspExecOrderAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspForQuoteInsert(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspForQuoteInsert, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQuoteInsert(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQuoteInsert, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQuoteAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQuoteAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspBatchOrderAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspBatchOrderAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspOptionSelfCloseInsert(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspOptionSelfCloseInsert, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspOptionSelfCloseAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspOptionSelfCloseAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspCombActionInsert(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspCombActionInsert, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryOrder(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryOrder, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryTrade(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryTrade, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInvestorPosition(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorPosition, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryTradingAccount(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryTradingAccount, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInvestor(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestor, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryTradingCode(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryTradingCode, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInstrumentMarginRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInstrumentMarginRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInstrumentCommissionRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInstrumentCommissionRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryExchange(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryExchange, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryProduct(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryProduct, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInstrument(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInstrument, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryDepthMarketData(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryDepthMarketData, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryTraderOffer(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryTraderOffer, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQrySettlementInfo(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQrySettlementInfo, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryTransferBank(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryTransferBank, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInvestorPositionDetail(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorPositionDetail, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryNotice(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryNotice, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQrySettlementInfoConfirm(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQrySettlementInfoConfirm, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInvestorPositionCombineDetail(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorPositionCombineDetail, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryCFMMCTradingAccountKey(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryCFMMCTradingAccountKey, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryEWarrantOffset(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryEWarrantOffset, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInvestorProductGroupMargin(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestorProductGroupMargin, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryExchangeMarginRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryExchangeMarginRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryExchangeMarginRateAdjust(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryExchangeMarginRateAdjust, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryExchangeRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryExchangeRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQrySecAgentACIDMap(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQrySecAgentACIDMap, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryProductExchRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryProductExchRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryProductGroup(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryProductGroup, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryMMInstrumentCommissionRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryMMInstrumentCommissionRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryMMOptionInstrCommRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryMMOptionInstrCommRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInstrumentOrderCommRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInstrumentOrderCommRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQrySecAgentTradingAccount(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQrySecAgentTradingAccount, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQrySecAgentCheckMode(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQrySecAgentCheckMode, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQrySecAgentTradeInfo(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQrySecAgentTradeInfo, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryOptionInstrTradeCost(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryOptionInstrTradeCost, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryOptionInstrCommRate(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryOptionInstrCommRate, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryExecOrder(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryExecOrder, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryForQuote(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryForQuote, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryQuote(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryQuote, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryOptionSelfClose(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryOptionSelfClose, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryInvestUnit(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryInvestUnit, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryCombInstrumentGuard(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryCombInstrumentGuard, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryCombAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryCombAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryTransferSerial(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryTransferSerial, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryAccountregister(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryAccountregister, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspError(const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspError, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnOrder(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnOrder, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnTrade(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnTrade, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnOrderInsert(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnOrderInsert, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnOrderAction(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnOrderAction, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnInstrumentStatus(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnInstrumentStatus, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnBulletin(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnBulletin, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnTradingNotice(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnTradingNotice, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnErrorConditionalOrder(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnErrorConditionalOrder, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnExecOrder(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnExecOrder, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnExecOrderInsert(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnExecOrderInsert, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnExecOrderAction(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnExecOrderAction, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnForQuoteInsert(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnForQuoteInsert, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnQuote(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnQuote, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnQuoteInsert(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnQuoteInsert, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnQuoteAction(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnQuoteAction, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnForQuoteRsp(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnForQuoteRsp, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnCFMMCTradingAccountToken(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnCFMMCTradingAccountToken, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnBatchOrderAction(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnBatchOrderAction, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnOptionSelfClose(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnOptionSelfClose, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnOptionSelfCloseInsert(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnOptionSelfCloseInsert, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnOptionSelfCloseAction(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnOptionSelfCloseAction, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnCombAction(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnCombAction, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnCombActionInsert(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnCombActionInsert, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryContractBank(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryContractBank, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryParkedOrder(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryParkedOrder, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryParkedOrderAction(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryParkedOrderAction, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryTradingNotice(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryTradingNotice, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryBrokerTradingParams(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryBrokerTradingParams, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryBrokerTradingAlgos(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryBrokerTradingAlgos, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQueryCFMMCTradingAccountToken(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQueryCFMMCTradingAccountToken, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnFromBankToFutureByBank(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnFromBankToFutureByBank, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnFromFutureToBankByBank(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnFromFutureToBankByBank, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnRepealFromBankToFutureByBank(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromBankToFutureByBank, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnRepealFromFutureToBankByBank(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromFutureToBankByBank, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnFromBankToFutureByFuture(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnFromBankToFutureByFuture, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnFromFutureToBankByFuture(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnFromFutureToBankByFuture, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnRepealFromBankToFutureByFutureManual(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromBankToFutureByFutureManual, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnRepealFromFutureToBankByFutureManual(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromFutureToBankByFutureManual, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnQueryBankBalanceByFuture(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnQueryBankBalanceByFuture, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnBankToFutureByFuture(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnBankToFutureByFuture, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnFutureToBankByFuture(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnFutureToBankByFuture, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnRepealBankToFutureByFutureManual(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnRepealBankToFutureByFutureManual, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnRepealFutureToBankByFutureManual(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnRepealFutureToBankByFutureManual, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onErrRtnQueryBankBalanceByFuture(const dict &data, const dict &error) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onErrRtnQueryBankBalanceByFuture, data, error);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnRepealFromBankToFutureByFuture(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromBankToFutureByFuture, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnRepealFromFutureToBankByFuture(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnRepealFromFutureToBankByFuture, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspFromBankToFutureByFuture(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspFromBankToFutureByFuture, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspFromFutureToBankByFuture(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspFromFutureToBankByFuture, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQueryBankAccountMoneyByFuture(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQueryBankAccountMoneyByFuture, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnOpenAccountByBank(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnOpenAccountByBank, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnCancelAccountByBank(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnCancelAccountByBank, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRtnChangeAccountByBank(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRtnChangeAccountByBank, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryClassifiedInstrument(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryClassifiedInstrument, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryCombPromotionParam(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryCombPromotionParam, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryRiskSettleInvstPosition(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryRiskSettleInvstPosition, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
+
+	void onRspQryRiskSettleProductStatus(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, TdApi, onRspQryRiskSettleProductStatus, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 };
 
 
 PYBIND11_MODULE(vnctptd, m)
 {
-    class_<TdApi, PyTdApi> TdApi(m, "TdApi");
+    class_<TdApi, PyTdApi> TdApi(m, "TdApi", module_local());
     TdApi
         .def(init<>())
         .def("createFtdcTraderApi", &TdApi::createFtdcTraderApi)
@@ -12435,242 +11853,230 @@ PYBIND11_MODULE(vnctptd, m)
         .def("join", &TdApi::join)
         .def("exit", &TdApi::exit)
         .def("getTradingDay", &TdApi::getTradingDay)
+		.def("getApiVersion", &TdApi::getApiVersion)
         .def("registerFront", &TdApi::registerFront)
+		.def("registerNameServer", &TdApi::registerNameServer)
+		.def("registerFensUserInfo", &TdApi::registerFensUserInfo)
         .def("subscribePublicTopic", &TdApi::subscribePublicTopic)
-        .def("subscribePrivateTopic", &TdApi::subscribePrivateTopic).def("reqAuthenticate", &TdApi::reqAuthenticate)
-.def("reqUserLogin", &TdApi::reqUserLogin)
-.def("reqUserLogout", &TdApi::reqUserLogout)
-.def("reqUserPasswordUpdate", &TdApi::reqUserPasswordUpdate)
-.def("reqTradingAccountPasswordUpdate", &TdApi::reqTradingAccountPasswordUpdate)
-.def("reqUserAuthMethod", &TdApi::reqUserAuthMethod)
-.def("reqGenUserCaptcha", &TdApi::reqGenUserCaptcha)
-.def("reqGenUserText", &TdApi::reqGenUserText)
-.def("reqUserLoginWithCaptcha", &TdApi::reqUserLoginWithCaptcha)
-.def("reqUserLoginWithText", &TdApi::reqUserLoginWithText)
-.def("reqUserLoginWithOTP", &TdApi::reqUserLoginWithOTP)
-.def("reqOrderInsert", &TdApi::reqOrderInsert)
-.def("reqParkedOrderInsert", &TdApi::reqParkedOrderInsert)
-.def("reqParkedOrderAction", &TdApi::reqParkedOrderAction)
-.def("reqOrderAction", &TdApi::reqOrderAction)
-.def("reqQryMaxOrderVolume", &TdApi::reqQryMaxOrderVolume)
-.def("reqSettlementInfoConfirm", &TdApi::reqSettlementInfoConfirm)
-.def("reqRemoveParkedOrder", &TdApi::reqRemoveParkedOrder)
-.def("reqRemoveParkedOrderAction", &TdApi::reqRemoveParkedOrderAction)
-.def("reqExecOrderInsert", &TdApi::reqExecOrderInsert)
-.def("reqExecOrderAction", &TdApi::reqExecOrderAction)
-.def("reqForQuoteInsert", &TdApi::reqForQuoteInsert)
-.def("reqQuoteInsert", &TdApi::reqQuoteInsert)
-.def("reqQuoteAction", &TdApi::reqQuoteAction)
-.def("reqBatchOrderAction", &TdApi::reqBatchOrderAction)
-.def("reqOptionSelfCloseInsert", &TdApi::reqOptionSelfCloseInsert)
-.def("reqOptionSelfCloseAction", &TdApi::reqOptionSelfCloseAction)
-.def("reqCombActionInsert", &TdApi::reqCombActionInsert)
-.def("reqQryOrder", &TdApi::reqQryOrder)
-.def("reqQryTrade", &TdApi::reqQryTrade)
-.def("reqQryInvestorPosition", &TdApi::reqQryInvestorPosition)
-.def("reqQryTradingAccount", &TdApi::reqQryTradingAccount)
-.def("reqQryInvestor", &TdApi::reqQryInvestor)
-.def("reqQryTradingCode", &TdApi::reqQryTradingCode)
-.def("reqQryInstrumentMarginRate", &TdApi::reqQryInstrumentMarginRate)
-.def("reqQryInstrumentCommissionRate", &TdApi::reqQryInstrumentCommissionRate)
-.def("reqQryExchange", &TdApi::reqQryExchange)
-.def("reqQryProduct", &TdApi::reqQryProduct)
-.def("reqQryInstrument", &TdApi::reqQryInstrument)
-.def("reqQryDepthMarketData", &TdApi::reqQryDepthMarketData)
-.def("reqQryTraderOffer", &TdApi::reqQryTraderOffer)
-.def("reqQrySettlementInfo", &TdApi::reqQrySettlementInfo)
-.def("reqQryTransferBank", &TdApi::reqQryTransferBank)
-.def("reqQryInvestorPositionDetail", &TdApi::reqQryInvestorPositionDetail)
-.def("reqQryNotice", &TdApi::reqQryNotice)
-.def("reqQrySettlementInfoConfirm", &TdApi::reqQrySettlementInfoConfirm)
-.def("reqQryInvestorPositionCombineDetail", &TdApi::reqQryInvestorPositionCombineDetail)
-.def("reqQryCFMMCTradingAccountKey", &TdApi::reqQryCFMMCTradingAccountKey)
-.def("reqQryEWarrantOffset", &TdApi::reqQryEWarrantOffset)
-.def("reqQryInvestorProductGroupMargin", &TdApi::reqQryInvestorProductGroupMargin)
-.def("reqQryExchangeMarginRate", &TdApi::reqQryExchangeMarginRate)
-.def("reqQryExchangeMarginRateAdjust", &TdApi::reqQryExchangeMarginRateAdjust)
-.def("reqQryExchangeRate", &TdApi::reqQryExchangeRate)
-.def("reqQrySecAgentACIDMap", &TdApi::reqQrySecAgentACIDMap)
-.def("reqQryProductExchRate", &TdApi::reqQryProductExchRate)
-.def("reqQryProductGroup", &TdApi::reqQryProductGroup)
-.def("reqQryMMInstrumentCommissionRate", &TdApi::reqQryMMInstrumentCommissionRate)
-.def("reqQryMMOptionInstrCommRate", &TdApi::reqQryMMOptionInstrCommRate)
-.def("reqQryInstrumentOrderCommRate", &TdApi::reqQryInstrumentOrderCommRate)
-.def("reqQrySecAgentTradingAccount", &TdApi::reqQrySecAgentTradingAccount)
-.def("reqQrySecAgentCheckMode", &TdApi::reqQrySecAgentCheckMode)
-.def("reqQrySecAgentTradeInfo", &TdApi::reqQrySecAgentTradeInfo)
-.def("reqQryOptionInstrTradeCost", &TdApi::reqQryOptionInstrTradeCost)
-.def("reqQryOptionInstrCommRate", &TdApi::reqQryOptionInstrCommRate)
-.def("reqQryExecOrder", &TdApi::reqQryExecOrder)
-.def("reqQryForQuote", &TdApi::reqQryForQuote)
-.def("reqQryQuote", &TdApi::reqQryQuote)
-.def("reqQryOptionSelfClose", &TdApi::reqQryOptionSelfClose)
-.def("reqQryInvestUnit", &TdApi::reqQryInvestUnit)
-.def("reqQryCombInstrumentGuard", &TdApi::reqQryCombInstrumentGuard)
-.def("reqQryCombAction", &TdApi::reqQryCombAction)
-.def("reqQryTransferSerial", &TdApi::reqQryTransferSerial)
-.def("reqQryAccountregister", &TdApi::reqQryAccountregister)
-.def("reqQryContractBank", &TdApi::reqQryContractBank)
-.def("reqQryParkedOrder", &TdApi::reqQryParkedOrder)
-.def("reqQryParkedOrderAction", &TdApi::reqQryParkedOrderAction)
-.def("reqQryTradingNotice", &TdApi::reqQryTradingNotice)
-.def("reqQryBrokerTradingParams", &TdApi::reqQryBrokerTradingParams)
-.def("reqQryBrokerTradingAlgos", &TdApi::reqQryBrokerTradingAlgos)
-.def("reqQueryCFMMCTradingAccountToken", &TdApi::reqQueryCFMMCTradingAccountToken)
-.def("reqFromBankToFutureByFuture", &TdApi::reqFromBankToFutureByFuture)
-.def("reqFromFutureToBankByFuture", &TdApi::reqFromFutureToBankByFuture)
-.def("reqQueryBankAccountMoneyByFuture", &TdApi::reqQueryBankAccountMoneyByFuture)
-.def("reqQryClassifiedInstrument", &TdApi::reqQryClassifiedInstrument)
-.def("reqQryCombPromotionParam", &TdApi::reqQryCombPromotionParam)
-.def("reqQryRiskSettleInvstPosition", &TdApi::reqQryRiskSettleInvstPosition)
-.def("reqQryRiskSettleProductStatus", &TdApi::reqQryRiskSettleProductStatus)
-.def("reqQrySPBMFutureParameter", &TdApi::reqQrySPBMFutureParameter)
-.def("reqQrySPBMOptionParameter", &TdApi::reqQrySPBMOptionParameter)
-.def("reqQrySPBMIntraParameter", &TdApi::reqQrySPBMIntraParameter)
-.def("reqQrySPBMInterParameter", &TdApi::reqQrySPBMInterParameter)
-.def("reqQrySPBMPortfDefinition", &TdApi::reqQrySPBMPortfDefinition)
-.def("reqQrySPBMInvestorPortfDef", &TdApi::reqQrySPBMInvestorPortfDef)
-.def("reqQryInvestorPortfMarginRatio", &TdApi::reqQryInvestorPortfMarginRatio)
-.def("reqQryInvestorProdSPBMDetail", &TdApi::reqQryInvestorProdSPBMDetail)
+        .def("subscribePrivateTopic", &TdApi::subscribePrivateTopic)
 
-.def("onFrontConnected", &TdApi::onFrontConnected)
-.def("onFrontDisconnected", &TdApi::onFrontDisconnected)
-.def("onHeartBeatWarning", &TdApi::onHeartBeatWarning)
-.def("onRspAuthenticate", &TdApi::onRspAuthenticate)
-.def("onRspUserLogin", &TdApi::onRspUserLogin)
-.def("onRspUserLogout", &TdApi::onRspUserLogout)
-.def("onRspUserPasswordUpdate", &TdApi::onRspUserPasswordUpdate)
-.def("onRspTradingAccountPasswordUpdate", &TdApi::onRspTradingAccountPasswordUpdate)
-.def("onRspUserAuthMethod", &TdApi::onRspUserAuthMethod)
-.def("onRspGenUserCaptcha", &TdApi::onRspGenUserCaptcha)
-.def("onRspGenUserText", &TdApi::onRspGenUserText)
-.def("onRspOrderInsert", &TdApi::onRspOrderInsert)
-.def("onRspParkedOrderInsert", &TdApi::onRspParkedOrderInsert)
-.def("onRspParkedOrderAction", &TdApi::onRspParkedOrderAction)
-.def("onRspOrderAction", &TdApi::onRspOrderAction)
-.def("onRspQryMaxOrderVolume", &TdApi::onRspQryMaxOrderVolume)
-.def("onRspSettlementInfoConfirm", &TdApi::onRspSettlementInfoConfirm)
-.def("onRspRemoveParkedOrder", &TdApi::onRspRemoveParkedOrder)
-.def("onRspRemoveParkedOrderAction", &TdApi::onRspRemoveParkedOrderAction)
-.def("onRspExecOrderInsert", &TdApi::onRspExecOrderInsert)
-.def("onRspExecOrderAction", &TdApi::onRspExecOrderAction)
-.def("onRspForQuoteInsert", &TdApi::onRspForQuoteInsert)
-.def("onRspQuoteInsert", &TdApi::onRspQuoteInsert)
-.def("onRspQuoteAction", &TdApi::onRspQuoteAction)
-.def("onRspBatchOrderAction", &TdApi::onRspBatchOrderAction)
-.def("onRspOptionSelfCloseInsert", &TdApi::onRspOptionSelfCloseInsert)
-.def("onRspOptionSelfCloseAction", &TdApi::onRspOptionSelfCloseAction)
-.def("onRspCombActionInsert", &TdApi::onRspCombActionInsert)
-.def("onRspQryOrder", &TdApi::onRspQryOrder)
-.def("onRspQryTrade", &TdApi::onRspQryTrade)
-.def("onRspQryInvestorPosition", &TdApi::onRspQryInvestorPosition)
-.def("onRspQryTradingAccount", &TdApi::onRspQryTradingAccount)
-.def("onRspQryInvestor", &TdApi::onRspQryInvestor)
-.def("onRspQryTradingCode", &TdApi::onRspQryTradingCode)
-.def("onRspQryInstrumentMarginRate", &TdApi::onRspQryInstrumentMarginRate)
-.def("onRspQryInstrumentCommissionRate", &TdApi::onRspQryInstrumentCommissionRate)
-.def("onRspQryExchange", &TdApi::onRspQryExchange)
-.def("onRspQryProduct", &TdApi::onRspQryProduct)
-.def("onRspQryInstrument", &TdApi::onRspQryInstrument)
-.def("onRspQryDepthMarketData", &TdApi::onRspQryDepthMarketData)
-.def("onRspQryTraderOffer", &TdApi::onRspQryTraderOffer)
-.def("onRspQrySettlementInfo", &TdApi::onRspQrySettlementInfo)
-.def("onRspQryTransferBank", &TdApi::onRspQryTransferBank)
-.def("onRspQryInvestorPositionDetail", &TdApi::onRspQryInvestorPositionDetail)
-.def("onRspQryNotice", &TdApi::onRspQryNotice)
-.def("onRspQrySettlementInfoConfirm", &TdApi::onRspQrySettlementInfoConfirm)
-.def("onRspQryInvestorPositionCombineDetail", &TdApi::onRspQryInvestorPositionCombineDetail)
-.def("onRspQryCFMMCTradingAccountKey", &TdApi::onRspQryCFMMCTradingAccountKey)
-.def("onRspQryEWarrantOffset", &TdApi::onRspQryEWarrantOffset)
-.def("onRspQryInvestorProductGroupMargin", &TdApi::onRspQryInvestorProductGroupMargin)
-.def("onRspQryExchangeMarginRate", &TdApi::onRspQryExchangeMarginRate)
-.def("onRspQryExchangeMarginRateAdjust", &TdApi::onRspQryExchangeMarginRateAdjust)
-.def("onRspQryExchangeRate", &TdApi::onRspQryExchangeRate)
-.def("onRspQrySecAgentACIDMap", &TdApi::onRspQrySecAgentACIDMap)
-.def("onRspQryProductExchRate", &TdApi::onRspQryProductExchRate)
-.def("onRspQryProductGroup", &TdApi::onRspQryProductGroup)
-.def("onRspQryMMInstrumentCommissionRate", &TdApi::onRspQryMMInstrumentCommissionRate)
-.def("onRspQryMMOptionInstrCommRate", &TdApi::onRspQryMMOptionInstrCommRate)
-.def("onRspQryInstrumentOrderCommRate", &TdApi::onRspQryInstrumentOrderCommRate)
-.def("onRspQrySecAgentTradingAccount", &TdApi::onRspQrySecAgentTradingAccount)
-.def("onRspQrySecAgentCheckMode", &TdApi::onRspQrySecAgentCheckMode)
-.def("onRspQrySecAgentTradeInfo", &TdApi::onRspQrySecAgentTradeInfo)
-.def("onRspQryOptionInstrTradeCost", &TdApi::onRspQryOptionInstrTradeCost)
-.def("onRspQryOptionInstrCommRate", &TdApi::onRspQryOptionInstrCommRate)
-.def("onRspQryExecOrder", &TdApi::onRspQryExecOrder)
-.def("onRspQryForQuote", &TdApi::onRspQryForQuote)
-.def("onRspQryQuote", &TdApi::onRspQryQuote)
-.def("onRspQryOptionSelfClose", &TdApi::onRspQryOptionSelfClose)
-.def("onRspQryInvestUnit", &TdApi::onRspQryInvestUnit)
-.def("onRspQryCombInstrumentGuard", &TdApi::onRspQryCombInstrumentGuard)
-.def("onRspQryCombAction", &TdApi::onRspQryCombAction)
-.def("onRspQryTransferSerial", &TdApi::onRspQryTransferSerial)
-.def("onRspQryAccountregister", &TdApi::onRspQryAccountregister)
-.def("onRspError", &TdApi::onRspError)
-.def("onRtnOrder", &TdApi::onRtnOrder)
-.def("onRtnTrade", &TdApi::onRtnTrade)
-.def("onErrRtnOrderInsert", &TdApi::onErrRtnOrderInsert)
-.def("onErrRtnOrderAction", &TdApi::onErrRtnOrderAction)
-.def("onRtnInstrumentStatus", &TdApi::onRtnInstrumentStatus)
-.def("onRtnBulletin", &TdApi::onRtnBulletin)
-.def("onRtnTradingNotice", &TdApi::onRtnTradingNotice)
-.def("onRtnErrorConditionalOrder", &TdApi::onRtnErrorConditionalOrder)
-.def("onRtnExecOrder", &TdApi::onRtnExecOrder)
-.def("onErrRtnExecOrderInsert", &TdApi::onErrRtnExecOrderInsert)
-.def("onErrRtnExecOrderAction", &TdApi::onErrRtnExecOrderAction)
-.def("onErrRtnForQuoteInsert", &TdApi::onErrRtnForQuoteInsert)
-.def("onRtnQuote", &TdApi::onRtnQuote)
-.def("onErrRtnQuoteInsert", &TdApi::onErrRtnQuoteInsert)
-.def("onErrRtnQuoteAction", &TdApi::onErrRtnQuoteAction)
-.def("onRtnForQuoteRsp", &TdApi::onRtnForQuoteRsp)
-.def("onRtnCFMMCTradingAccountToken", &TdApi::onRtnCFMMCTradingAccountToken)
-.def("onErrRtnBatchOrderAction", &TdApi::onErrRtnBatchOrderAction)
-.def("onRtnOptionSelfClose", &TdApi::onRtnOptionSelfClose)
-.def("onErrRtnOptionSelfCloseInsert", &TdApi::onErrRtnOptionSelfCloseInsert)
-.def("onErrRtnOptionSelfCloseAction", &TdApi::onErrRtnOptionSelfCloseAction)
-.def("onRtnCombAction", &TdApi::onRtnCombAction)
-.def("onErrRtnCombActionInsert", &TdApi::onErrRtnCombActionInsert)
-.def("onRspQryContractBank", &TdApi::onRspQryContractBank)
-.def("onRspQryParkedOrder", &TdApi::onRspQryParkedOrder)
-.def("onRspQryParkedOrderAction", &TdApi::onRspQryParkedOrderAction)
-.def("onRspQryTradingNotice", &TdApi::onRspQryTradingNotice)
-.def("onRspQryBrokerTradingParams", &TdApi::onRspQryBrokerTradingParams)
-.def("onRspQryBrokerTradingAlgos", &TdApi::onRspQryBrokerTradingAlgos)
-.def("onRspQueryCFMMCTradingAccountToken", &TdApi::onRspQueryCFMMCTradingAccountToken)
-.def("onRtnFromBankToFutureByBank", &TdApi::onRtnFromBankToFutureByBank)
-.def("onRtnFromFutureToBankByBank", &TdApi::onRtnFromFutureToBankByBank)
-.def("onRtnRepealFromBankToFutureByBank", &TdApi::onRtnRepealFromBankToFutureByBank)
-.def("onRtnRepealFromFutureToBankByBank", &TdApi::onRtnRepealFromFutureToBankByBank)
-.def("onRtnFromBankToFutureByFuture", &TdApi::onRtnFromBankToFutureByFuture)
-.def("onRtnFromFutureToBankByFuture", &TdApi::onRtnFromFutureToBankByFuture)
-.def("onRtnRepealFromBankToFutureByFutureManual", &TdApi::onRtnRepealFromBankToFutureByFutureManual)
-.def("onRtnRepealFromFutureToBankByFutureManual", &TdApi::onRtnRepealFromFutureToBankByFutureManual)
-.def("onRtnQueryBankBalanceByFuture", &TdApi::onRtnQueryBankBalanceByFuture)
-.def("onErrRtnBankToFutureByFuture", &TdApi::onErrRtnBankToFutureByFuture)
-.def("onErrRtnFutureToBankByFuture", &TdApi::onErrRtnFutureToBankByFuture)
-.def("onErrRtnRepealBankToFutureByFutureManual", &TdApi::onErrRtnRepealBankToFutureByFutureManual)
-.def("onErrRtnRepealFutureToBankByFutureManual", &TdApi::onErrRtnRepealFutureToBankByFutureManual)
-.def("onErrRtnQueryBankBalanceByFuture", &TdApi::onErrRtnQueryBankBalanceByFuture)
-.def("onRtnRepealFromBankToFutureByFuture", &TdApi::onRtnRepealFromBankToFutureByFuture)
-.def("onRtnRepealFromFutureToBankByFuture", &TdApi::onRtnRepealFromFutureToBankByFuture)
-.def("onRspFromBankToFutureByFuture", &TdApi::onRspFromBankToFutureByFuture)
-.def("onRspFromFutureToBankByFuture", &TdApi::onRspFromFutureToBankByFuture)
-.def("onRspQueryBankAccountMoneyByFuture", &TdApi::onRspQueryBankAccountMoneyByFuture)
-.def("onRtnOpenAccountByBank", &TdApi::onRtnOpenAccountByBank)
-.def("onRtnCancelAccountByBank", &TdApi::onRtnCancelAccountByBank)
-.def("onRtnChangeAccountByBank", &TdApi::onRtnChangeAccountByBank)
-.def("onRspQryClassifiedInstrument", &TdApi::onRspQryClassifiedInstrument)
-.def("onRspQryCombPromotionParam", &TdApi::onRspQryCombPromotionParam)
-.def("onRspQryRiskSettleInvstPosition", &TdApi::onRspQryRiskSettleInvstPosition)
-.def("onRspQryRiskSettleProductStatus", &TdApi::onRspQryRiskSettleProductStatus)
-.def("onRspQrySPBMFutureParameter", &TdApi::onRspQrySPBMFutureParameter)
-.def("onRspQrySPBMOptionParameter", &TdApi::onRspQrySPBMOptionParameter)
-.def("onRspQrySPBMIntraParameter", &TdApi::onRspQrySPBMIntraParameter)
-.def("onRspQrySPBMInterParameter", &TdApi::onRspQrySPBMInterParameter)
-.def("onRspQrySPBMPortfDefinition", &TdApi::onRspQrySPBMPortfDefinition)
-.def("onRspQrySPBMInvestorPortfDef", &TdApi::onRspQrySPBMInvestorPortfDef)
-.def("onRspQryInvestorPortfMarginRatio", &TdApi::onRspQryInvestorPortfMarginRatio)
-.def("onRspQryInvestorProdSPBMDetail", &TdApi::onRspQryInvestorProdSPBMDetail)
-;
+		.def("reqAuthenticate", &TdApi::reqAuthenticate)
+		.def("reqUserLogin", &TdApi::reqUserLogin)
+		.def("reqUserLogout", &TdApi::reqUserLogout)
+		.def("reqUserPasswordUpdate", &TdApi::reqUserPasswordUpdate)
+		.def("reqTradingAccountPasswordUpdate", &TdApi::reqTradingAccountPasswordUpdate)
+		.def("reqUserAuthMethod", &TdApi::reqUserAuthMethod)
+		.def("reqGenUserCaptcha", &TdApi::reqGenUserCaptcha)
+		.def("reqGenUserText", &TdApi::reqGenUserText)
+		.def("reqUserLoginWithCaptcha", &TdApi::reqUserLoginWithCaptcha)
+		.def("reqUserLoginWithText", &TdApi::reqUserLoginWithText)
+		.def("reqUserLoginWithOTP", &TdApi::reqUserLoginWithOTP)
+		.def("reqOrderInsert", &TdApi::reqOrderInsert)
+		.def("reqParkedOrderInsert", &TdApi::reqParkedOrderInsert)
+		.def("reqParkedOrderAction", &TdApi::reqParkedOrderAction)
+		.def("reqOrderAction", &TdApi::reqOrderAction)
+		.def("reqQryMaxOrderVolume", &TdApi::reqQryMaxOrderVolume)
+		.def("reqSettlementInfoConfirm", &TdApi::reqSettlementInfoConfirm)
+		.def("reqRemoveParkedOrder", &TdApi::reqRemoveParkedOrder)
+		.def("reqRemoveParkedOrderAction", &TdApi::reqRemoveParkedOrderAction)
+		.def("reqExecOrderInsert", &TdApi::reqExecOrderInsert)
+		.def("reqExecOrderAction", &TdApi::reqExecOrderAction)
+		.def("reqForQuoteInsert", &TdApi::reqForQuoteInsert)
+		.def("reqQuoteInsert", &TdApi::reqQuoteInsert)
+		.def("reqQuoteAction", &TdApi::reqQuoteAction)
+		.def("reqBatchOrderAction", &TdApi::reqBatchOrderAction)
+		.def("reqOptionSelfCloseInsert", &TdApi::reqOptionSelfCloseInsert)
+		.def("reqOptionSelfCloseAction", &TdApi::reqOptionSelfCloseAction)
+		.def("reqCombActionInsert", &TdApi::reqCombActionInsert)
+		.def("reqQryOrder", &TdApi::reqQryOrder)
+		.def("reqQryTrade", &TdApi::reqQryTrade)
+		.def("reqQryInvestorPosition", &TdApi::reqQryInvestorPosition)
+		.def("reqQryTradingAccount", &TdApi::reqQryTradingAccount)
+		.def("reqQryInvestor", &TdApi::reqQryInvestor)
+		.def("reqQryTradingCode", &TdApi::reqQryTradingCode)
+		.def("reqQryInstrumentMarginRate", &TdApi::reqQryInstrumentMarginRate)
+		.def("reqQryInstrumentCommissionRate", &TdApi::reqQryInstrumentCommissionRate)
+		.def("reqQryExchange", &TdApi::reqQryExchange)
+		.def("reqQryProduct", &TdApi::reqQryProduct)
+		.def("reqQryInstrument", &TdApi::reqQryInstrument)
+		.def("reqQryDepthMarketData", &TdApi::reqQryDepthMarketData)
+		.def("reqQryTraderOffer", &TdApi::reqQryTraderOffer)
+		.def("reqQrySettlementInfo", &TdApi::reqQrySettlementInfo)
+		.def("reqQryTransferBank", &TdApi::reqQryTransferBank)
+		.def("reqQryInvestorPositionDetail", &TdApi::reqQryInvestorPositionDetail)
+		.def("reqQryNotice", &TdApi::reqQryNotice)
+		.def("reqQrySettlementInfoConfirm", &TdApi::reqQrySettlementInfoConfirm)
+		.def("reqQryInvestorPositionCombineDetail", &TdApi::reqQryInvestorPositionCombineDetail)
+		.def("reqQryCFMMCTradingAccountKey", &TdApi::reqQryCFMMCTradingAccountKey)
+		.def("reqQryEWarrantOffset", &TdApi::reqQryEWarrantOffset)
+		.def("reqQryInvestorProductGroupMargin", &TdApi::reqQryInvestorProductGroupMargin)
+		.def("reqQryExchangeMarginRate", &TdApi::reqQryExchangeMarginRate)
+		.def("reqQryExchangeMarginRateAdjust", &TdApi::reqQryExchangeMarginRateAdjust)
+		.def("reqQryExchangeRate", &TdApi::reqQryExchangeRate)
+		.def("reqQrySecAgentACIDMap", &TdApi::reqQrySecAgentACIDMap)
+		.def("reqQryProductExchRate", &TdApi::reqQryProductExchRate)
+		.def("reqQryProductGroup", &TdApi::reqQryProductGroup)
+		.def("reqQryMMInstrumentCommissionRate", &TdApi::reqQryMMInstrumentCommissionRate)
+		.def("reqQryMMOptionInstrCommRate", &TdApi::reqQryMMOptionInstrCommRate)
+		.def("reqQryInstrumentOrderCommRate", &TdApi::reqQryInstrumentOrderCommRate)
+		.def("reqQrySecAgentTradingAccount", &TdApi::reqQrySecAgentTradingAccount)
+		.def("reqQrySecAgentCheckMode", &TdApi::reqQrySecAgentCheckMode)
+		.def("reqQrySecAgentTradeInfo", &TdApi::reqQrySecAgentTradeInfo)
+		.def("reqQryOptionInstrTradeCost", &TdApi::reqQryOptionInstrTradeCost)
+		.def("reqQryOptionInstrCommRate", &TdApi::reqQryOptionInstrCommRate)
+		.def("reqQryExecOrder", &TdApi::reqQryExecOrder)
+		.def("reqQryForQuote", &TdApi::reqQryForQuote)
+		.def("reqQryQuote", &TdApi::reqQryQuote)
+		.def("reqQryOptionSelfClose", &TdApi::reqQryOptionSelfClose)
+		.def("reqQryInvestUnit", &TdApi::reqQryInvestUnit)
+		.def("reqQryCombInstrumentGuard", &TdApi::reqQryCombInstrumentGuard)
+		.def("reqQryCombAction", &TdApi::reqQryCombAction)
+		.def("reqQryTransferSerial", &TdApi::reqQryTransferSerial)
+		.def("reqQryAccountregister", &TdApi::reqQryAccountregister)
+		.def("reqQryContractBank", &TdApi::reqQryContractBank)
+		.def("reqQryParkedOrder", &TdApi::reqQryParkedOrder)
+		.def("reqQryParkedOrderAction", &TdApi::reqQryParkedOrderAction)
+		.def("reqQryTradingNotice", &TdApi::reqQryTradingNotice)
+		.def("reqQryBrokerTradingParams", &TdApi::reqQryBrokerTradingParams)
+		.def("reqQryBrokerTradingAlgos", &TdApi::reqQryBrokerTradingAlgos)
+		.def("reqQueryCFMMCTradingAccountToken", &TdApi::reqQueryCFMMCTradingAccountToken)
+		.def("reqFromBankToFutureByFuture", &TdApi::reqFromBankToFutureByFuture)
+		.def("reqFromFutureToBankByFuture", &TdApi::reqFromFutureToBankByFuture)
+		.def("reqQueryBankAccountMoneyByFuture", &TdApi::reqQueryBankAccountMoneyByFuture)
+		.def("reqQryClassifiedInstrument", &TdApi::reqQryClassifiedInstrument)
+		.def("reqQryCombPromotionParam", &TdApi::reqQryCombPromotionParam)
+		.def("reqQryRiskSettleInvstPosition", &TdApi::reqQryRiskSettleInvstPosition)
+		.def("reqQryRiskSettleProductStatus", &TdApi::reqQryRiskSettleProductStatus)
 
+		.def("onFrontConnected", &TdApi::onFrontConnected)
+		.def("onFrontDisconnected", &TdApi::onFrontDisconnected)
+		.def("onHeartBeatWarning", &TdApi::onHeartBeatWarning)
+		.def("onRspAuthenticate", &TdApi::onRspAuthenticate)
+		.def("onRspUserLogin", &TdApi::onRspUserLogin)
+		.def("onRspUserLogout", &TdApi::onRspUserLogout)
+		.def("onRspUserPasswordUpdate", &TdApi::onRspUserPasswordUpdate)
+		.def("onRspTradingAccountPasswordUpdate", &TdApi::onRspTradingAccountPasswordUpdate)
+		.def("onRspUserAuthMethod", &TdApi::onRspUserAuthMethod)
+		.def("onRspGenUserCaptcha", &TdApi::onRspGenUserCaptcha)
+		.def("onRspGenUserText", &TdApi::onRspGenUserText)
+		.def("onRspOrderInsert", &TdApi::onRspOrderInsert)
+		.def("onRspParkedOrderInsert", &TdApi::onRspParkedOrderInsert)
+		.def("onRspParkedOrderAction", &TdApi::onRspParkedOrderAction)
+		.def("onRspOrderAction", &TdApi::onRspOrderAction)
+		.def("onRspQryMaxOrderVolume", &TdApi::onRspQryMaxOrderVolume)
+		.def("onRspSettlementInfoConfirm", &TdApi::onRspSettlementInfoConfirm)
+		.def("onRspRemoveParkedOrder", &TdApi::onRspRemoveParkedOrder)
+		.def("onRspRemoveParkedOrderAction", &TdApi::onRspRemoveParkedOrderAction)
+		.def("onRspExecOrderInsert", &TdApi::onRspExecOrderInsert)
+		.def("onRspExecOrderAction", &TdApi::onRspExecOrderAction)
+		.def("onRspForQuoteInsert", &TdApi::onRspForQuoteInsert)
+		.def("onRspQuoteInsert", &TdApi::onRspQuoteInsert)
+		.def("onRspQuoteAction", &TdApi::onRspQuoteAction)
+		.def("onRspBatchOrderAction", &TdApi::onRspBatchOrderAction)
+		.def("onRspOptionSelfCloseInsert", &TdApi::onRspOptionSelfCloseInsert)
+		.def("onRspOptionSelfCloseAction", &TdApi::onRspOptionSelfCloseAction)
+		.def("onRspCombActionInsert", &TdApi::onRspCombActionInsert)
+		.def("onRspQryOrder", &TdApi::onRspQryOrder)
+		.def("onRspQryTrade", &TdApi::onRspQryTrade)
+		.def("onRspQryInvestorPosition", &TdApi::onRspQryInvestorPosition)
+		.def("onRspQryTradingAccount", &TdApi::onRspQryTradingAccount)
+		.def("onRspQryInvestor", &TdApi::onRspQryInvestor)
+		.def("onRspQryTradingCode", &TdApi::onRspQryTradingCode)
+		.def("onRspQryInstrumentMarginRate", &TdApi::onRspQryInstrumentMarginRate)
+		.def("onRspQryInstrumentCommissionRate", &TdApi::onRspQryInstrumentCommissionRate)
+		.def("onRspQryExchange", &TdApi::onRspQryExchange)
+		.def("onRspQryProduct", &TdApi::onRspQryProduct)
+		.def("onRspQryInstrument", &TdApi::onRspQryInstrument)
+		.def("onRspQryDepthMarketData", &TdApi::onRspQryDepthMarketData)
+		.def("onRspQryTraderOffer", &TdApi::onRspQryTraderOffer)
+		.def("onRspQrySettlementInfo", &TdApi::onRspQrySettlementInfo)
+		.def("onRspQryTransferBank", &TdApi::onRspQryTransferBank)
+		.def("onRspQryInvestorPositionDetail", &TdApi::onRspQryInvestorPositionDetail)
+		.def("onRspQryNotice", &TdApi::onRspQryNotice)
+		.def("onRspQrySettlementInfoConfirm", &TdApi::onRspQrySettlementInfoConfirm)
+		.def("onRspQryInvestorPositionCombineDetail", &TdApi::onRspQryInvestorPositionCombineDetail)
+		.def("onRspQryCFMMCTradingAccountKey", &TdApi::onRspQryCFMMCTradingAccountKey)
+		.def("onRspQryEWarrantOffset", &TdApi::onRspQryEWarrantOffset)
+		.def("onRspQryInvestorProductGroupMargin", &TdApi::onRspQryInvestorProductGroupMargin)
+		.def("onRspQryExchangeMarginRate", &TdApi::onRspQryExchangeMarginRate)
+		.def("onRspQryExchangeMarginRateAdjust", &TdApi::onRspQryExchangeMarginRateAdjust)
+		.def("onRspQryExchangeRate", &TdApi::onRspQryExchangeRate)
+		.def("onRspQrySecAgentACIDMap", &TdApi::onRspQrySecAgentACIDMap)
+		.def("onRspQryProductExchRate", &TdApi::onRspQryProductExchRate)
+		.def("onRspQryProductGroup", &TdApi::onRspQryProductGroup)
+		.def("onRspQryMMInstrumentCommissionRate", &TdApi::onRspQryMMInstrumentCommissionRate)
+		.def("onRspQryMMOptionInstrCommRate", &TdApi::onRspQryMMOptionInstrCommRate)
+		.def("onRspQryInstrumentOrderCommRate", &TdApi::onRspQryInstrumentOrderCommRate)
+		.def("onRspQrySecAgentTradingAccount", &TdApi::onRspQrySecAgentTradingAccount)
+		.def("onRspQrySecAgentCheckMode", &TdApi::onRspQrySecAgentCheckMode)
+		.def("onRspQrySecAgentTradeInfo", &TdApi::onRspQrySecAgentTradeInfo)
+		.def("onRspQryOptionInstrTradeCost", &TdApi::onRspQryOptionInstrTradeCost)
+		.def("onRspQryOptionInstrCommRate", &TdApi::onRspQryOptionInstrCommRate)
+		.def("onRspQryExecOrder", &TdApi::onRspQryExecOrder)
+		.def("onRspQryForQuote", &TdApi::onRspQryForQuote)
+		.def("onRspQryQuote", &TdApi::onRspQryQuote)
+		.def("onRspQryOptionSelfClose", &TdApi::onRspQryOptionSelfClose)
+		.def("onRspQryInvestUnit", &TdApi::onRspQryInvestUnit)
+		.def("onRspQryCombInstrumentGuard", &TdApi::onRspQryCombInstrumentGuard)
+		.def("onRspQryCombAction", &TdApi::onRspQryCombAction)
+		.def("onRspQryTransferSerial", &TdApi::onRspQryTransferSerial)
+		.def("onRspQryAccountregister", &TdApi::onRspQryAccountregister)
+		.def("onRspError", &TdApi::onRspError)
+		.def("onRtnOrder", &TdApi::onRtnOrder)
+		.def("onRtnTrade", &TdApi::onRtnTrade)
+		.def("onErrRtnOrderInsert", &TdApi::onErrRtnOrderInsert)
+		.def("onErrRtnOrderAction", &TdApi::onErrRtnOrderAction)
+		.def("onRtnInstrumentStatus", &TdApi::onRtnInstrumentStatus)
+		.def("onRtnBulletin", &TdApi::onRtnBulletin)
+		.def("onRtnTradingNotice", &TdApi::onRtnTradingNotice)
+		.def("onRtnErrorConditionalOrder", &TdApi::onRtnErrorConditionalOrder)
+		.def("onRtnExecOrder", &TdApi::onRtnExecOrder)
+		.def("onErrRtnExecOrderInsert", &TdApi::onErrRtnExecOrderInsert)
+		.def("onErrRtnExecOrderAction", &TdApi::onErrRtnExecOrderAction)
+		.def("onErrRtnForQuoteInsert", &TdApi::onErrRtnForQuoteInsert)
+		.def("onRtnQuote", &TdApi::onRtnQuote)
+		.def("onErrRtnQuoteInsert", &TdApi::onErrRtnQuoteInsert)
+		.def("onErrRtnQuoteAction", &TdApi::onErrRtnQuoteAction)
+		.def("onRtnForQuoteRsp", &TdApi::onRtnForQuoteRsp)
+		.def("onRtnCFMMCTradingAccountToken", &TdApi::onRtnCFMMCTradingAccountToken)
+		.def("onErrRtnBatchOrderAction", &TdApi::onErrRtnBatchOrderAction)
+		.def("onRtnOptionSelfClose", &TdApi::onRtnOptionSelfClose)
+		.def("onErrRtnOptionSelfCloseInsert", &TdApi::onErrRtnOptionSelfCloseInsert)
+		.def("onErrRtnOptionSelfCloseAction", &TdApi::onErrRtnOptionSelfCloseAction)
+		.def("onRtnCombAction", &TdApi::onRtnCombAction)
+		.def("onErrRtnCombActionInsert", &TdApi::onErrRtnCombActionInsert)
+		.def("onRspQryContractBank", &TdApi::onRspQryContractBank)
+		.def("onRspQryParkedOrder", &TdApi::onRspQryParkedOrder)
+		.def("onRspQryParkedOrderAction", &TdApi::onRspQryParkedOrderAction)
+		.def("onRspQryTradingNotice", &TdApi::onRspQryTradingNotice)
+		.def("onRspQryBrokerTradingParams", &TdApi::onRspQryBrokerTradingParams)
+		.def("onRspQryBrokerTradingAlgos", &TdApi::onRspQryBrokerTradingAlgos)
+		.def("onRspQueryCFMMCTradingAccountToken", &TdApi::onRspQueryCFMMCTradingAccountToken)
+		.def("onRtnFromBankToFutureByBank", &TdApi::onRtnFromBankToFutureByBank)
+		.def("onRtnFromFutureToBankByBank", &TdApi::onRtnFromFutureToBankByBank)
+		.def("onRtnRepealFromBankToFutureByBank", &TdApi::onRtnRepealFromBankToFutureByBank)
+		.def("onRtnRepealFromFutureToBankByBank", &TdApi::onRtnRepealFromFutureToBankByBank)
+		.def("onRtnFromBankToFutureByFuture", &TdApi::onRtnFromBankToFutureByFuture)
+		.def("onRtnFromFutureToBankByFuture", &TdApi::onRtnFromFutureToBankByFuture)
+		.def("onRtnRepealFromBankToFutureByFutureManual", &TdApi::onRtnRepealFromBankToFutureByFutureManual)
+		.def("onRtnRepealFromFutureToBankByFutureManual", &TdApi::onRtnRepealFromFutureToBankByFutureManual)
+		.def("onRtnQueryBankBalanceByFuture", &TdApi::onRtnQueryBankBalanceByFuture)
+		.def("onErrRtnBankToFutureByFuture", &TdApi::onErrRtnBankToFutureByFuture)
+		.def("onErrRtnFutureToBankByFuture", &TdApi::onErrRtnFutureToBankByFuture)
+		.def("onErrRtnRepealBankToFutureByFutureManual", &TdApi::onErrRtnRepealBankToFutureByFutureManual)
+		.def("onErrRtnRepealFutureToBankByFutureManual", &TdApi::onErrRtnRepealFutureToBankByFutureManual)
+		.def("onErrRtnQueryBankBalanceByFuture", &TdApi::onErrRtnQueryBankBalanceByFuture)
+		.def("onRtnRepealFromBankToFutureByFuture", &TdApi::onRtnRepealFromBankToFutureByFuture)
+		.def("onRtnRepealFromFutureToBankByFuture", &TdApi::onRtnRepealFromFutureToBankByFuture)
+		.def("onRspFromBankToFutureByFuture", &TdApi::onRspFromBankToFutureByFuture)
+		.def("onRspFromFutureToBankByFuture", &TdApi::onRspFromFutureToBankByFuture)
+		.def("onRspQueryBankAccountMoneyByFuture", &TdApi::onRspQueryBankAccountMoneyByFuture)
+		.def("onRtnOpenAccountByBank", &TdApi::onRtnOpenAccountByBank)
+		.def("onRtnCancelAccountByBank", &TdApi::onRtnCancelAccountByBank)
+		.def("onRtnChangeAccountByBank", &TdApi::onRtnChangeAccountByBank)
+		.def("onRspQryClassifiedInstrument", &TdApi::onRspQryClassifiedInstrument)
+		.def("onRspQryCombPromotionParam", &TdApi::onRspQryCombPromotionParam)
+		.def("onRspQryRiskSettleInvstPosition", &TdApi::onRspQryRiskSettleInvstPosition)
+		.def("onRspQryRiskSettleProductStatus", &TdApi::onRspQryRiskSettleProductStatus)
+		;
 }

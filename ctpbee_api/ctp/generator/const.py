@@ -1,35 +1,23 @@
 MD_H_BACK = """
-	//req:ä¸»åŠ¨å‡½æ•°çš„è¯·æ±‚å­—å…¸
+	//req:Ö÷¶¯º¯ÊýµÄÇëÇó×Öµä
 	//-------------------------------------------------------------------------------------
-
 	void createFtdcMdApi(string pszFlowPath = "");
-
 	void release();
-
 	void init();
-
 	int join();
-
 	int exit();
-
 	string getTradingDay();
-
 	void registerFront(string pszFrontAddress);
-
 	int subscribeMarketData(string instrumentID);
-
 	int unSubscribeMarketData(string instrumentID);
-
 	int subscribeForQuoteRsp(string instrumentID);
-
 	int unSubscribeForQuoteRsp(string instrumentID);
 """
 
-MD_H_HEADER = """//ç³»ç»Ÿ
+MD_H_HEADER = """//ÏµÍ³
 #ifdef WIN32
 #include "stdafx.h"
 #endif
-
 #include "vnctp.h"
 #include "pybind11/pybind11.h"
 #include "ctp/ThostFtdcMdApi.h"
@@ -39,16 +27,14 @@ MD_H_API = """
 class MdApi : public CThostFtdcMdSpi
 {
 private:
-	CThostFtdcMdApi* api;				//APIå¯¹è±¡
-	thread task_thread;					//å·¥ä½œçº¿ç¨‹æŒ‡é’ˆï¼ˆå‘pythonä¸­æŽ¨é€æ•°æ®ï¼‰
-	TaskQueue task_queue;			    //ä»»åŠ¡é˜Ÿåˆ—
-	bool active = false;				//å·¥ä½œçŠ¶æ€
-
+	CThostFtdcMdApi* api;				//API¶ÔÏó
+	thread task_thread;					//¹¤×÷Ïß³ÌÖ¸Õë£¨ÏòpythonÖÐÍÆËÍÊý¾Ý£©
+	TaskQueue task_queue;			    //ÈÎÎñ¶ÓÁÐ
+	bool active = false;				//¹¤×÷×´Ì¬
 public:
 	MdApi()
 	{
 	};
-
 	~MdApi()
 	{
 		if (this->active)
@@ -56,62 +42,51 @@ public:
 			this->exit();
 		}
 	};
-	
+
 	void processTask();
 """
 
 MD_C_HEADER = """
 #include "vnctpmd.h"
-
-
 void MdApi::createFtdcMdApi(string pszFlowPath)
 {
 	this->api = CThostFtdcMdApi::CreateFtdcMdApi(pszFlowPath.c_str());
 	this->api->RegisterSpi(this);
 };
-
 void MdApi::release()
 {
 	this->api->Release();
 };
-
 void MdApi::init()
 {
 	this->active = true;
 	this->task_thread = thread(&MdApi::processTask, this);
-
 	this->api->Init();
 };
-
 int MdApi::join()
 {
 	int i = this->api->Join();
 	return i;
 };
-
 int MdApi::exit()
 {
 	this->active = false;
     this->task_queue.terminate();
     this->task_thread.join();
-
 	this->api->RegisterSpi(NULL);
 	this->api->Release();
 	this->api = NULL;
 	return 1;
 };
-
 string MdApi::getTradingDay()
 {
 	string day = this->api->GetTradingDay();
 	return day;
 };
-
 void MdApi::registerFront(string pszFrontAddress)
 {
 	this->api->RegisterFront((char*)pszFrontAddress.c_str());
 };
-
 int MdApi::subscribeMarketData(string instrumentID)
 {
 	char* buffer = (char*) instrumentID.c_str();
@@ -119,7 +94,6 @@ int MdApi::subscribeMarketData(string instrumentID)
 	int i = this->api->SubscribeMarketData(myreq, 1);
 	return i;
 };
-
 int MdApi::unSubscribeMarketData(string instrumentID)
 {
 	char* buffer = (char*)instrumentID.c_str();
@@ -127,7 +101,6 @@ int MdApi::unSubscribeMarketData(string instrumentID)
 	int i = this->api->UnSubscribeMarketData(myreq, 1);
 	return i;
 };
-
 int MdApi::subscribeForQuoteRsp(string instrumentID)
 {
 	char* buffer = (char*)instrumentID.c_str();
@@ -135,7 +108,6 @@ int MdApi::subscribeForQuoteRsp(string instrumentID)
 	int i = this->api->SubscribeForQuoteRsp(myreq, 1);
 	return i;
 };
-
 int MdApi::unSubscribeForQuoteRsp(string instrumentID)
 {
 	char* buffer = (char*)instrumentID.c_str();
@@ -153,7 +125,7 @@ void MdApi::processTask()
         while (this->active)
         {
             Task task = this->task_queue.pop();
-            
+
             switch (task.task_name)
             {
 """
@@ -168,12 +140,10 @@ MD_C_SWITCH_END = """
 """
 
 MD_C_PYOBJ = """
-
 class PyMdApi: public MdApi
 {
 public:
 	using MdApi::MdApi;
-
 """
 
 MD_C_PYOBJ_END = """
@@ -202,33 +172,30 @@ MD_C_MODULE_END = """
 }"""
 
 TD_H_HEADER = """
-//ç³»ç»Ÿ
+//ÏµÍ³
 #ifdef WIN32
 #include "stdafx.h"
 #endif
-
 #include "vnctp.h"
 #include "pybind11/pybind11.h"
 #include "ctp/ThostFtdcTraderApi.h"
 using namespace pybind11;
-
 """
 TD_H_API = """
-//APIçš„ç»§æ‰¿å®žçŽ°
+//APIµÄ¼Ì³ÐÊµÏÖ
 class TdApi : public CThostFtdcTraderSpi
 {
 private:
-    CThostFtdcTraderApi* api;            //APIå¯¹è±¡
-    thread task_thread;                    //å·¥ä½œçº¿ç¨‹æŒ‡é’ˆï¼ˆå‘pythonä¸­æŽ¨é€æ•°æ®ï¼‰
-    TaskQueue task_queue;                //ä»»åŠ¡é˜Ÿåˆ—
-    bool active = false;                //å·¥ä½œçŠ¶æ€
-    
-    
+    CThostFtdcTraderApi* api;            //API¶ÔÏó
+    thread task_thread;                    //¹¤×÷Ïß³ÌÖ¸Õë£¨ÏòpythonÖÐÍÆËÍÊý¾Ý£©
+    TaskQueue task_queue;                //ÈÎÎñ¶ÓÁÐ
+    bool active = false;                //¹¤×÷×´Ì¬
+
+
 public:
     TdApi()
     {
     };
-
     ~TdApi()
     {
         if (this->active)
@@ -236,27 +203,18 @@ public:
             this->exit();
         }
     };
-    
+
      void processTask();
-    
+
     void createFtdcTraderApi(string pszFlowPath = "");
-
     void release();
-
     void init();
-
     int join();
-
     int exit();
-
     string getTradingDay();
-
     void registerFront(string pszFrontAddress);
-
     void subscribePrivateTopic(int nType);
-
     void subscribePublicTopic(int nType);
-
 """
 
 TD_H_API_END = """
@@ -274,14 +232,11 @@ void TdApi::processTask()
         while (this->active)
         {
             Task task = this->task_queue.pop();
-
             switch (task.task_name)
             {
 """
 
 TD_C_SWITCH_END = """
-
-
             };
         }
     }
@@ -292,60 +247,49 @@ TD_C_SWITCH_END = """
 """
 
 TD_C_REQ = """
-
 void TdApi::createFtdcTraderApi(string pszFlowPath)
 {
     this->api = CThostFtdcTraderApi::CreateFtdcTraderApi(pszFlowPath.c_str());
     this->api->RegisterSpi(this);
 };
-
 void TdApi::release()
 {
     this->api->Release();
 };
-
 void TdApi::init()
 {
     this->active = true;
     this->task_thread = thread(&TdApi::processTask, this);
-
     this->api->Init();
 };
-
 int TdApi::join()
 {
     int i = this->api->Join();
     return i;
 };
-
 int TdApi::exit()
 {
     this->active = false;
     this->task_queue.terminate();
     this->task_thread.join();
-
     this->api->RegisterSpi(NULL);
     this->api->Release();
     this->api = NULL;
     return 1;
 };
-
 string TdApi::getTradingDay()
 {
     string day = this->api->GetTradingDay();
     return day;
 };
-
 void TdApi::registerFront(string pszFrontAddress)
 {
     this->api->RegisterFront((char*)pszFrontAddress.c_str());
 };
-
 void TdApi::subscribePrivateTopic(int nType)
 {
     this->api->SubscribePrivateTopic((THOST_TE_RESUME_TYPE) nType);
 };
-
 void TdApi::subscribePublicTopic(int nType)
 {
     this->api->SubscribePublicTopic((THOST_TE_RESUME_TYPE)nType);
@@ -362,7 +306,6 @@ TD_C_ON_END = """
 };
 """
 TD_C_MODULE = """
-
 PYBIND11_MODULE(vnctptd, m)
 {
     class_<TdApi, PyTdApi> TdApi(m, "TdApi");

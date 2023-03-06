@@ -1,3 +1,5 @@
+
+
 import os
 from const import *
 
@@ -31,7 +33,7 @@ def generate_md():
     md_h_function = read_file(md_h, "function")
     md_h_process = read_file(md_h, "process")
 
-    # 鑾峰彇琛屾儏鍐呭
+    # 获取行情内容
     md_h_file = MD_H_HEADER + md_h_define + MD_H_API + MD_H_BACK + md_h_process + md_h_on + md_h_function + "};"
 
     md_c_task = read_file(md_cpp, "task")
@@ -88,3 +90,4 @@ if __name__ == "__main__":
     write_file("vnctpmd", h, c)
     h, c = generate_td()
     write_file("vnctptd", h, c)
+

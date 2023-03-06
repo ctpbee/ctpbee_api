@@ -30,7 +30,7 @@ class ApiGenerator:
 
     def run(self):
         """运行生成"""
-        self.f_cpp = open(self.filename, "r", encoding="gbk")
+        self.f_cpp = open(self.filename, "r")
 
         for line in self.f_cpp:
             self.process_line(line)
@@ -114,8 +114,6 @@ class ApiGenerator:
         filename = f"{self.prefix}_{self.name}_header_on.h"
         with open(filename, "w") as f:
             for name, d in self.callbacks.items():
-                origin_line = (self.recovery_function(name, d))
-                f.write(f"\n{origin_line}\n")
                 name = name.replace("On", "on")
 
                 args_list = []
@@ -124,6 +122,8 @@ class ApiGenerator:
                         args_list.append("int reqid")
                     elif type_ == "bool":
                         args_list.append("bool last")
+                    elif type_ == "char*":
+                        args_list.append("string data")
                     elif type_ == "CThostFtdcRspInfoField":
                         args_list.append("const dict &error")
                     else:
@@ -282,28 +282,9 @@ class ApiGenerator:
                 f.write("\treturn i;\n")
                 f.write("};\n\n")
 
-    # 恢复原函数并且写入文件中
-    @staticmethod
-    def recovery_function(name, d) -> str:
-        start = "virtual void  "
-        if len(d) == 0:
-            ret = start + name + "();"
-        else:
-            ret = start + f" {name}("
-            for i, v in d.items():
-                if v in ["int", "bool"]:
-                    ret += f"{v} {i}" + ","
-                else:
-                    ret += f"{v} * {i}" + ","
-            if ret.endswith(","):
-                ret = ret[:-2]
-            ret = ret + ");"
-        return ret
-
     def generate_source_on(self):
         """"""
         filename = f"{self.prefix}_{self.name}_source_on.cpp"
-
         with open(filename, "w") as f:
             for name, d in self.callbacks.items():
                 on_name = name.replace("On", "on")

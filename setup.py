@@ -13,7 +13,7 @@ system_name = platform.uname().system
 class ApiExt:
     def __init__(self, module_name, library_list: list):
         """
-        :param api_name: should be vnctpmd
+        :param api_name: should be vnctp_macmd
         :param module_name: should be `ctp`
         :param library_list: library
         """
@@ -25,7 +25,7 @@ class ApiExt:
         """ 获取基础的ctp API"""
         library_list = self.library_list
         if system_name == "Darwin" and self.module_name == "ctp":
-            library_list.extend(["ssl", "crypto", "comunicationkeylib"])
+            library_list.extend(["ssl", "crypto", "comunicationkey"])
         return library_list
 
     @property
@@ -34,7 +34,7 @@ class ApiExt:
             return ["/MP", "/std:c++17", "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GL", "/wd4819",
                     "/DNOMINMAX"]
         elif system_name == "Darwin":
-            return ["-std=c++17", "-O3", "-Wno-delete-incomplete", "-Wno-sign-compare", "-pthread"]
+            return ["-std=c++11", "-mmacosx-version-min=10.12"]
         else:
             return ["-std=c++17", "-O3", "-Wno-delete-incomplete", "-Wno-sign-compare", "-pthread"]
 
@@ -50,12 +50,18 @@ class ApiExt:
         extra_link_args = []
         if system_name != "Windows":
             extra_link_args.append("-lstdc++")
+        if system_name == "Darwin":
+            extra_link_args.append("-mmacosx-version-min=10.12")
         return extra_link_args
 
     @property
     def include(self) -> list:
-        return [f"ctpbee_api/{self.module_name}/include",
-                f"ctpbee_api/{self.module_name}/vn{self.module_name}"]
+        dirs = [f"ctpbee_api/{self.module_name}/vn{self.module_name}"]
+        if system_name == "Darwin":
+            dirs.append(f"ctpbee_api/{self.module_name}/include/mac")
+        else:
+            dirs.append(f"ctpbee_api/{self.module_name}/include")
+        return dirs
 
     @property
     def library_dir(self) -> library:
@@ -143,10 +149,6 @@ def build_rohon():
     pkgs.append("ctpbee_api.rohon")
 
 
-def build_ctp_mac():
-    pkgs.append("ctpbee_api.ctp_mac")
-
-
 if system_name == "Windows":
     build_ctp()
     build_ctp_mini()
@@ -156,7 +158,7 @@ elif system_name == "Linux":
     build_ctp_mini()
     build_rohon()
 elif system_name == "Darwin":
-    build_ctp_mac()
+    build_ctp()
 else:
     raise ValueError(f"{system_name} not support, only support Linux, Windows, Darwin")
 
