@@ -33,6 +33,7 @@ CThostFtdcRspUserLoginField = {
     "CZCETime": "string",
     "FFEXTime": "string",
     "INETime": "string",
+    "SysVersion": "string",
 }
 
 CThostFtdcUserLogoutField = {
@@ -211,6 +212,8 @@ CThostFtdcProductField = {
     "UnderlyingMultiple": "double",
     "ProductID": "string",
     "ExchangeProductID": "string",
+    "OpenLimitControlLevel": "char",
+    "OrderFreqControlLevel": "char",
 }
 
 CThostFtdcInstrumentField = {
@@ -265,6 +268,7 @@ CThostFtdcTraderField = {
     "Password": "string",
     "InstallCount": "int",
     "BrokerID": "string",
+    "OrderCancelAlg": "char",
 }
 
 CThostFtdcInvestorField = {
@@ -281,6 +285,8 @@ CThostFtdcInvestorField = {
     "Mobile": "string",
     "CommModelID": "string",
     "MarginModelID": "string",
+    "IsOrderFreq": "char",
+    "IsOpenVolLimit": "char",
 }
 
 CThostFtdcTradingCodeField = {
@@ -564,6 +570,7 @@ CThostFtdcTraderOfferField = {
     "BrokerID": "string",
     "MaxTradeID": "string",
     "MaxOrderMessageReference": "string",
+    "OrderCancelAlg": "char",
 }
 
 CThostFtdcSettlementInfoField = {
@@ -1088,6 +1095,8 @@ CThostFtdcSyncingInvestorField = {
     "Mobile": "string",
     "CommModelID": "string",
     "MarginModelID": "string",
+    "IsOrderFreq": "char",
+    "IsOpenVolLimit": "char",
 }
 
 CThostFtdcSyncingTradingCodeField = {
@@ -3013,6 +3022,7 @@ CThostFtdcMDTraderOfferField = {
     "BrokerID": "string",
     "MaxTradeID": "string",
     "MaxOrderMessageReference": "string",
+    "OrderCancelAlg": "char",
 }
 
 CThostFtdcQryMDTraderOfferField = {
@@ -5200,6 +5210,23 @@ CThostFtdcCombPromotionParamField = {
     "InstrumentID": "string",
     "CombHedgeFlag": "string",
     "Xparameter": "double",
+}
+
+CThostFtdcReqUserLoginSCField = {
+    "TradingDay": "string",
+    "BrokerID": "string",
+    "UserID": "string",
+    "Password": "string",
+    "UserProductInfo": "string",
+    "InterfaceProductInfo": "string",
+    "ProtocolInfo": "string",
+    "MacAddress": "string",
+    "OneTimePassword": "string",
+    "ClientIPAddress": "string",
+    "LoginRemark": "string",
+    "ClientIPPort": "int",
+    "AuthCode": "string",
+    "AppID": "string",
 }
 
 CThostFtdcQryRiskSettleInvstPositionField = {

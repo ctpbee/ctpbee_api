@@ -238,6 +238,12 @@ case ONRSPQRYDEPTHMARKETDATA:
 	break;
 }
 
+case ONRSPQRYTRADEROFFER:
+{
+	this->processRspQryTraderOffer(&task);
+	break;
+}
+
 case ONRSPQRYSETTLEMENTINFO:
 {
 	this->processRspQrySettlementInfo(&task);

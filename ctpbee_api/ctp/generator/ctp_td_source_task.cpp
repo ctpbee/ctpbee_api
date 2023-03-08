@@ -798,6 +798,27 @@ void TdApi::OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarket
 	this->task_queue.push(task);
 };
 
+void TdApi::OnRspQryTraderOffer(CThostFtdcTraderOfferField *pTraderOffer, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
+{
+	Task task = Task();
+	task.task_name = ONRSPQRYTRADEROFFER;
+	if (pTraderOffer)
+	{
+		CThostFtdcTraderOfferField *task_data = new CThostFtdcTraderOfferField();
+		*task_data = *pTraderOffer;
+		task.task_data = task_data;
+	}
+	if (pRspInfo)
+	{
+		CThostFtdcRspInfoField *task_error = new CThostFtdcRspInfoField();
+		*task_error = *pRspInfo;
+		task.task_error = task_error;
+	}
+	task.task_id = nRequestID;
+	task.task_last = bIsLast;
+	this->task_queue.push(task);
+};
+
 void TdApi::OnRspQrySettlementInfo(CThostFtdcSettlementInfoField *pSettlementInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) 
 {
 	Task task = Task();

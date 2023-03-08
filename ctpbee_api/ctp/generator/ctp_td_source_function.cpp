@@ -757,6 +757,17 @@ int TdApi::reqQryDepthMarketData(const dict &req, int reqid)
 	return i;
 };
 
+int TdApi::reqQryTraderOffer(const dict &req, int reqid)
+{
+	CThostFtdcQryTraderOfferField myreq = CThostFtdcQryTraderOfferField();
+	memset(&myreq, 0, sizeof(myreq));
+	getString(req, "ExchangeID", myreq.ExchangeID);
+	getString(req, "ParticipantID", myreq.ParticipantID);
+	getString(req, "TraderID", myreq.TraderID);
+	int i = this->api->ReqQryTraderOffer(&myreq, reqid);
+	return i;
+};
+
 int TdApi::reqQrySettlementInfo(const dict &req, int reqid)
 {
 	CThostFtdcQrySettlementInfoField myreq = CThostFtdcQrySettlementInfoField();

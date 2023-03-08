@@ -7,5 +7,9 @@ def get_interface(interface_name):
         from ctpbee_api.ctp_mini import MiniMdApi, MiniTdApi
         return MiniMdApi, MiniTdApi
 
+    elif interface_name == "rohon":
+        from ctpbee_api.rohon import RohonMdApi, RohonTdApi
+        return RohonMdApi, RohonTdApi
+
     else:
         raise ValueError("INTERFACE NOT SUPPORTED")

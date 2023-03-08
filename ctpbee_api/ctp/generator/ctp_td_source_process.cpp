@@ -61,6 +61,7 @@ void TdApi::processRspUserLogin(Task *task)
 		data["CZCETime"] = toUtf(task_data->CZCETime);
 		data["FFEXTime"] = toUtf(task_data->FFEXTime);
 		data["INETime"] = toUtf(task_data->INETime);
+		data["SysVersion"] = toUtf(task_data->SysVersion);
 		delete task_data;
 	}
 	dict error;
@@ -1146,6 +1147,8 @@ void TdApi::processRspQryInvestor(Task *task)
 		data["Mobile"] = toUtf(task_data->Mobile);
 		data["CommModelID"] = toUtf(task_data->CommModelID);
 		data["MarginModelID"] = toUtf(task_data->MarginModelID);
+		data["IsOrderFreq"] = task_data->IsOrderFreq;
+		data["IsOpenVolLimit"] = task_data->IsOpenVolLimit;
 		delete task_data;
 	}
 	dict error;
@@ -1304,6 +1307,8 @@ void TdApi::processRspQryProduct(Task *task)
 		data["UnderlyingMultiple"] = task_data->UnderlyingMultiple;
 		data["ProductID"] = toUtf(task_data->ProductID);
 		data["ExchangeProductID"] = toUtf(task_data->ExchangeProductID);
+		data["OpenLimitControlLevel"] = task_data->OpenLimitControlLevel;
+		data["OrderFreqControlLevel"] = task_data->OrderFreqControlLevel;
 		delete task_data;
 	}
 	dict error;
@@ -1438,6 +1443,46 @@ void TdApi::processRspQryDepthMarketData(Task *task)
 		delete task_error;
 	}
 	this->onRspQryDepthMarketData(data, error, task->task_id, task->task_last);
+};
+
+void TdApi::processRspQryTraderOffer(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		CThostFtdcTraderOfferField *task_data = (CThostFtdcTraderOfferField*)task->task_data;
+		data["ExchangeID"] = toUtf(task_data->ExchangeID);
+		data["TraderID"] = toUtf(task_data->TraderID);
+		data["ParticipantID"] = toUtf(task_data->ParticipantID);
+		data["Password"] = toUtf(task_data->Password);
+		data["InstallID"] = task_data->InstallID;
+		data["OrderLocalID"] = toUtf(task_data->OrderLocalID);
+		data["TraderConnectStatus"] = task_data->TraderConnectStatus;
+		data["ConnectRequestDate"] = toUtf(task_data->ConnectRequestDate);
+		data["ConnectRequestTime"] = toUtf(task_data->ConnectRequestTime);
+		data["LastReportDate"] = toUtf(task_data->LastReportDate);
+		data["LastReportTime"] = toUtf(task_data->LastReportTime);
+		data["ConnectDate"] = toUtf(task_data->ConnectDate);
+		data["ConnectTime"] = toUtf(task_data->ConnectTime);
+		data["StartDate"] = toUtf(task_data->StartDate);
+		data["StartTime"] = toUtf(task_data->StartTime);
+		data["TradingDay"] = toUtf(task_data->TradingDay);
+		data["BrokerID"] = toUtf(task_data->BrokerID);
+		data["MaxTradeID"] = toUtf(task_data->MaxTradeID);
+		data["MaxOrderMessageReference"] = toUtf(task_data->MaxOrderMessageReference);
+		data["OrderCancelAlg"] = task_data->OrderCancelAlg;
+		delete task_data;
+	}
+	dict error;
+	if (task->task_error)
+	{
+		CThostFtdcRspInfoField *task_error = (CThostFtdcRspInfoField*)task->task_error;
+		error["ErrorID"] = task_error->ErrorID;
+		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
+		delete task_error;
+	}
+	this->onRspQryTraderOffer(data, error, task->task_id, task->task_last);
 };
 
 void TdApi::processRspQrySettlementInfo(Task *task)

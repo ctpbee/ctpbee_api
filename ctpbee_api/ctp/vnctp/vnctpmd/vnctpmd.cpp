@@ -7,6 +7,7 @@
 ///-------------------------------------------------------------------------------------
 ///C++的回调函数将数据保存到队列中
 ///-------------------------------------------------------------------------------------
+
 void MdApi::OnFrontConnected()
 {
 	Task task = Task();
@@ -218,7 +219,6 @@ void MdApi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp)
 	this->task_queue.push(task);
 };
 
-
 ///-------------------------------------------------------------------------------------
 ///工作线程从队列中取出数据，转化为python对象后，进行推送
 ///-------------------------------------------------------------------------------------
@@ -233,85 +233,83 @@ void MdApi::processTask()
             
             switch (task.task_name)
             {
-            case ONFRONTCONNECTED:
-            {
-                this->processFrontConnected(&task);
-                break;
-            }
+			case ONFRONTCONNECTED:
+			{
+				this->processFrontConnected(&task);
+				break;
+			}
 
-            case ONFRONTDISCONNECTED:
-            {
-                this->processFrontDisconnected(&task);
-                break;
-            }
+			case ONFRONTDISCONNECTED:
+			{
+				this->processFrontDisconnected(&task);
+				break;
+			}
 
-            case ONHEARTBEATWARNING:
-            {
-                this->processHeartBeatWarning(&task);
-                break;
-            }
+			case ONHEARTBEATWARNING:
+			{
+				this->processHeartBeatWarning(&task);
+				break;
+			}
 
-            case ONRSPUSERLOGIN:
-            {
-                this->processRspUserLogin(&task);
-                break;
-            }
+			case ONRSPUSERLOGIN:
+			{
+				this->processRspUserLogin(&task);
+				break;
+			}
 
-            case ONRSPUSERLOGOUT:
-            {
-                this->processRspUserLogout(&task);
-                break;
-            }
+			case ONRSPUSERLOGOUT:
+			{
+				this->processRspUserLogout(&task);
+				break;
+			}
 
-            case ONRSPQRYMULTICASTINSTRUMENT:
-            {
-                this->processRspQryMulticastInstrument(&task);
-                break;
-            }
+			case ONRSPQRYMULTICASTINSTRUMENT:
+			{
+				this->processRspQryMulticastInstrument(&task);
+				break;
+			}
 
-            case ONRSPERROR:
-            {
-                this->processRspError(&task);
-                break;
-            }
+			case ONRSPERROR:
+			{
+				this->processRspError(&task);
+				break;
+			}
 
-            case ONRSPSUBMARKETDATA:
-            {
-                this->processRspSubMarketData(&task);
-                break;
-            }
+			case ONRSPSUBMARKETDATA:
+			{
+				this->processRspSubMarketData(&task);
+				break;
+			}
 
-            case ONRSPUNSUBMARKETDATA:
-            {
-                this->processRspUnSubMarketData(&task);
-                break;
-            }
+			case ONRSPUNSUBMARKETDATA:
+			{
+				this->processRspUnSubMarketData(&task);
+				break;
+			}
 
-            case ONRSPSUBFORQUOTERSP:
-            {
-                this->processRspSubForQuoteRsp(&task);
-                break;
-            }
+			case ONRSPSUBFORQUOTERSP:
+			{
+				this->processRspSubForQuoteRsp(&task);
+				break;
+			}
 
-            case ONRSPUNSUBFORQUOTERSP:
-            {
-                this->processRspUnSubForQuoteRsp(&task);
-                break;
-            }
+			case ONRSPUNSUBFORQUOTERSP:
+			{
+				this->processRspUnSubForQuoteRsp(&task);
+				break;
+			}
 
-            case ONRTNDEPTHMARKETDATA:
-            {
-                this->processRtnDepthMarketData(&task);
-                break;
-            }
+			case ONRTNDEPTHMARKETDATA:
+			{
+				this->processRtnDepthMarketData(&task);
+				break;
+			}
 
-            case ONRTNFORQUOTERSP:
-            {
-                this->processRtnForQuoteRsp(&task);
-                break;
-            }
-
-
+			case ONRTNFORQUOTERSP:
+			{
+				this->processRtnForQuoteRsp(&task);
+				break;
+			}
             };
         }
     }
@@ -319,6 +317,7 @@ void MdApi::processTask()
     {
     }
 };
+
 void MdApi::processFrontConnected(Task *task)
 {
 	gil_scoped_acquire acquire;
@@ -357,6 +356,7 @@ void MdApi::processRspUserLogin(Task *task)
 		data["CZCETime"] = toUtf(task_data->CZCETime);
 		data["FFEXTime"] = toUtf(task_data->FFEXTime);
 		data["INETime"] = toUtf(task_data->INETime);
+		data["SysVersion"] = toUtf(task_data->SysVersion);
 		delete task_data;
 	}
 	dict error;
@@ -647,9 +647,30 @@ string MdApi::getTradingDay()
 	return day;
 };
 
+string MdApi::getApiVersion()
+{
+	string version = this->api->GetApiVersion();
+	return version;
+};
+
 void MdApi::registerFront(string pszFrontAddress)
 {
 	this->api->RegisterFront((char*)pszFrontAddress.c_str());
+};
+
+void MdApi::registerNameServer(string pszNsAddress)
+{
+	this->api->RegisterNameServer((char*)pszNsAddress.c_str());
+};
+
+void MdApi::registerFensUserInfo(const dict &req)
+{
+	CThostFtdcFensUserInfoField myreq = CThostFtdcFensUserInfoField();
+	memset(&myreq, 0, sizeof(myreq));
+	getString(req, "BrokerID", myreq.BrokerID);
+	getString(req, "UserID", myreq.UserID);
+	getChar(req, "LoginMode", &myreq.LoginMode);
+	this->api->RegisterFensUserInfo(&myreq);
 };
 
 int MdApi::subscribeMarketData(string instrumentID)
@@ -663,7 +684,7 @@ int MdApi::subscribeMarketData(string instrumentID)
 int MdApi::unSubscribeMarketData(string instrumentID)
 {
 	char* buffer = (char*)instrumentID.c_str();
-	char* myreq[1] = { buffer };;
+	char* myreq[1] = { buffer };
 	int i = this->api->UnSubscribeMarketData(myreq, 1);
 	return i;
 };
@@ -679,7 +700,7 @@ int MdApi::subscribeForQuoteRsp(string instrumentID)
 int MdApi::unSubscribeForQuoteRsp(string instrumentID)
 {
 	char* buffer = (char*)instrumentID.c_str();
-	char* myreq[1] = { buffer };;
+	char* myreq[1] = { buffer };
 	int i = this->api->UnSubscribeForQuoteRsp(myreq, 1);
 	return i;
 };
@@ -736,167 +757,166 @@ public:
 	using MdApi::MdApi;
 
 	void onFrontConnected() override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onFrontConnected);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onFrontConnected);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onFrontDisconnected(int reqid) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onFrontDisconnected, reqid);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onFrontDisconnected(int reqid) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onFrontDisconnected, reqid);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onHeartBeatWarning(int reqid) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onHeartBeatWarning, reqid);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onHeartBeatWarning(int reqid) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onHeartBeatWarning, reqid);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRspUserLogin(const dict &data, const dict &error, int reqid, bool last) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRspUserLogin, data, error, reqid, last);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRspUserLogin(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRspUserLogin, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRspUserLogout(const dict &data, const dict &error, int reqid, bool last) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRspUserLogout, data, error, reqid, last);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRspUserLogout(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRspUserLogout, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRspQryMulticastInstrument(const dict &data, const dict &error, int reqid, bool last) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRspQryMulticastInstrument, data, error, reqid, last);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRspQryMulticastInstrument(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRspQryMulticastInstrument, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRspError(const dict &error, int reqid, bool last) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRspError, error, reqid, last);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRspError(const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRspError, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRspSubMarketData(const dict &data, const dict &error, int reqid, bool last) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRspSubMarketData, data, error, reqid, last);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRspSubMarketData(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRspSubMarketData, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRspUnSubMarketData(const dict &data, const dict &error, int reqid, bool last) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRspUnSubMarketData, data, error, reqid, last);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRspUnSubMarketData(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRspUnSubMarketData, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRspSubForQuoteRsp(const dict &data, const dict &error, int reqid, bool last) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRspSubForQuoteRsp, data, error, reqid, last);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRspSubForQuoteRsp(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRspSubForQuoteRsp, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRspUnSubForQuoteRsp(const dict &data, const dict &error, int reqid, bool last) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRspUnSubForQuoteRsp, data, error, reqid, last);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRspUnSubForQuoteRsp(const dict &data, const dict &error, int reqid, bool last) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRspUnSubForQuoteRsp, data, error, reqid, last);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRtnDepthMarketData(const dict &data) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRtnDepthMarketData, data);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
+	void onRtnDepthMarketData(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRtnDepthMarketData, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 
-    void onRtnForQuoteRsp(const dict &data) override
-    {
-        try
-        {
-            PYBIND11_OVERLOAD(void, MdApi, onRtnForQuoteRsp, data);
-        }
-        catch (const error_already_set &e)
-        {
-            cout << e.what() << endl;
-        }
-    };
-
-
+	void onRtnForQuoteRsp(const dict &data) override
+	{
+		try
+		{
+			PYBIND11_OVERLOAD(void, MdApi, onRtnForQuoteRsp, data);
+		}
+		catch (const error_already_set &e)
+		{
+			cout << e.what() << endl;
+		}
+	};
 };
+
 
 PYBIND11_MODULE(vnctpmd, m)
 {
-	class_<MdApi, PyMdApi> mdapi(m, "MdApi");
+	class_<MdApi, PyMdApi> mdapi(m, "MdApi", module_local());
 	mdapi
 		.def(init<>())
 		.def("createFtdcMdApi", &MdApi::createFtdcMdApi)
@@ -906,18 +926,22 @@ PYBIND11_MODULE(vnctpmd, m)
 		.def("exit", &MdApi::exit)
 		.def("getTradingDay", &MdApi::getTradingDay)
 		.def("registerFront", &MdApi::registerFront)
+		.def("registerNameServer", &MdApi::registerNameServer)
+		.def("registerFensUserInfo", &MdApi::registerFensUserInfo)
 		.def("subscribeMarketData", &MdApi::subscribeMarketData)
 		.def("unSubscribeMarketData", &MdApi::unSubscribeMarketData)
 		.def("subscribeForQuoteRsp", &MdApi::subscribeForQuoteRsp)
 		.def("unSubscribeForQuoteRsp", &MdApi::unSubscribeForQuoteRsp)
 		.def("reqUserLogin", &MdApi::reqUserLogin)
 		.def("reqUserLogout", &MdApi::reqUserLogout)
+		.def("reqQryMulticastInstrument", &MdApi::reqQryMulticastInstrument)
 
 		.def("onFrontConnected", &MdApi::onFrontConnected)
 		.def("onFrontDisconnected", &MdApi::onFrontDisconnected)
 		.def("onHeartBeatWarning", &MdApi::onHeartBeatWarning)
 		.def("onRspUserLogin", &MdApi::onRspUserLogin)
 		.def("onRspUserLogout", &MdApi::onRspUserLogout)
+		.def("onRspQryMulticastInstrument", &MdApi::onRspQryMulticastInstrument)
 		.def("onRspError", &MdApi::onRspError)
 		.def("onRspSubMarketData", &MdApi::onRspSubMarketData)
 		.def("onRspUnSubMarketData", &MdApi::onRspUnSubMarketData)

@@ -78,6 +78,8 @@ void processRspQryInstrument(Task *task);
 
 void processRspQryDepthMarketData(Task *task);
 
+void processRspQryTraderOffer(Task *task);
+
 void processRspQrySettlementInfo(Task *task);
 
 void processRspQryTransferBank(Task *task);

@@ -78,6 +78,8 @@ int reqQryInstrument(const dict &req, int reqid);
 
 int reqQryDepthMarketData(const dict &req, int reqid);
 
+int reqQryTraderOffer(const dict &req, int reqid);
+
 int reqQrySettlementInfo(const dict &req, int reqid);
 
 int reqQryTransferBank(const dict &req, int reqid);
