@@ -8,6 +8,8 @@ def get_interface(interface_name):
         return MiniMdApi, MiniTdApi
 
     elif interface_name == "rohon":
+        # fixme: import ctp api first
+        from ctpbee_api.ctp import MdApi, TdApi
         from ctpbee_api.rohon import RohonMdApi, RohonTdApi
         return RohonMdApi, RohonTdApi
 

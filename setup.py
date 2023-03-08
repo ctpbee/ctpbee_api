@@ -167,7 +167,7 @@ else:
 
 setup(
     name='ctpbee_api',
-    version="0.34",
+    version="0.40",
     description="single CTP API support",
     author='somewheve',
     long_description=long_description,
