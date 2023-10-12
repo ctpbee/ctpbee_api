@@ -4,13 +4,14 @@ import sys
 from setuptools import Extension
 from setuptools import setup
 
-if sys.version_info < (3, 6):
+version = sys.version_info[0] * 100 + sys.version_info[1]
+if version < 306:
     raise RuntimeError('当前ctpbee_api只支持python36以及更高版本/ ctpbee only support python36 and highly only ')
 long_description = "ctpbee api support"
 system_name = platform.uname().system
 
 
-class ApiExt:
+class ApiExtentsion:
     def __init__(self, module_name, library_list: list):
         """
         :param api_name: should be vnctp_macmd
@@ -60,7 +61,10 @@ class ApiExt:
         if system_name == "Darwin":
             dirs.append(f"ctpbee_api/{self.module_name}/include/mac")
         else:
-            dirs.append(f"ctpbee_api/{self.module_name}/include")
+            if version >= 311:
+                dirs.append(f"ctpbee_api/{self.module_name}/include/new")
+            else:
+                dirs.append(f"ctpbee_api/{self.module_name}/include/previous")
         return dirs
 
     @property
@@ -97,13 +101,6 @@ class ApiExt:
 
     def as_md_api(self) -> Extension:
         mod, file = self.md_api_file()
-        # print(mod, file)
-        # print("include", self.include)
-        # print("library_dir", self.library_dir)
-        # print("compiled_flag", self.compiled_flag)
-        # print("run_time_library", self.run_time_library)
-        # print("library", self.library)
-        # print("extral_link_args", self.extral_link_args)
         return Extension(
             mod,
             [
@@ -130,23 +127,23 @@ pkgs = ["ctpbee_api"]
 
 
 def build_ctp():
-    ctp_md, ctp_td = ApiExt(module_name="ctp", library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
+    ctp_md, ctp_td = ApiExtentsion(module_name="ctp", library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
     ext_modules.append(ctp_md)
     ext_modules.append(ctp_td)
     pkgs.append('ctpbee_api.ctp')
 
 
 def build_ctp_mini():
-    ctp_mini_md, ctp_mini_td = ApiExt(module_name="ctp_mini",
-                                      library_list=["thostmduserapi", "thosttraderapi"]).as_ext()
+    ctp_mini_md, ctp_mini_td = ApiExtentsion(module_name="ctp_mini",
+                                             library_list=["thostmduserapi", "thosttraderapi"]).as_ext()
     ext_modules.append(ctp_mini_md)
     ext_modules.append(ctp_mini_td)
     pkgs.append("ctpbee_api.ctp_mini")
 
 
 def build_rohon():
-    ctp_rohon_md, ctp_rohon_td = ApiExt(module_name="rohon",
-                                        library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
+    ctp_rohon_md, ctp_rohon_td = ApiExtentsion(module_name="rohon",
+                                               library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
     ext_modules.append(ctp_rohon_md)
     ext_modules.append(ctp_rohon_td)
     pkgs.append("ctpbee_api.rohon")
@@ -165,9 +162,13 @@ elif system_name == "Darwin":
 else:
     raise ValueError(f"{system_name} not support, only support Linux, Windows, Darwin")
 
+if version > 310:
+    from setuptools import find_namespace_packages
+
+    pkgs = find_namespace_packages(pkgs)
 setup(
     name='ctpbee_api',
-    version="0.40",
+    version="0.41",
     description="single CTP API support",
     author='somewheve',
     long_description=long_description,
@@ -175,9 +176,9 @@ setup(
     url='https://github.com/ctpbee/ctpbee_api',
     license="MIT",
     packages=pkgs,
+    include_package_data=True,
     install_requires=[],
     platforms=["Windows", "Linux", "Mac OS-X"],
-    include_package_data=True,
     package_dir={'ctpbee_api': 'ctpbee_api'},
     ext_modules=ext_modules,
 )
