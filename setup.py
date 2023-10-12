@@ -123,7 +123,7 @@ class ApiExtentsion:
 
 
 ext_modules = []
-pkgs = ["ctpbee_api"]
+pkgs = []
 
 
 def build_ctp():
@@ -162,14 +162,10 @@ elif system_name == "Darwin":
 else:
     raise ValueError(f"{system_name} not support, only support Linux, Windows, Darwin")
 
-if version > 310:
-    from setuptools import find_namespace_packages
-
-    pkgs = find_namespace_packages(pkgs)
 setup(
     name='ctpbee_api',
-    version="0.41",
-    description="single CTP API support",
+    version="0.42",
+    description="Trading API support for China Future",
     author='somewheve',
     long_description=long_description,
     author_email='somewheve@gmail.com',
@@ -181,4 +177,7 @@ setup(
     platforms=["Windows", "Linux", "Mac OS-X"],
     package_dir={'ctpbee_api': 'ctpbee_api'},
     ext_modules=ext_modules,
+    package_data={
+        'ctpbee_api': ['*'],
+    },
 )
