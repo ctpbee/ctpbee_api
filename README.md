@@ -6,15 +6,15 @@
 
 ## 支持操作系统
 
-- [x] windows
-- [x] macos
-- [x] linux
+- [x] windows `['ctp', 'rohon, 'ctp_mini']`
+- [x] macos `['ctp']`
+- [x] linux `['ctp', 'ctp_mini', rohon]`
 
 windows采用预编译进行支持
 
 `python`版本:
 
-- python36+
+- `python38+`
 
 #### 对接生成指定版本的对接文件，参见`ctp/generate`
 
@@ -31,3 +31,8 @@ windows采用预编译进行支持
 - module需要标识单个名字 `rohon`
 - module下面的子目录应该带 `vn` + `rohon`
 - 接口文件目录和文件命名规则 应该为 `vnrohonmd` + `vnrohontd`, vn是固定前缀 md和td为固定后缀
+
+### mac 如何工作
+`pip3`第一次安装后会编译安装成功，然后第一次运行`ctpbee`的程序会在某个目录提示无法找到`thostmduserapi_se.framework`和`thosttraderapi_se.framework`
+
+在作者的mac air上面是提示在`/opt/homebrew/lib`下无法找到找到`framework`此时下载当前目录下面的`library`库 然后cp -r 过去即可 

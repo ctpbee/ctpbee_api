@@ -11,30 +11,42 @@ long_description = "ctpbee api support"
 system_name = platform.uname().system
 
 
-class ApiExtentsion:
-    def __init__(self, module_name, library_list: list):
+class ApiExtension:
+    support_platform = {"ctp": ["Windows", "Linux", "Darwin"],
+                        "rohon": ["Windows", "Linux"],
+                        "ctp_mini": ["Windows", "Linux"]
+                        }
+
+    def __init__(self, module_name, library_list: list, system="Windows"):
         """
         :param api_name: should be vnctp_macmd
         :param module_name: should be `ctp`
         :param library_list: library
         """
         self.module_name = module_name
+        self.system_name = system
+        if system in self.support_platform.get(module_name, []):
+            self.init = True
+        else:
+            self.init = False
+        if system_name == "Darwin":
+            library_list = ["mac_" + x for x in library_list]
         self.library_list = library_list
 
     @property
     def library(self):
         """ 获取基础的ctp API"""
         library_list = self.library_list
-        if system_name == "Darwin" and self.module_name == "ctp":
+        if self.system_name == "Darwin" and self.module_name == "ctp":
             library_list.extend(["ssl", "crypto", "comunicationkey"])
         return library_list
 
     @property
     def compiled_flag(self) -> list:
-        if system_name == "Windows":
+        if self.system_name == "Windows":
             return ["/MP", "/std:c++17", "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GL", "/wd4819",
                     "/DNOMINMAX"]
-        elif system_name == "Darwin":
+        elif self.system_name == "Darwin":
             return ["-std=c++11", "-mmacosx-version-min=10.12"]
         else:
             return ["-std=c++17", "-O3", "-Wno-delete-incomplete", "-Wno-sign-compare", "-pthread"]
@@ -42,23 +54,23 @@ class ApiExtentsion:
     @property
     def run_time_library(self):
         run_library = []
-        if system_name == "Linux":
+        if self.system_name == "Linux":
             run_library.append("$ORIGIN")
         return run_library
 
     @property
     def extral_link_args(self):
         extra_link_args = []
-        if system_name != "Windows":
+        if self.system_name != "Windows":
             extra_link_args.append("-lstdc++")
-        if system_name == "Darwin":
+        if self.system_name == "Darwin":
             extra_link_args.append("-mmacosx-version-min=10.12")
         return extra_link_args
 
     @property
     def include(self) -> list:
         dirs = [f"ctpbee_api/{self.module_name}/vn{self.module_name}"]
-        if system_name == "Darwin":
+        if self.system_name == "Darwin":
             dirs.append(f"ctpbee_api/{self.module_name}/include/mac")
         else:
             if version >= 311:
@@ -70,7 +82,7 @@ class ApiExtentsion:
     @property
     def library_dir(self) -> library:
         dirs = [f"ctpbee_api/{self.module_name}"]
-        if system_name != "Linux":
+        if self.system_name != "Linux":
             dirs.append(f"ctpbee_api/{self.module_name}/libs")
         return dirs
 
@@ -118,7 +130,7 @@ class ApiExtentsion:
             runtime_library_dirs=self.run_time_library,
         )
 
-    def as_ext(self):
+    def as_extension(self):
         return self.as_md_api(), self.as_td_api()
 
 
@@ -126,45 +138,25 @@ ext_modules = []
 pkgs = []
 
 
-def build_ctp():
-    ctp_md, ctp_td = ApiExtentsion(module_name="ctp", library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
-    ext_modules.append(ctp_md)
-    ext_modules.append(ctp_td)
-    pkgs.append('ctpbee_api.ctp')
+def build(module_name, library_list, system, include_module):
+    ext = ApiExtension(module_name=module_name, library_list=library_list,
+                       system=system)
+    if ext.init:
+        md, td = ext.as_extension()
+        ext_modules.append(md)
+        ext_modules.append(td)
+        pkgs.append(include_module)
+    else:
+        pass
 
 
-def build_ctp_mini():
-    ctp_mini_md, ctp_mini_td = ApiExtentsion(module_name="ctp_mini",
-                                             library_list=["thostmduserapi", "thosttraderapi"]).as_ext()
-    ext_modules.append(ctp_mini_md)
-    ext_modules.append(ctp_mini_td)
-    pkgs.append("ctpbee_api.ctp_mini")
-
-
-def build_rohon():
-    ctp_rohon_md, ctp_rohon_td = ApiExtentsion(module_name="rohon",
-                                               library_list=["thostmduserapi_se", "thosttraderapi_se"]).as_ext()
-    ext_modules.append(ctp_rohon_md)
-    ext_modules.append(ctp_rohon_td)
-    pkgs.append("ctpbee_api.rohon")
-
-
-if system_name == "Windows":
-    build_ctp()
-    build_ctp_mini()
-    build_rohon()
-elif system_name == "Linux":
-    build_ctp()
-    build_ctp_mini()
-    build_rohon()
-elif system_name == "Darwin":
-    build_ctp()
-else:
-    raise ValueError(f"{system_name} not support, only support Linux, Windows, Darwin")
+build("ctp", ["thostmduserapi_se", "thosttraderapi_se"], system_name, include_module='ctpbee_api.ctp')
+build("ctp_mini", ["thostmduserapi_se", "thosttraderapi_se"], system_name, include_module='ctpbee_api.ctp_mini')
+build("rohon", ["thostmduserapi_se", "thosttraderapi_se"], system_name, include_module='ctpbee_api.rohon')
 
 setup(
     name='ctpbee_api',
-    version="0.42",
+    version="0.43",
     description="Trading API support for China Future",
     author='somewheve',
     long_description=long_description,
