@@ -1,5 +1,7 @@
 import platform
 import sys
+import shutil
+import os
 
 from setuptools import Extension
 from setuptools import setup
@@ -9,8 +11,6 @@ if version < 306:
     raise RuntimeError('当前ctpbee_api只支持python36以及更高版本/ ctpbee only support python36 and highly only ')
 long_description = "ctpbee api support"
 system_name = platform.uname().system
-import shutil
-import os
 
 
 def copy_folder_contents(source_folder, destination_folder):
@@ -193,6 +193,11 @@ def build(module_name, library_list, system, include_module):
         ext_modules.append(md)
         ext_modules.append(td)
         pkgs.append(include_module)
+        if system == "Darwin" and module_name == "ctp":
+            """
+            mac需要进行额外处理
+            """
+            pkgs.append("ctpbee_api.framework")
     else:
         del ext
 
@@ -200,6 +205,22 @@ def build(module_name, library_list, system, include_module):
 build("ctp", ["thostmduserapi_se", "thosttraderapi_se"], system=system_name, include_module='ctpbee_api.ctp')
 build("ctp_mini", ["thostmduserapi", "thosttraderapi"], system=system_name, include_module='ctpbee_api.ctp_mini')
 build("rohon", ["thostmduserapi_se", "thosttraderapi_se"], system=system_name, include_module='ctpbee_api.rohon')
+
+
+def find_data_files(directory):
+    data_files = []
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            data_files.append(os.path.relpath(os.path.join(root, file), directory))
+    return data_files
+
+
+package_data = {}
+for pkg in pkgs:
+    if "." not in pkg:
+        continue
+    files = find_data_files(pkg.replace(".", "/"))
+    package_data[pkg] = files
 
 setup(
     name='ctpbee_api',
@@ -211,11 +232,7 @@ setup(
     url='https://github.com/ctpbee/ctpbee_api',
     license="MIT",
     packages=pkgs,
-    include_package_data=True,
-    install_requires=[],
     platforms=["Windows", "Linux", "Mac OS-X"],
     ext_modules=ext_modules,
-    package_data={
-        'ctpbee_api': ['*.so', '*.dylib', '*.dll', '*.a', 'thost*'],
-    },
+    package_data=package_data,
 )
