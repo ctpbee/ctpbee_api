@@ -33,8 +33,13 @@ windows采用预编译进行支持
 - 接口文件目录和文件命名规则 应该为 `vnrohonmd` + `vnrohontd`, vn是固定前缀 md和td为固定后缀
 
 ### mac 如何工作
-`pip3`第一次安装后会编译安装成功，然后第一次运行`ctpbee`的程序会在某个目录提示无法找到`thostmduserapi_se.framework`和`thosttraderapi_se.framework`
 
-在作者的mac air上面是提示在`/opt/homebrew/lib`下无法找到找到`framework`此时下载此[文件夹](https://github.com/ctpbee/ctpbee_api/tree/master/library) 然后cp -r 过去即可 
+`pip3`第一次安装后会编译安装成功, 第一次运行会提示不受信任的开发者 请前往`隐私与安全性`接受framework，
+，官方framework存在一点小问题， 我是采用`somewheve`进行自签名的
+
+frameworks路径在`~/.ctpbee/Frameworks/`下
+
+
+
 
 > ps: 作者不擅长Mac开发 希望大佬给予pr
