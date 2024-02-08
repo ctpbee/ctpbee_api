@@ -20,7 +20,7 @@ windows采用预编译进行支持
 
 ---
 
-**此底层API为[vnpy](https://github.com/vnpy/vnpy).的接口的集合封装, 提供一对多API对接**
+**此底层API为[vnpy](https://github.com/vnpy/vnpy)的接口的集合封装, 提供一对多API对接**
 
 ---
 
@@ -35,6 +35,6 @@ windows采用预编译进行支持
 ### mac 如何工作
 `pip3`第一次安装后会编译安装成功，然后第一次运行`ctpbee`的程序会在某个目录提示无法找到`thostmduserapi_se.framework`和`thosttraderapi_se.framework`
 
-在作者的mac air上面是提示在`/opt/homebrew/lib`下无法找到找到`framework`此时下载当前目录下面的`library`库 然后cp -r 过去即可 
+在作者的mac air上面是提示在`/opt/homebrew/lib`下无法找到找到`framework`此时下载此[文件夹](https://github.com/ctpbee/ctpbee_api/tree/master/library) 然后cp -r 过去即可 
 
 > ps: 作者不擅长Mac开发 希望大佬给予pr
