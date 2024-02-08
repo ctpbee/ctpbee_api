@@ -135,7 +135,7 @@ class ApiExtension:
 
 
 ext_modules = []
-pkgs = []
+pkgs = ["ctpbee_api"]
 
 
 def build(module_name, library_list, system, include_module):
