@@ -183,8 +183,6 @@ class ApiExtension:
 ext_modules = []
 pkgs = ["ctpbee_api"]
 
-package_data = []
-
 
 def build(module_name, library_list, system, include_module):
     ext = ApiExtension(module_name=module_name,
@@ -195,7 +193,6 @@ def build(module_name, library_list, system, include_module):
         ext_modules.append(md)
         ext_modules.append(td)
         pkgs.append(include_module)
-        package_data.append("{}/*".format(module_name))
     else:
         del ext
 
@@ -215,8 +212,10 @@ setup(
     license="MIT",
     packages=pkgs,
     include_package_data=True,
-    package_dir={"ctpbee_api": "ctpbee_api"},
+    install_requires=[],
     platforms=["Windows", "Linux", "Mac OS-X"],
     ext_modules=ext_modules,
-    package_data={"ctpbee_api": ["*"]}
+    package_data={
+        'ctpbee_api': ['*.so', '*.dylib', '*.dll', '*.a', 'thost*'],
+    },
 )

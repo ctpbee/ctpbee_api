@@ -1,6 +1,0 @@
-include MANIFEST.in
-recursive-include ctpbee_api/ctp *
-recursive-include ctpbee_api/ctp/framework *
-
-recursive-include ctpbee_api/ctp_mini *
-recursive-include ctpbee_api/rohon *
