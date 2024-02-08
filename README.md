@@ -4,6 +4,13 @@
 
 > 此处描述`ctpbee`里面的 `API` 生成
 
+## 如何安装
+
+```
+pip3 install ctpbee_api # for linux and windows
+pip3 install git+https://github.com/ctpbee/ctpbee_api # for macos
+```
+
 ## 支持操作系统
 
 - [x] windows `['ctp', 'rohon, 'ctp_mini']`
@@ -33,14 +40,11 @@ windows采用预编译进行支持
 - 接口文件目录和文件命名规则 应该为 `vnrohonmd` + `vnrohontd`, vn是固定前缀 md和td为固定后缀
 
 ### mac 如何工作
-
-
+小心一点, mac需要从源码安装
 `pip3`第一次安装后会编译安装成功, 第一次运行会提示不受信任的开发者 请前往`隐私与安全性`接受framework，
-，官方framework存在一点小问题， 我是采用`somewheve`进行自签名的
+，官方`framework`存在一点小问题， 我是采用`somewheve`进行自签名的
 
 frameworks路径在`~/.ctpbee/Frameworks/`下
-
-
 
 
 > ps: 作者不擅长Mac开发 希望大佬给予pr
