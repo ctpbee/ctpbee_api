@@ -151,7 +151,7 @@ def build(module_name, library_list, system, include_module):
 
 
 build("ctp", ["thostmduserapi_se", "thosttraderapi_se"], system_name, include_module='ctpbee_api.ctp')
-build("ctp_mini", ["thostmduserapi_se", "thosttraderapi_se"], system_name, include_module='ctpbee_api.ctp_mini')
+build("ctp_mini", ["thostmduserapi", "thosttraderapi"], system_name, include_module='ctpbee_api.ctp_mini')
 build("rohon", ["thostmduserapi_se", "thosttraderapi_se"], system_name, include_module='ctpbee_api.rohon')
 
 setup(
