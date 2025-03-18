@@ -224,7 +224,7 @@ for pkg in pkgs:
 
 setup(
     name='ctpbee_api',
-    version="0.46",
+    version="0.47",
     description="Trading API support for China Future",
     author='somewheve',
     long_description=long_description,
