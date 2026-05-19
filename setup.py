@@ -11,6 +11,11 @@ if version < 306:
     raise RuntimeError('当前ctpbee_api只支持python36以及更高版本/ ctpbee only support python36 and highly only ')
 long_description = "ctpbee api support"
 system_name = platform.uname().system
+CTP_DYLIB_DIR_ENV = "CTPBEE_CTP_DYLIB_DIR"
+CTP_DYLIB_FILE_CANDIDATES = (
+    ("libthosttraderapi_se.dylib", "thosttraderapi_se.dylib"),
+    ("libthostmduserapi_se.dylib", "thostmduserapi_se.dylib"),
+)
 
 
 def copy_folder_contents(source_folder, destination_folder):
@@ -40,6 +45,45 @@ def get_framework_path():
         copy_folder_contents(local_framework_path, framework_path)
         if_copy = True
     return framework_path
+
+
+def get_ctp_dylib_files():
+    """
+    获取用户指定的 macOS CTP/OpenCTP dylib 文件
+    """
+    dylib_dir = os.environ.get(CTP_DYLIB_DIR_ENV)
+    if not dylib_dir:
+        return None
+
+    dylib_dir = os.path.abspath(os.path.expanduser(dylib_dir))
+    package_dylib_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ctpbee_api", "ctp")
+    if not os.path.exists(package_dylib_dir):
+        os.makedirs(package_dylib_dir)
+
+    package_dylib_files = []
+    missing_files = []
+    for file_candidates in CTP_DYLIB_FILE_CANDIDATES:
+        for filename in file_candidates:
+            dylib_file = os.path.join(dylib_dir, filename)
+            if os.path.exists(dylib_file):
+                package_dylib_file = os.path.join(package_dylib_dir, filename)
+                shutil.copy2(dylib_file, package_dylib_file)
+                package_dylib_files.append(package_dylib_file)
+                break
+        else:
+            missing_files.append("/".join(file_candidates))
+
+    if missing_files:
+        missing_text = ", ".join(missing_files)
+        raise RuntimeError(f"{CTP_DYLIB_DIR_ENV} missing required dylib files: {missing_text}")
+    return package_dylib_files
+
+
+def get_ctp_dylib_dir():
+    dylib_files = get_ctp_dylib_files()
+    if not dylib_files:
+        return None
+    return os.path.dirname(dylib_files[0])
 
 
 class ApiExtension:
@@ -99,11 +143,17 @@ class ApiExtension:
             mac下需要进行额外的处理
             """
             extra_link_args.append("-mmacosx-version-min=10.12")
-            framework_path = get_framework_path()
-            extra_link_args.append(f"-Wl,-rpath,{framework_path}")
-            extra_link_args.extend(["-F", framework_path])
-            extra_link_args.extend(["-framework", "thosttraderapi_se"])
-            extra_link_args.extend(["-framework", "thostmduserapi_se"])
+            dylib_files = get_ctp_dylib_files()
+            if dylib_files:
+                dylib_dir = os.path.dirname(dylib_files[0])
+                extra_link_args.append(f"-Wl,-rpath,{dylib_dir}")
+                extra_link_args.extend(dylib_files)
+            else:
+                framework_path = get_framework_path()
+                extra_link_args.append(f"-Wl,-rpath,{framework_path}")
+                extra_link_args.extend(["-F", framework_path])
+                extra_link_args.extend(["-framework", "thosttraderapi_se"])
+                extra_link_args.extend(["-framework", "thostmduserapi_se"])
         return extra_link_args
 
     @property
@@ -127,7 +177,11 @@ class ApiExtension:
             """
             mac从frameworks进行搜索路径下进行搜索
             """
-            dirs.append(get_framework_path())
+            dylib_dir = get_ctp_dylib_dir()
+            if dylib_dir:
+                dirs.append(dylib_dir)
+            else:
+                dirs.append(get_framework_path())
         else:
             dirs.append(f"ctpbee_api/{self.module_name}")
         return dirs
